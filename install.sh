@@ -1,7 +1,12 @@
 #! /bin/sh
 
-ln -s ./vimrc ~/.vimrc
-ln -s ./vim ~/.vim
-ln -s ./bashrc ~/.bashrc
-ln -s ./gitconfig ~/.gitconfig
-ln -s ./bash_aliases ~/.bash_aliases
+ln -s ~/conf/bashrc ~/.bashrc
+ln -s ~/conf/bash_aliases ~/.bash_aliases
+
+ln -s ~/conf/vimrc ~/.vimrc
+ln -s ~/conf/vim ~/.vim
+
+ln -s ~/conf/irbrc ~/.irbrc
+
+ln -s ~/conf/git-completion ~/.git-completion
+ln -s ~/conf/gitconfig ~/.gitconfig
