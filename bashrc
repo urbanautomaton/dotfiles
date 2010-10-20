@@ -132,6 +132,10 @@ if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
 
+if [ -f ~/.git-completion ]; then
+  . ~/.git-completion
+fi
+
 export PATH=$PATH:/usr/local/bin
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
