@@ -128,6 +128,10 @@ case `uname` in
 ;;
 esac
 
+if [[ `hostname` == sports ]]
+  export RAILS_ENV=production
+fi
+
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
