@@ -128,7 +128,7 @@ case `uname` in
 ;;
 esac
 
-if [[ `hostname` == sports ]]
+if [[ `hostname` == sports ]]; then
   export RAILS_ENV=production
 fi
 
