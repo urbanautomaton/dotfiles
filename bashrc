@@ -140,6 +140,6 @@ if [ -f ~/.git-completion ]; then
   . ~/.git-completion
 fi
 
-export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/bin:~/scripts
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
