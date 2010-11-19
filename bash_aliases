@@ -9,7 +9,6 @@ alias f='find . -name'
 alias l='locate'
 
 alias gcal='gcalcli'
-alias iphone='cadaver iphone:8888'
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
-
+alias screen='TERM=screen screen'
