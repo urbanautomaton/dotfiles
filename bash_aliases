@@ -12,4 +12,7 @@ alias gcal='gcalcli'
 alias iphone='cadaver iphone:8888'
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
-
+alias gs='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gc='git checkout'

@@ -20,7 +20,7 @@ set visualbell " Turn off beeping
 
 
 colorscheme vividchalk
-set t_Co=256
+"set t_Co=256
 syntax enable
 
 :map \c :s/^/#/<CR>
