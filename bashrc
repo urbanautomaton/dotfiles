@@ -86,24 +86,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-alias my='mysql -u root'
-alias mysqlstart='sudo /opt/local/bin/mysqld_safe5'
-alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
-
-alias c='ruby script/cucumber '
-alias gv='/usr/bin/gvim'
-alias my='mysql -u root --password=""'
-alias ss='script/server --debugger'
-alias ss1='script/server --debugger -p 3001'
-alias ss2='script/server --debugger -p 3002'
-alias sc='script/console' 
-alias rl='source ~/.bashrc' 
-alias pg='ps -awx | grep -i '
-alias js='java org.mozilla.javascript.tools.shell.Main'
-alias ll='ls -l'
-alias fami='open ~/Design/fam/index_abc.png'
-alias qa='ssh qa.v.mxmdev.com'
-
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[00;36m\]\w\[\033[00m\]\$ '
 
 # OSX dependent stuff
@@ -140,6 +122,12 @@ if [ -f ~/.git-completion ]; then
   . ~/.git-completion
 fi
 
-export PATH=$PATH:/usr/local/bin:~/scripts
+export EC2_HOME=$HOME/.ec2
+export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
+export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+export EC2_URL=https://ec2.us-west-1.amazonaws.com
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/scripts:$EC2_HOME/bin
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
