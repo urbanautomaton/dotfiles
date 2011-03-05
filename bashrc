@@ -86,8 +86,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[00;36m\]\w\[\033[00m\]\$ '
-
 # OSX dependent stuff
 case `uname` in
 'Darwin')
