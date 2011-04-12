@@ -41,9 +41,9 @@ fi
 
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
 else
-    PS1='\u@\h:\w\$ '
+  PS1='\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -120,11 +120,26 @@ if [ -f ~/.git-completion ]; then
   . ~/.git-completion
 fi
 
+function tabc {
+  NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
+  osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
+}
+
+function ssh {
+  ORIGINAL_SETTINGS=`osascript -e "tell application \"Terminal\" to get name of current settings of front window"`
+  tabc "Red"
+  /usr/bin/ssh "$@"
+  tabc "$ORIGINAL_SETTINGS"
+}
+
+
 export EC2_HOME=$HOME/.ec2
 export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
+
+#export GIT_PS1_SHOWDIRTYSTATE=1
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/scripts:$EC2_HOME/bin
 

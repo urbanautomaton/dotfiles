@@ -18,8 +18,8 @@ set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ (%p%%)]
 set laststatus=2
 set visualbell " Turn off beeping
 
-
-colorscheme vividchalk
+set background=dark
+colorscheme solarized
 "set t_Co=256
 syntax enable
 
@@ -90,8 +90,8 @@ endif " has("gui_running")
 autocmd BufWritePre *.rb :%s/\s\+$//e
 
 set showmatch
-
-
+set number
+set colorcolumn=80
 
 
 " Attempt at folding yaml

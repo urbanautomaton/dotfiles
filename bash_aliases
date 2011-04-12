@@ -22,3 +22,6 @@ alias ga='git add'
 alias gc='git checkout'
 alias gl='git log --graph --pretty=oneline --abbrev-commit'
 alias screen='TERM=screen screen'
+
+alias couchstart='launchctl load -w ~/Library/LaunchAgents/org.apache.couchdb.plist'
+alias couchstop='launchctl unload -w ~/Library/LaunchAgents/org.apache.couchdb.plist'
