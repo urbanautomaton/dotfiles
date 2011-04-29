@@ -12,7 +12,7 @@ syntax on
 filetype plugin indent on
 
 
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ (%p%%)]
+set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]
 "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
 set laststatus=2
@@ -49,7 +49,7 @@ syntax enable
 
 set guioptions-=T  " don't need toolbar
 set backupdir=~/tmp " Don't annoy me with swap files in working directory
-
+set guifont=Monaco:h12
 
 
 :map \vrc :source $MYVIMRC<CR>
