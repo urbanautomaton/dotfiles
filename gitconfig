@@ -1,6 +1,13 @@
 [user]
 	name = Simon Coffey
-	email = simon@tribesports.com
+  email = simon@tribesports.com
+
+[merge]
+  keepBackup = false
+  tool = p4merge
+
+[diff]
+  tool = p4diff
 
 [color]
 	diff = auto
