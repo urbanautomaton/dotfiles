@@ -1,5 +1,5 @@
 [user]
-	name = Simon Coffey
+  name = Simon Coffey
   email = simon@tribesports.com
 
 [merge]
@@ -10,36 +10,36 @@
   tool = p4diff
 
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = true
-	pager = true
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 
 [color "status"]
-        added = yellow
-        changed = green
-        untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 
 [core]
-        pager = less -FRSX
-        whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  pager = less -FRSX
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [github]
-	user = simon@urbanautomaton.com
-	token = fa17d54ca373e548d446c0657158f34f
+  user = simon@urbanautomaton.com
+  token = fa17d54ca373e548d446c0657158f34f
 
 [gui]
-	recentrepo = /Users/simon/dev/shopsearch
+  recentrepo = /Users/simon/dev/shopsearch
