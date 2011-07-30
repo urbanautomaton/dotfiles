@@ -14,17 +14,12 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
-
 set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]
 "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 
 set laststatus=2
 set visualbell " Turn off beeping
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-endif
 "set t_Co=256
 syntax enable
 
@@ -62,10 +57,7 @@ map <C-\> :vsp <CR><C-W><C-W><C-]>
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
 
-set guioptions-=T  " don't need toolbar
 set backupdir=~/tmp " Don't annoy me with swap files in working directory
-set guifont=Monaco:h12
-
 
 :map \vrc :source $MYVIMRC<CR>
 :map \evrc :e $MYVIMRC<CR>
@@ -87,10 +79,6 @@ fun! Lookup(some_term)
 endfun
 
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
-
-if has("gui_running")
-  set guioptions=aiA " Disable toolbar, menu bar, scroll bars
-endif " has("gui_running")
 
 :map h1 yyp:s/./=/g<ENTER>
 :map h2 yyp:s/./-/g<ENTER>
