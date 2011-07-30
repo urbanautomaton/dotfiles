@@ -6,6 +6,9 @@ set tabstop=2 "set tab character to 4 characters
 set expandtab "turn tabs into whitespace
 set shiftwidth=2 "indent width for autoindent
 
+" Enable local-directory .vimrc files, but disallow unsafe commands
+set exrc
+set secure
 
 set nocompatible
 syntax on
@@ -45,6 +48,16 @@ syntax enable
 
 :imap § #
 
+" File tree shortcut
+:imap <F4> <ESC>:NERDTreeToggle<CR>
+:map <F4> :NERDTreeToggle<CR>
+
+" Ctags gubbins
+" Broken (because cword doesn't include !? in ruby) but possibly better
+" if fixable?
+"map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-\> :vsp <CR><C-W><C-W><C-]>
+
 " Cycle through buffers using Ctrl-m and Ctrl-n for previous and next
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
@@ -82,7 +95,7 @@ endif " has("gui_running")
 :map h1 yyp:s/./=/g<ENTER>
 :map h2 yyp:s/./-/g<ENTER>
 :map <C-'> :sp<ENTER>
-:map <C-\> :vs<ENTER>
+" :map <C-\> :vs<ENTER>
 
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
@@ -96,16 +109,6 @@ set number
 if exists("&colorcolumn")
   set colorcolumn=80
 endif
-
-" Attempt at folding yaml
-" set foldmethod=indent
-" setlocal foldmethod=expr
-"setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
-"set foldtext=getline(v:foldstart)
-"set fillchars=fold:\ "(there's a space after that \)
-" highlight Folded ctermfg=DarkGreen ctermbg=Black
-"
-"
 
 " Borrowed from kerryb's vimrc:
 " http://github.com/kerryb/vim-config/blob/master/vimrc
