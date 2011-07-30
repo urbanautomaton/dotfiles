@@ -10,3 +10,5 @@ ln -s ~/conf/irbrc ~/.irbrc
 
 ln -s ~/conf/git-completion ~/.git-completion
 ln -s ~/conf/gitconfig ~/.gitconfig
+
+ln -s ~/conf/js ~/.js
