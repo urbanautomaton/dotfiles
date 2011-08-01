@@ -45,7 +45,9 @@ syntax enable
 
 " File tree shortcut
 :imap <F4> <ESC>:NERDTreeToggle<CR>
+:imap <F5> <ESC>:NERDTreeFind<CR>
 :map <F4> :NERDTreeToggle<CR>
+:map <F5> :NERDTreeFind<CR>
 
 " Ctags gubbins
 " Broken (because cword doesn't include !? in ruby) but possibly better
