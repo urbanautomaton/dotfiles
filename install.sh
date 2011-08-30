@@ -1,15 +1,18 @@
 #! /bin/sh
 
-ln -s ~/conf/bashrc ~/.bashrc
-ln -s ~/conf/bash_aliases ~/.bash_aliases
+ln -sf ~/conf/bashrc ~/.bashrc
+ln -sf ~/conf/bash_aliases ~/.bash_aliases
 
-ln -s ~/conf/vimrc ~/.vimrc
-ln -s ~/conf/vim ~/.vim
+ln -sf ~/conf/vimrc ~/.vimrc
+ln -sf ~/conf/vim ~/.vim
 
-ln -s ~/conf/irbrc ~/.irbrc
+ln -sf ~/conf/irbrc ~/.irbrc
 
-ln -s ~/conf/git-completion ~/.git-completion
-ln -s ~/conf/gitconfig ~/.gitconfig
+ln -sf ~/conf/git-completion ~/.git-completion
+ln -sf ~/conf/gitconfig ~/.gitconfig
+ln -sf ~/conf/git_template ~/.git_template
 
-ln -s ~/conf/js ~/.js
-ln -s ~/conf/gvimrc ~/.gvimrc
+ln -sf ~/conf/js ~/.js
+ln -sf ~/conf/gvimrc ~/.gvimrc
+
+ln -sf ~/conf/ackrc ~/.ackrc

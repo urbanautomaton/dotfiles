@@ -6,7 +6,4 @@ if has("gui_running")
 endif " has("gui_running")
 
 if has("gui_macvim")
-  macmenu &File.New\ Tab key=<nop>
-  map <D-t> :tabnew<CR>:CommandT<CR>
-"  map <D-b> :CommandTBuffer<CR>
 endif

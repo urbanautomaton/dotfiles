@@ -1,0 +1,3 @@
+#!/bin/sh
+find * -type d -exec dirtags {} \;
+ctags --file-scope=no --exclude=.git --languages=-javascript,sql *

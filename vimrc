@@ -20,6 +20,8 @@ set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]
 set laststatus=2
 set visualbell " Turn off beeping
 
+:nore <Space> :
+
 "set t_Co=256
 syntax enable
 

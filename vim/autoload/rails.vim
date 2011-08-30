@@ -4616,7 +4616,7 @@ function! s:BufSettings()
     let &l:tags = rp . '/tmp/tags,' . &tags . ',' . rp . '/tags'
   endif
   if has("gui_win32") || has("gui_running")
-    let code      = '*.rb;*.rake;Rakefile;Guardfile'
+    let code      = '*.rb;*.rake;Rakefile;Guardfile;Vagrantfile'
     let templates = '*.'.s:gsub(s:view_types,',',';*.')
     let fixtures  = '*.yml;*.csv'
     let statics   = '*.html;*.css;*.js;*.xml;*.xsd;*.sql;.htaccess;README;README_FOR_APP'

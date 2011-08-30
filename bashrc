@@ -91,6 +91,7 @@ case `uname` in
 'Darwin')
 # Mac specific settings
   alias vi='open -a MacVim.app'
+  export EDITOR="mvim -f"
   function edit()
   {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
