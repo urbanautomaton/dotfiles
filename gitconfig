@@ -45,3 +45,5 @@
   recentrepo = /Users/simon/dev/shopsearch
 [init]
   templatedir = ~/.git_template
+[push]
+	default = tracking
