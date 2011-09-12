@@ -16,11 +16,11 @@ alias l='locate'
 
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
-alias gs='git status -sb'
-alias gd='git diff --word-diff'
+alias gs='git s'
+alias gd='git d'
 alias ga='git add'
 alias gc='git checkout'
-alias gl='git log --graph --pretty=oneline --abbrev-commit'
+alias gl='git l'
 alias screen='TERM=screen screen'
 
 alias couchstart='launchctl load -w ~/Library/LaunchAgents/org.apache.couchdb.plist'
