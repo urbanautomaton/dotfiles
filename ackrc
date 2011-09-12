@@ -1,1 +1,2 @@
 --type-set=view=.erb,.haml
+--type-add=css=.scss
