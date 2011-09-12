@@ -96,6 +96,8 @@ au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
 " test suite
 autocmd BufWritePre *.rb :%s/\s\+$//e
 
+set showtabline=2
+
 set showmatch
 set number
 if exists("&colorcolumn")
