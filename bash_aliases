@@ -16,8 +16,8 @@ alias l='locate'
 
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
-alias gs='git status'
-alias gd='git diff'
+alias gs='git status -sb'
+alias gd='git diff --word-diff'
 alias ga='git add'
 alias gc='git checkout'
 alias gl='git log --graph --pretty=oneline --abbrev-commit'

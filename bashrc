@@ -90,6 +90,7 @@ fi
 case `uname` in
 'Darwin')
 # Mac specific settings
+  alias git='hub'
   alias vi='open -a MacVim.app'
   export EDITOR="mvim -f"
   function edit()
