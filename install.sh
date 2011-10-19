@@ -7,6 +7,7 @@ ln -sf ~/conf/vimrc ~/.vimrc
 ln -sfh ~/conf/vim ~/.vim
 
 ln -sf ~/conf/irbrc ~/.irbrc
+ln -sf ~/conf/gemrc ~/.gemrc
 
 ln -sf ~/conf/git-completion ~/.git-completion
 ln -sf ~/conf/gitconfig ~/.gitconfig
