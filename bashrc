@@ -19,7 +19,8 @@ shopt -s checkwinsize
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+  xterm-color) color_prompt=yes;;
+  xterm-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -123,15 +124,66 @@ if [ -f ~/.git-completion ]; then
 fi
 
 function tabc {
-  NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
-  osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
+    NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
+    osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
 }
 
-function ssh {
+function ssh-terminal-app {
   ORIGINAL_SETTINGS=`osascript -e "tell application \"Terminal\" to get name of current settings of front window"`
   tabc "Red"
   /usr/bin/ssh "$@"
   tabc "$ORIGINAL_SETTINGS"
+}
+
+function iterm2-dark {
+  osascript -e "
+    tell application \"iTerm 2\"
+      tell current terminal
+        tell session id \"$1\"
+          set background color to {0, 7723, 9942}
+          set bold color to {33161, 37019, 36938}
+          set cursor color to {28874, 33399, 33873}
+          set cursor_text color to {0, 10208, 12694}
+          set foreground color to {28874, 33399, 33873}
+          set selected text color to {33161, 37019, 36938}
+          set selection color to {0, 10208, 12694}
+        end tell
+      end tell
+    end tell
+  "
+}
+
+function iterm2-light {
+  osascript -e "
+    tell application \"iTerm 2\"
+      tell current terminal
+        tell session id \"$1\"
+          set background color to {64843, 62779, 56627}
+          set bold color to {18135, 23374, 25099}
+          set cursor color to {21257, 26684, 28737}
+          set cursor_text color to {60038, 58327, 52285}
+          set foreground color to {21257, 26684, 28737}
+          set selected text color to {18135, 23374, 25099}
+          set selection color to {60038, 58327, 52285}
+        end tell
+      end tell
+    end tell
+  "
+}
+
+function ssh-iterm2 {
+  local tty=$(tty)
+  iterm2-light "$tty"
+  /usr/bin/ssh "$@"
+  iterm2-dark "$tty"
+}
+
+function ssh {
+  if [[ -n "$ITERM_SESSION_ID" ]]; then
+    ssh-iterm2 "$@"
+  else
+    ssh-terminal-app "$@"
+  fi
 }
 
 
