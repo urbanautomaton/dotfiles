@@ -41,6 +41,9 @@
   changed = green
   untracked = cyan
 
+[format]
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+
 [core]
   pager = less -FRSX
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
