@@ -17,3 +17,5 @@ ln -sfh ~/conf/js ~/.js
 ln -sf ~/conf/gvimrc ~/.gvimrc
 
 ln -sf ~/conf/ackrc ~/.ackrc
+
+ln -sf ~/conf/tmux.conf ~/.tmux.conf
