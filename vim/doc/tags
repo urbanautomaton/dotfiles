@@ -225,6 +225,8 @@ command-t-website	command-t.txt	/*command-t-website*
 command-t-wildignore	command-t.txt	/*command-t-wildignore*
 command-t.txt	command-t.txt	/*command-t.txt*
 config/rails.vim	rails.txt	/*config\/rails.vim*
+cs	surround.txt	/*cs*
+ds	surround.txt	/*ds*
 g%	matchit.txt	/*g%*
 g:CommandTAcceptSelectionMap	command-t.txt	/*g:CommandTAcceptSelectionMap*
 g:CommandTAcceptSelectionSplitMap	command-t.txt	/*g:CommandTAcceptSelectionSplitMap*
@@ -289,6 +291,8 @@ git-vim-contents	git-vim.txt	/*git-vim-contents*
 git-vim-keymaps	git-vim.txt	/*git-vim-keymaps*
 git-vim-license	git-vim.txt	/*git-vim-license*
 git-vim.txt	git-vim.txt	/*git-vim.txt*
+i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
+i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 macros/rails.vim	rails.txt	/*macros\/rails.vim*
 matchit	matchit.txt	/*matchit*
 matchit-%	matchit.txt	/*matchit-%*
@@ -456,6 +460,13 @@ rails-template-types	rails.txt	/*rails-template-types*
 rails-type-navigation	rails.txt	/*rails-type-navigation*
 rails-vim-integration	rails.txt	/*rails-vim-integration*
 rails.txt	rails.txt	/*rails.txt*
+surround	surround.txt	/*surround*
+surround-customizing	surround.txt	/*surround-customizing*
+surround-issues	surround.txt	/*surround-issues*
+surround-mappings	surround.txt	/*surround-mappings*
+surround-replacements	surround.txt	/*surround-replacements*
+surround-targets	surround.txt	/*surround-targets*
+surround.txt	surround.txt	/*surround.txt*
 tagbar	tagbar.txt	/*tagbar*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-bugs	tagbar.txt	/*tagbar-bugs*
@@ -476,7 +487,13 @@ tagbar-requirements	tagbar.txt	/*tagbar-requirements*
 tagbar-todo	tagbar.txt	/*tagbar-todo*
 tagbar-usage	tagbar.txt	/*tagbar-usage*
 tagbar.txt	tagbar.txt	/*tagbar.txt*
+vS	surround.txt	/*vS*
 v_[%	matchit.txt	/*v_[%*
 v_]%	matchit.txt	/*v_]%*
 v_a%	matchit.txt	/*v_a%*
 v_g%	matchit.txt	/*v_g%*
+vgS	surround.txt	/*vgS*
+yS	surround.txt	/*yS*
+ySS	surround.txt	/*ySS*
+ys	surround.txt	/*ys*
+yss	surround.txt	/*yss*
