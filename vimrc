@@ -24,6 +24,9 @@ set visualbell " Turn off beeping
 
 "set t_Co=256
 syntax enable
+"let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
 
 :map \c :s/^/#/<CR>
 :map \u :s/^#//<CR>
@@ -38,11 +41,6 @@ syntax enable
 " And the same for subversion
 :vmap sgl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
-
-:map gm :e app/models
-:map gv :e app/views
-:map gc :e app/controllers
-
 :imap § #
 
 " File tree shortcut
@@ -55,46 +53,27 @@ syntax enable
 " Broken (because cword doesn't include !? in ruby) but possibly better
 " if fixable?
 "map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-map <C-\> :vsp <CR><C-W><C-W><C-]>
+:map <C-\> :vsp <CR><C-W><C-W><C-]>
 
 " Cycle through buffers using Ctrl-m and Ctrl-n for previous and next
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
 
-set backupdir=~/tmp " Don't annoy me with swap files in working directory
+" Cycle through tabs using Ctrl-h and Ctrl-l
+:nnoremap <C-l> :tabnext<CR>
+:nnoremap <C-h> :tabprev<CR>
 
-:map \vrc :source $MYVIMRC<CR>
-:map \evrc :e $MYVIMRC<CR>
-
-" lots of useful ruby/rails shortcuts
-:map \step :e features/step_definitions<CR>
-:map \feat :e features<CR>
-:map \app :e app<CR>
-:map \view :e views<CR>
-:map \cont :e controllers<CR>
-:map \rout :e config/routes.rb<CR>
-:map \fact :e test/factories.rb<CR>
-:map \tr :e config/locales/strings.en_GB.yml<CR>
-:map \gita :%s/.*modified:   /git add /g<CR>
-:imap cplc  "([^\"]*)"
-
-fun! Lookup(some_term)
-  exe 'grep -rin "'.a:some_term.'" config/locales/strings.en_GB.yml'
-endfun
+" Window splitting
+:map <C-/> :vs<CR>
+:map <C-.> :sp<CR>
 
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
 
 :map h1 yyp:s/./=/g<ENTER>
 :map h2 yyp:s/./-/g<ENTER>
-:map <C-'> :sp<ENTER>
-" :map <C-\> :vs<ENTER>
 
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
-
-" Automatically remove all trailing whitespace from lines so I don't break our
-" test suite
-autocmd BufWritePre *.rb :%s/\s\+$//e
 
 set showtabline=2
 
@@ -131,4 +110,3 @@ noremap RR :call OpenRailsDoc(expand('<cword>'))<CR>
 
 " :SudoW to save file using sudo (must be already authorised, eg sudo -v)
 command! -bar -nargs=0 SudoW :sile
-
