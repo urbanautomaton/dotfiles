@@ -21,34 +21,15 @@ shopt -s checkwinsize
 case "$TERM" in
   xterm-color) color_prompt=yes;;
   xterm-256color) color_prompt=yes;;
-	screen-256color) color_prompt=yes;;
+  screen-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_colored_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-
-
-if [ "$color_prompt" = yes ]; then
+if [ "$color_prompt"=yes ]; then
   PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
 else
   PS1='\u@\h:\w\$ '
 fi
-unset color_prompt force_color_prompt
-
+unset color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -59,11 +40,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+# Alias definitions
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -72,12 +50,9 @@ fi
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 
@@ -107,18 +82,17 @@ case `uname` in
 ;;
 'Linux')
 # Linux specific settings
-  alias vi='/usr/bin/vi'
+  alias vi='vim'
 # End Linux specific settings
 ;;
 esac
 
-if [[ `hostname` == sports ]]; then
-  export RAILS_ENV=production
-fi
 
+# Host-specific bashrc if present
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
+
 
 if [ -f ~/.git-completion ]; then
   . ~/.git-completion
@@ -178,23 +152,22 @@ function ssh-iterm2 {
   /usr/bin/ssh "$@"
   iterm2-dark "$tty"
 }
+#function ssh {
+#  if [[ -n "$ITERM_SESSION_ID" ]]; then
+#    ssh-iterm2 "$@"
+#  else
+#    ssh-terminal-app "$@"
+#  fi
+#}
 
-function ssh {
-  if [[ -n "$ITERM_SESSION_ID" ]]; then
-    ssh-iterm2 "$@"
-  else
-    ssh-terminal-app "$@"
-  fi
-}
 
-
+# AWS toolkit variables
 export EC2_HOME=$HOME/.ec2
 export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
 
-#export GIT_PS1_SHOWDIRTYSTATE=1
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/scripts:$EC2_HOME/bin
 
