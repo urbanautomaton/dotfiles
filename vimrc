@@ -28,6 +28,8 @@ syntax enable
 colorscheme solarized
 set background=dark
 
+cabbrev te tabedit
+
 :map \c :s/^/#/<CR>
 :map \u :s/^#//<CR>
 
@@ -60,17 +62,14 @@ set background=dark
 :nnoremap <C-n> :bprev<CR>
 
 " Cycle through tabs using Ctrl-h and Ctrl-l
-:nnoremap <C-l> :tabnext<CR>
-:nnoremap <C-h> :tabprev<CR>
+:nnoremap <C-k> :tabnext<CR>
+:nnoremap <C-j> :tabprev<CR>
 
 " Window splitting
 :map <C-/> :vs<CR>
 :map <C-.> :sp<CR>
 
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
-
-:map h1 yyp:s/./=/g<ENTER>
-:map h2 yyp:s/./-/g<ENTER>
 
 :nnoremap <C-m> :bnext<CR>
 :nnoremap <C-n> :bprev<CR>
