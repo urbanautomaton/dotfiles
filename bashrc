@@ -69,7 +69,7 @@ case `uname` in
 # Mac specific settings
   alias git='hub'
   alias vi='open -a MacVim.app'
-  export EDITOR="mvim -f"
+  export EDITOR="vim"
   function edit()
   {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
@@ -78,6 +78,8 @@ case `uname` in
   {
     grep -rin $@ ~/notes
   }
+  export PATH=$PATH:/usr/local/mysql/bin
+  export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$DYLD_LIBRARY_PATH"
 # End Mac specific settings
 ;;
 'Linux')
