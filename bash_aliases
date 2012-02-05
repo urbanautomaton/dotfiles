@@ -4,6 +4,9 @@ alias sc='rails_console.sh'
 alias rl='source ~/.bashrc'
 alias pg='ps aux | egrep -i'
 
+ruby_command='puts Config::CONFIG["configure_args"]'
+alias rubyconf="ruby -r rbconfig -e '$ruby_command'"
+
 alias ls='ls -G'
 
 alias lsa='ls -laF'
