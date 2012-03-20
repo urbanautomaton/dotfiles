@@ -1,5 +1,4 @@
 alias gv='/usr/bin/gvim'
-alias ss='rails_server.sh'
 alias sc='rails_console.sh'
 alias rl='source ~/.bashrc'
 alias pg='ps aux | egrep -i'
