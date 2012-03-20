@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+<F4>	yamlsort.vim	/^map <F4> :call YamlSort()<CR>$/;"	m
+<F5>	yamlsort.vim	/^map <F5> :call YamlRSort()<CR>$/;"	m
+YCollection	yamlsort.rb	/^class YCollection$/;"	c
+YamlRSort	yamlsort.vim	/^function! YamlRSort()$/;"	f
+YamlSort	yamlsort.vim	/^function! YamlSort()$/;"	f
+b:current_syntax	yaml.vim	/^let b:current_syntax = "yaml"$/;"	v
+bounds	yamlsort.rb	/^	def bounds$/;"	f	class:YCollection
+coll_bounds	yamlsort.rb	/^	def coll_bounds(lnum)$/;"	f	class:YCollection
+initialize	yamlsort.rb	/^	def initialize(rule)$/;"	f	class:YCollection
+parse	yamlsort.rb	/^	def parse(range)$/;"	f	class:YCollection
+replace	yamlsort.rb	/^	def replace(range, lines)$/;"	f	class:YCollection
+resort	yamlsort.rb	/^	def resort(data, rule)$/;"	f	class:YCollection
+s:cpo_save	yaml.vim	/^let s:cpo_save = &cpo$/;"	v
