@@ -1,5 +1,7 @@
 set nocompatible
 
+"let g:pathogen_disabled = ["tagbar", "vim-align", "vim-bufexplorer", "vim-colors-solarized", "vim-javascript", "vim-matchit", "vim-rails", "vim-ruby", "vim-surround", "yaml-vim"]
+
 call pathogen#infect()
 call pathogen#helptags()
 syntax on
