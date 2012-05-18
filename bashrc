@@ -78,6 +78,7 @@ case `uname` in
   {
     grep -rin $@ ~/notes
   }
+  export PATH=$PATH:~/dev/tools/android/tools:~/dev/tools/android/platform-tools
 # End Mac specific settings
 ;;
 'Linux')
