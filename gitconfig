@@ -47,10 +47,11 @@
 [core]
   pager = less -FRSX
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = /Users/simon/.gitignore_global
 
 [github]
-	user = urbanautomaton
-	token = fa17d54ca373e548d446c0657158f34f
+  user = urbanautomaton
+  token = fa17d54ca373e548d446c0657158f34f
 
 [gui]
   recentrepo = /Users/simon/dev/shopsearch
@@ -59,4 +60,4 @@
   templatedir = ~/.git_template
 
 [push]
-	default = upstream
+  default = upstream
