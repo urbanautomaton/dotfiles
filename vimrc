@@ -1,6 +1,8 @@
 set nocompatible
 
 "let g:pathogen_disabled = ["tagbar", "vim-align", "vim-bufexplorer", "vim-colors-solarized", "vim-javascript", "vim-matchit", "vim-rails", "vim-ruby", "vim-surround", "yaml-vim"]
+let g:pathogen_disabled = ["nerdtree"]
+let g:slime_target = "tmux"
 
 call pathogen#infect()
 call pathogen#helptags()
@@ -24,9 +26,7 @@ set secure
 :imap § #
 " File tree shortcuts
 :imap <F4> <ESC>:NERDTreeToggle<CR>
-:imap <F5> <ESC>:NERDTreeFind<CR>
 :map <F4> :NERDTreeToggle<CR>
-:map <F5> :NERDTreeFind<CR>
 " Comment/uncomment blocks
 :map \c :s/^/#/<CR>
 :map \u :s/^#//<CR>
@@ -35,6 +35,10 @@ set secure
 " if fixable?
 ":map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 :map <C-\> :vsp <CR><C-W><C-W><C-]>
+" Paste mode toggle
+nnoremap <F5> :set invpaste paste?<Enter>
+imap <F5> <C-O><F5>
+set pastetoggle=<F5>
 
 " Command abbreviations
 cabbrev te tabedit
