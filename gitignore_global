@@ -1,2 +1,5 @@
 tags
-.swp
+*.swp
+.DS_Store
+.DS_Store?
+._*

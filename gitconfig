@@ -17,6 +17,9 @@
 [diff]
   tool = p4diff
 
+[status]
+  showuntrackedfiles = all
+
 [color]
   diff = auto
   status = auto
@@ -46,8 +49,8 @@
 
 [core]
   pager = less -FRSX
-  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  excludesfile = /Users/simon/.gitignore_global
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore_global
 
 [github]
   user = urbanautomaton
@@ -61,3 +64,5 @@
 
 [push]
   default = upstream
+[mergetool]
+  keepBackup = false
