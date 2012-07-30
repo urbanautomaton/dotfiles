@@ -3,9 +3,13 @@ export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
-# make bash autocomplete with up arrow
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
+# If this is an interactive shell...
+case "$-" in
+  *i*)
+    # ...make bash autocomplete with up arrow
+    bind '"\e[A":history-search-backward'
+    bind '"\e[B":history-search-forward'
+esac
 
 # make tab cycle through commands instead of listing
 # bind '"\t":menu-complete' 
