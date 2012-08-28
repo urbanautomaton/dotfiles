@@ -11,6 +11,28 @@ filetype plugin indent on
 set exrc
 set secure
 
+function! OpenWithSpecs(...)
+	let l:file_globs=a:000
+  for glob in file_globs
+    for filename in split(glob(glob), "\n")
+      let l:specname = 
+            \ substitute(filename, "^app/\\(.*\\).rb$", "spec/\\1_spec.rb", "")
+      exec 'tabedit '.specname
+      exec 'rightbelow vsplit '.filename
+    endfor
+  endfor
+endfunction
+
+function! OpenSpecFor(filename)
+  let l:filename=a:filename
+  let l:specname = 
+        \ substitute(filename, "^app/\\(.*\\).rb$", "spec/\\1_spec.rb", "")
+  exec 'leftbelow vsplit '.specname
+endfunction
+
+command! -complete=file -nargs=+ SpecEdit call OpenWithSpecs(<f-args>)
+cabbrev spe SpecEdit
+
 " Core keymappings
 :nore <Space> :
 " Cycle through buffers using Ctrl-n and Ctrl-m for previous and next
@@ -45,7 +67,7 @@ cabbrev te tabedit
 
 " Editing and display variables
 set bs=2          " minimal restrictions on backspace
-set tabstop=2     " set tab character to 4 characters
+set tabstop=2     " set tab character to 2 characters
 set expandtab     " turn tabs into whitespace
 set shiftwidth=2  " indent width for autoindent
 set showtabline=2 " always show tab line
