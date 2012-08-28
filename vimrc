@@ -62,6 +62,14 @@ nnoremap <F5> :set invpaste paste?<Enter>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
+" Tabularize mappings
+" Uses zero-width negative lookahead to prevent splitting up hashrockets:
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a= :Tabularize /=>\@!<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a= :Tabularize /=>\@!<CR>" | endif
+" Exclude ':' char from match to prevent colons being columnized:
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a: :Tabularize /:\zs<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a: :Tabularize /:\zs<CR>" | endif
+
 " Command abbreviations
 cabbrev te tabedit
 
