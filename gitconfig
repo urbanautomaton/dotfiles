@@ -8,7 +8,7 @@
   ci = commit
   d = diff --word-diff
   s = status -sb
-  l = log --graph --pretty=oneline --abbrev-commit --decorate
+  l = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate
 
 [merge]
   keepBackup = false
