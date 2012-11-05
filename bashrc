@@ -174,6 +174,12 @@ export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
 
+# Ruby epic FASTNESS
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=100000000
+export RUBY_HEAP_FREE_MIN=500000
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/scripts:$EC2_HOME/bin
 
