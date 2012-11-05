@@ -83,6 +83,7 @@ case `uname` in
     grep -rin $@ ~/notes
   }
   export PATH=$PATH:~/dev/tools/android/tools:~/dev/tools/android/platform-tools
+  export PATH=$PATH:/usr/local/mysql/bin
 # End Mac specific settings
 ;;
 'Linux')
@@ -177,3 +178,5 @@ export EC2_URL=https://ec2.us-west-1.amazonaws.com
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/scripts:$EC2_HOME/bin
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
