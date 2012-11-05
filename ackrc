@@ -1,4 +1,4 @@
 --type-set=view=.erb,.haml
 --type-set=cuke=.feature
 --type-add=css=.scss
---pager=less -R
+--pager=less -FRX
