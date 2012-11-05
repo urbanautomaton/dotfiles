@@ -65,12 +65,23 @@ imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
 " Tabularize mappings
+" Tabularize assignments
 " Uses zero-width negative lookahead to prevent splitting up hashrockets:
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a= :Tabularize /=>\@!<CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a= :Tabularize /=>\@!<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a= :Tabularize /=>\\\@!<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a= :Tabularize /=>\\\@!<CR>" | endif
+" Tabularize argument lists
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a, :Tabularize /,\\\zs<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a, :Tabularize /,\\\zs<CR>" | endif
+" Tabularize JS style object definitions
 " Exclude ':' char from match to prevent colons being columnized:
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a: :Tabularize /:\zs<CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a: :Tabularize /:\zs<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a: :Tabularize /:\\\zs<CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a: :Tabularize /:\\\zs<CR>" | endif
+" Tabularize hashrockets
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>ah :Tabularize /=><CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>ah :Tabularize /=><CR>" | endif
+" Tabularize hash arguments
+autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>ar :Tabularize /:[^,]\\\+\\\s*=><CR>" | endif
+autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>ar :Tabularize /:[^,]\\\+\\\s*=><CR>" | endif
 
 " Command abbreviations
 cabbrev te tabedit
