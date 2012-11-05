@@ -1,3 +1,4 @@
-#!/bin/sh
-find * -type d -exec dirtags {} \;
-ctags --file-scope=no --exclude=.git --languages=-javascript,sql *
+#!/bin/sh -e
+GIT_DIR=$(git rev-parse --git-dir 2>/dev/null)
+find * -type d -exec ${GIT_DIR}/hooks/dirtags {} \;
+ctags -f .ctags --file-scope=no --exclude=.git --languages=-javascript,sql *

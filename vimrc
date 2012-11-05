@@ -53,6 +53,8 @@ cabbrev spe SpecEdit
 :map \c :s/^/#/<CR>
 :map \u :s/^#//<CR>
 " Ctags
+" Look for both 'tags' and '.ctags' files
+set tags=./tags,./ctags,tags,.ctags
 " Broken (because cword doesn't include !? in ruby) but possibly better
 " if fixable?
 ":map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
