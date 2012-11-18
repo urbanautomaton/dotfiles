@@ -20,3 +20,8 @@ ln -sf ~/conf/gvimrc ~/.gvimrc
 ln -sf ~/conf/ackrc ~/.ackrc
 
 ln -sf ~/conf/tmux.conf ~/.tmux.conf
+
+mkdir -p ~/bin
+for script in $(ls ~/conf/bin); do
+  ln -sf ~/conf/bin/$script ~/bin/$script
+done

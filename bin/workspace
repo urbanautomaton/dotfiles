@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+function load_dev_database()
+{
+  rdbms=$1
+  project=$2
+  database="${project}_development"
+
+  case "$rdbms" in
+    pg)
+      psql -d $database
+      ;;
+    mysql)
+      mysql -u root -D $database
+      ;;
+    *)
+      echo "Usage: $0 {pg|mysql} <project_name>"
+      exit 1
+  esac
+}
+
+project=$1
+session_name=$2
+rdbms=$3
+directory="${HOME}/dev/${project}"
+original_pwd=`pwd -P`
+
+cd $directory
+
+tmux new-session -d -s $session_name
+tmux set-option -t $session_name default-path $directory
+
+tmux rename-window -t ${session_name}:1 'edit'
+tmux send-keys -t ${session_name}:1 'vim .' C-m
+tmux new-window -t ${session_name}:2 -n 'bash'
+tmux new-window -t ${session_name}:3 -n 'bash'
+tmux split-window -t ${session_name}:2 -h
+tmux select-window -t ${session_name}:1
+
+if [ -n "$rdbms" ]; then
+  tmux new-window -t ${session_name}:4 -n 'db'
+  tmux swap-window -s ${session_name}:4 -t ${session_name}:1
+  tmux send-keys -t ${session_name}:1 "load_dev_database ${rdbms} ${project}" C-m
+  tmux swap-window -s ${session_name}:4 -t ${session_name}:2
+  tmux swap-window -s ${session_name}:4 -t ${session_name}:3
+  tmux select-window -t ${session_name}:2
+fi
+
+cd $original_pwd
+
+tmux attach -t ${session_name}
