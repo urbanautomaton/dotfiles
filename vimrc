@@ -1,7 +1,7 @@
 set nocompatible
 
 "let g:pathogen_disabled = ["tagbar", "vim-align", "vim-bufexplorer", "vim-colors-solarized", "vim-javascript", "vim-matchit", "vim-rails", "vim-ruby", "vim-surround", "yaml-vim"]
-let g:pathogen_disabled = ["nerdtree"]
+let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 
 call pathogen#infect()
@@ -10,6 +10,7 @@ syntax on
 filetype plugin indent on
 set exrc
 set secure
+set magic
 
 function! OpenWithSpecs(...)
 	let l:file_globs=a:000
@@ -41,9 +42,6 @@ cabbrev spe SpecEdit
 " Cycle through tabs using Ctrl-j and Ctrl-k
 :nnoremap <C-k> :tabnext<CR>
 :nnoremap <C-j> :tabprev<CR>
-" Window splitting
-:map <C-/> :vs<CR>
-:map <C-.> :sp<CR>
 " JOOOOOOOOOOBBBBBBBSSSSS!!!!!
 :imap § #
 " File tree shortcuts
