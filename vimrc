@@ -65,23 +65,29 @@ imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
 " Tabularize mappings
-" Tabularize assignments
-" Uses zero-width negative lookahead to prevent splitting up hashrockets:
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a= :Tabularize /=>\\\@!<CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a= :Tabularize /=>\\\@!<CR>" | endif
-" Tabularize argument lists
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a, :Tabularize /,\\\zs<CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a, :Tabularize /,\\\zs<CR>" | endif
-" Tabularize JS style object definitions
-" Exclude ':' char from match to prevent colons being columnized:
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>a: :Tabularize /:\\\zs<CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>a: :Tabularize /:\\\zs<CR>" | endif
-" Tabularize hashrockets
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>ah :Tabularize /=><CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>ah :Tabularize /=><CR>" | endif
-" Tabularize hash arguments
-autocmd VimEnter * if exists(":Tabularize") | exe "nmap <Leader>ar :Tabularize /:[^,]\\\+\\\s*=><CR>" | endif
-autocmd VimEnter * if exists(":Tabularize") | exe "vmap <Leader>ar :Tabularize /:[^,]\\\+\\\s*=><CR>" | endif
+func! SetTabularizeMappings()
+  " Tabularize assignments
+  " Uses zero-width negative lookahead to prevent splitting up hashrockets:
+  nmap <Leader>a= :Tabularize /=>\@!<CR>
+  vmap <Leader>a= :Tabularize /=>\@!<CR>
+  " Tabularize argument lists
+  nmap <Leader>a, :Tabularize /,\zs<CR>
+  vmap <Leader>a, :Tabularize /,\zs<CR>
+  " Tabularize JS style object definitions
+  " Exclude ':' char from match to prevent colons being columnized:
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+  " Tabularize hashrockets
+  nmap <Leader>ah :Tabularize /=><CR>
+  vmap <Leader>ah :Tabularize /=><CR>
+  " Tabularize hash arguments
+  nmap <Leader>ar :Tabularize /:[^,]\{-1,}=><CR>
+  vmap <Leader>ar :Tabularize /:[^,]\{-1,}=><CR>
+  " Align block delimiters
+  nmap <Leader>ab :Tabularize /\(^[^{]*\zs{\\|}$\)<CR>
+  vmap <Leader>ab :Tabularize /\(^[^{]*\zs{\\|}$\)<CR>
+endfu
+autocmd VimEnter * if exists(":Tabularize") | exe "call SetTabularizeMappings()" | endif
 
 " Command abbreviations
 cabbrev te tabedit
