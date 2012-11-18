@@ -106,7 +106,7 @@ set ruler
 if exists("&colorcolumn")
   set colorcolumn=80
 endif
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]
+set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
 
 " Colorschemes
 colorscheme solarized
