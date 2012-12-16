@@ -110,3 +110,11 @@ set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#s
 " Colorschemes
 colorscheme solarized
 set background=dark
+
+" Fugitive stuff
+autocmd BufReadPost fugitive://*
+  \ set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
