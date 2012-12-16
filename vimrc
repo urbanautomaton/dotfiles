@@ -4,6 +4,8 @@ set nocompatible
 let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 
+let g:Powerline_symbols = 'fancy'
+
 call pathogen#infect()
 call pathogen#helptags()
 syntax on
