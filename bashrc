@@ -11,8 +11,33 @@ case "$-" in
     bind '"\e[B":history-search-forward'
 esac
 
-# make tab cycle through commands instead of listing
-# bind '"\t":menu-complete' 
+function git_ps1_fast() {
+  local dir="$PWD"
+  local git_dir
+
+  until [[ -z "$dir" ]]; do
+    git_dir="$dir/.git"
+    if [[ -d "$git_dir" ]]; then
+      echo " (`git rev-parse --abbrev-ref HEAD`)"
+      return
+    fi
+
+    dir="${dir%/*}"
+  done
+}
+
+
+function append_path() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
+function prepend_path() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="$1${PATH:+":$PATH"}"
+  fi
+}
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -29,7 +54,7 @@ case "$TERM" in
 esac
 
 if [ "$color_prompt"=yes ]; then
-  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_ps1_fast) \$ '
 else
   PS1='\u@\h:\w\$ '
 fi
@@ -52,11 +77,11 @@ fi
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  eval "`dircolors -b`"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 
@@ -82,8 +107,10 @@ case `uname` in
   {
     grep -rin $@ ~/notes
   }
-  export PATH=$PATH:~/dev/tools/android/tools:~/dev/tools/android/platform-tools
-  export PATH=$PATH:/usr/local/mysql/bin
+  append_path ~/dev/tools/android/tools
+  append_path ~/dev/tools/android/platform-tools
+  append_path /usr/local/mysql/bin
+  ulimit -S -n 2048
 # End Mac specific settings
 ;;
 'Linux')
@@ -104,74 +131,11 @@ if [ -f ~/.git-completion ]; then
   . ~/.git-completion
 fi
 
-function tabc {
-    NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
-    osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
-}
-
-function ssh-terminal-app {
-  ORIGINAL_SETTINGS=`osascript -e "tell application \"Terminal\" to get name of current settings of front window"`
-  tabc "Red"
-  /usr/bin/ssh "$@"
-  tabc "$ORIGINAL_SETTINGS"
-}
-
-function iterm2-dark {
-  osascript -e "
-    tell application \"iTerm 2\"
-      tell current terminal
-        tell session id \"$1\"
-          set background color to {0, 7723, 9942}
-          set bold color to {33161, 37019, 36938}
-          set cursor color to {28874, 33399, 33873}
-          set cursor_text color to {0, 10208, 12694}
-          set foreground color to {28874, 33399, 33873}
-          set selected text color to {33161, 37019, 36938}
-          set selection color to {0, 10208, 12694}
-        end tell
-      end tell
-    end tell
-  "
-}
-
-function iterm2-light {
-  osascript -e "
-    tell application \"iTerm 2\"
-      tell current terminal
-        tell session id \"$1\"
-          set background color to {64843, 62779, 56627}
-          set bold color to {18135, 23374, 25099}
-          set cursor color to {21257, 26684, 28737}
-          set cursor_text color to {60038, 58327, 52285}
-          set foreground color to {21257, 26684, 28737}
-          set selected text color to {18135, 23374, 25099}
-          set selection color to {60038, 58327, 52285}
-        end tell
-      end tell
-    end tell
-  "
-}
-
-function ssh-iterm2 {
-  local tty=$(tty)
-  iterm2-light "$tty"
-  /usr/bin/ssh "$@"
-  iterm2-dark "$tty"
-}
-#function ssh {
-#  if [[ -n "$ITERM_SESSION_ID" ]]; then
-#    ssh-iterm2 "$@"
-#  else
-#    ssh-terminal-app "$@"
-#  fi
-#}
-
-
 # AWS toolkit variables
 export EC2_HOME=$HOME/.ec2
 export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+export JAVA_HOME=/opt/openjdk7
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
 
 # Ruby epic FASTNESS
@@ -181,8 +145,12 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=100000000
 export RUBY_HEAP_FREE_MIN=500000
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin:$EC2_HOME/bin
+append_path $HOME/bin
+append_path $EC2_HOME/bin
+append_path /usr/local/sbin
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [[ -f "/usr/local/share/chruby/chruby.sh" ]]; then
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+  source ~/conf/scripts/chgems_auto.sh
+fi
