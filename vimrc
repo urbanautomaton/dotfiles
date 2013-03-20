@@ -8,11 +8,75 @@ let g:Powerline_symbols = 'fancy'
 
 call pathogen#infect()
 call pathogen#helptags()
-syntax on
-filetype plugin indent on
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
 set exrc
 set secure
 set magic
+
+" Editing and display variables
+set backspace=indent,eol,start
+set tabstop=2     " set tab character to 2 characters
+set expandtab     " turn tabs into whitespace
+set smarttab
+set complete-=i
+set autoindent
+set shiftwidth=2  " indent width for autoindent
+set showtabline=2 " always show tab line
+set laststatus=2  " always show status line
+set splitright    " split panes appear on the right
+set splitbelow    " guess
+set visualbell    " turn off beeping
+set showmatch     " show matching paren on entry
+set number        " show line numbers
+set wildmenu
+set ruler
+set showcmd       " show last command
+
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+end
+set display+=lastline
+
+set autoread
+set autowrite
+set fileformats+=mac
+
+set nrformats-=octal
+set shiftround
+
+if &history < 1000
+  set history=1000
+endif
+set viminfo^=!
+
+if exists("&colorcolumn")
+  set colorcolumn=80
+endif
+set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
+
+set ttimeout
+set ttimeoutlen=50
+
+" Colorschemes
+colorscheme solarized
+set background=dark
+
+if !exists('g:netrw_list_hide')
+  let g:netrw_list_hide = '^\.,\~$,^tags$,^.ctags$'
+endif
+
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
 function! OpenWithSpecs(...)
 	let l:file_globs=a:000
@@ -36,24 +100,42 @@ endfunction
 command! -complete=file -nargs=+ SpecEdit call OpenWithSpecs(<f-args>)
 cabbrev spe SpecEdit
 
+" Word processor mode
+func! WordProcessorMode()
+  map j gj
+  map k gk
+  map $ g$
+  map ^ g^
+  setlocal formatoptions=1
+  set complete+=s
+  set formatprg=par
+  setlocal wrap
+  setlocal linebreak
+endfu
+com! WP call WordProcessorMode()
+
 " Core keymappings
-:nore <Space> :
+nnoremap Y y$
+nore <Space> :
 " Cycle through buffers using Ctrl-n and Ctrl-m for previous and next
-:nnoremap <C-m> :bnext<CR>
-:nnoremap <C-n> :bprev<CR>
+nnoremap <C-m> :bnext<CR>
+nnoremap <C-n> :bprev<CR>
 " Cycle through tabs using Ctrl-j and Ctrl-k
-:nnoremap <C-k> :tabnext<CR>
-:nnoremap <C-j> :tabprev<CR>
+nnoremap <C-k> :tabnext<CR>
+nnoremap <C-j> :tabprev<CR>
 " JOOOOOOOOOOBBBBBBBSSSSS!!!!!
-:imap § #
+imap § #
 " File tree shortcuts
-:imap <F4> <ESC>:NERDTreeToggle<CR>
-:map <F4> :NERDTreeToggle<CR>
+imap <F4> <ESC>:NERDTreeToggle<CR>
+map <F4> :NERDTreeToggle<CR>
 " Comment/uncomment blocks
-:map \c :s/^/#/<CR>
-:map \u :s/^#//<CR>
+map \c :s/^/#/<CR>
+map \u :s/^#//<CR>
+" Save with sudo:
+cmap w!! %!sudo tee > /dev/null %
+
 " Ctags
-set tags=./.ctags,.ctags
+set tags=./.ctags,.ctags,./tags,tags
 " Broken (because cword doesn't include !? in ruby) but possibly better
 " if fixable?
 ":map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -91,25 +173,19 @@ autocmd VimEnter * if exists(":Tabularize") | exe "call SetTabularizeMappings()"
 " Command abbreviations
 cabbrev te tabedit
 
-" Editing and display variables
-set bs=2          " minimal restrictions on backspace
-set tabstop=2     " set tab character to 2 characters
-set expandtab     " turn tabs into whitespace
-set shiftwidth=2  " indent width for autoindent
-set showtabline=2 " always show tab line
-set laststatus=2  " always show status line
-set visualbell    " turn off beeping
-set showmatch     " show matching paren on entry
-set number        " show line numbers
-set ruler
-if exists("&colorcolumn")
-  set colorcolumn=80
-endif
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
+" Run a shell command and put its output in a quickfix buffer
+let g:command_output=".quickfix.tmp"
+function! s:RunShellCommandToQuickfix(cmdline)
+  execute '!'.a:cmdline.' | tee '.g:command_output
+endfunction
+command! -nargs=+ -complete=command ToQF call s:RunShellCommandToQuickfix(<q-args>)
 
-" Colorschemes
-colorscheme solarized
-set background=dark
+nmap <leader>r :w<CR>:ToQF <C-R>=g:rspec<CR> %<CR>
+let g:rspec="rspec --color --tty"
+autocmd BufNewFile,BufRead *_spec.rb
+  \ nmap <buffer> <leader>r :w<CR>:ToQF <C-R>=g:rspec<CR> %<CR>|
+  \ nmap <buffer> <leader>R :w<CR>:ToQF <C-R>=g:rspec<CR> %\:<C-R>=line(".")<CR><CR>|
+  \ setlocal errorformat=rspec\ %f:%l\ #\ %m
 
 " Fugitive stuff
 autocmd BufReadPost fugitive://*
