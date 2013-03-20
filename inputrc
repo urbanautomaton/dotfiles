@@ -12,3 +12,4 @@
 
 #set editing-mode vi
 #set keymap vi
+set mark-symlinked-directories On
