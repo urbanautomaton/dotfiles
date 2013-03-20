@@ -2,3 +2,5 @@
 --type-set=cuke=.feature
 --type-add=css=.scss
 --pager=less -FRX
+--ignore-dir=.gem
+--ignore-dir=.bundle
