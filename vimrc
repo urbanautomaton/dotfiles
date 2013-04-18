@@ -126,9 +126,6 @@ nnoremap <C-k> :tabnext<CR>
 nnoremap <C-j> :tabprev<CR>
 " JOOOOOOOOOOBBBBBBBSSSSS!!!!!
 imap § #
-" File tree shortcuts
-imap <F4> <ESC>:NERDTreeToggle<CR>
-map <F4> :NERDTreeToggle<CR>
 " Comment/uncomment blocks
 map \c :s/^/#/<CR>
 map \u :s/^#//<CR>
@@ -137,6 +134,8 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Ctags
 set tags=./.ctags,.ctags,./tags,tags
+map <F4> :TagbarToggle<CR>
+imap <F4> <ESC>:TagbarToggle<CR>
 " Broken (because cword doesn't include !? in ruby) but possibly better
 " if fixable?
 ":map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -150,8 +149,8 @@ set pastetoggle=<F5>
 func! SetTabularizeMappings()
   " Tabularize assignments
   " Uses zero-width negative lookahead to prevent splitting up hashrockets:
-  nmap <Leader>a= :Tabularize /=>\@!<CR>
-  vmap <Leader>a= :Tabularize /=>\@!<CR>
+  nmap <Leader>a= :Tabularize /=\@<!=[\=>]\@!<CR>
+  vmap <Leader>a= :Tabularize /=\@<!=[\=>]\@!<CR>
   " Tabularize argument lists
   nmap <Leader>a, :Tabularize /,\zs<CR>
   vmap <Leader>a, :Tabularize /,\zs<CR>
