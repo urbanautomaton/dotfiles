@@ -1,6 +1,5 @@
 set nocompatible
 
-"let g:pathogen_disabled = ["tagbar", "vim-align", "vim-bufexplorer", "vim-colors-solarized", "vim-javascript", "vim-matchit", "vim-rails", "vim-ruby", "vim-surround", "yaml-vim"]
 let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 
@@ -180,12 +179,11 @@ function! s:RunShellCommandToQuickfix(cmdline)
 endfunction
 command! -nargs=+ -complete=command ToQF call s:RunShellCommandToQuickfix(<q-args>)
 
-nmap <leader>r :w<CR>:ToQF <C-R>=g:rspec<CR> %<CR>
-let g:rspec="rspec --color --tty"
-autocmd BufNewFile,BufRead *_spec.rb
-  \ nmap <buffer> <leader>r :w<CR>:ToQF <C-R>=g:rspec<CR> %<CR>|
-  \ nmap <buffer> <leader>R :w<CR>:ToQF <C-R>=g:rspec<CR> %\:<C-R>=line(".")<CR><CR>|
-  \ setlocal errorformat=rspec\ %f:%l\ #\ %m
+" Testing!
+nnoremap <F9> :Dispatch<CR>
+autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'rspec %'
+autocmd FileType cucumber let b:dispatch = 'cucumber %'
+autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 
 " Fugitive stuff
 autocmd BufReadPost fugitive://*
