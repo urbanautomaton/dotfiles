@@ -36,6 +36,8 @@ set number        " show line numbers
 set wildmenu
 set ruler
 set showcmd       " show last command
+set directory=~/.vim/backups
+set backupdir=~/.vim/backups
 
 if !&scrolloff
   set scrolloff=1
