@@ -11,22 +11,6 @@ case "$-" in
     bind '"\e[B":history-search-forward'
 esac
 
-function git_ps1_fast() {
-  local dir="$PWD"
-  local git_dir
-
-  until [[ -z "$dir" ]]; do
-    git_dir="$dir/.git"
-    if [[ -d "$git_dir" ]]; then
-      echo " (`git rev-parse --abbrev-ref HEAD`)"
-      return
-    fi
-
-    dir="${dir%/*}"
-  done
-}
-
-
 function append_path() {
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="${PATH:+"$PATH:"}$1"
@@ -54,7 +38,7 @@ case "$TERM" in
 esac
 
 if [ "$color_prompt"=yes ]; then
-  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_ps1_fast) \$ '
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1) \$ '
 else
   PS1='\u@\h:\w\$ '
 fi
@@ -96,9 +80,9 @@ fi
 case `uname` in
 'Darwin')
 # Mac specific settings
-  alias git='hub'
-  alias vi='open -a MacVim.app'
+  #alias git='hub'
   export EDITOR="vim"
+  export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
   function edit()
   {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
@@ -153,4 +137,7 @@ if [[ -f "/usr/local/share/chruby/chruby.sh" ]]; then
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
   source ~/conf/scripts/chgems_auto.sh
+  # if [[ ! -n  "$RUBY_VERSION_FILE" ]]; then
+  #   chruby 1.9.3
+  # fi
 fi
