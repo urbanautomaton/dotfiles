@@ -107,13 +107,15 @@ func! WordProcessorMode()
   map k gk
   map $ g$
   map ^ g^
-  setlocal formatoptions=1
+  setlocal textwidth=80
+  setlocal formatoptions=t1
   set complete+=s
   set formatprg=par
   setlocal wrap
   setlocal linebreak
 endfu
 com! WP call WordProcessorMode()
+autocmd BufNewFile,BufRead *.{markdown,md} call WordProcessorMode()
 
 " Core keymappings
 nnoremap Y y$
