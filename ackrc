@@ -1,5 +1,6 @@
 --type-set=view=.erb,.haml
 --type-set=cuke=.feature
+--type-set=json=.json
 --type-set=md=.markdown,.md
 --type-add=css=.scss
 --pager=less -FRX
