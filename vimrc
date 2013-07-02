@@ -107,10 +107,10 @@ func! WordProcessorMode()
   map k gk
   map $ g$
   map ^ g^
-  setlocal textwidth=80
-  setlocal formatoptions=t1
+  setlocal textwidth=72
+  setlocal formatexpr=autofmt#uax14#formatexpr()
   set complete+=s
-  set formatprg=par
+  " set formatprg=PARINIT=72rTbgqR\\\ P=-\\\ B=.,\\?_A_a\\\ Q=_s\\>\\\\|\ par
   setlocal wrap
   setlocal linebreak
 endfu
