@@ -1,7 +1,15 @@
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+###########
+# HISTORY #
+###########
+
+# Ignore duplicate commands, space-prefixed, and misc boring cmds.
+export HISTIGNORE="&:[ ]*:exit:lsa:history:gs:gl"
+# Massive main .bash_history...
+export HISTFILESIZE=10000
+# Larger session histories...
+export HISTSIZE=1000
+# And don't overwrite .bash_history on exit
+shopt -s histappend
 
 # If this is an interactive shell...
 case "$-" in
