@@ -31,6 +31,14 @@ setlocal iskeyword+=$
 
 syntax sync fromstart
 
+syntax match   jsNoise           /\%(:\|,\|\;\|\.\)/
+
+"" Program Keywords
+syntax keyword jsStorageClass   const var let
+syntax keyword jsOperator       delete instanceof typeof void new in
+syntax match   jsOperator       /\(!\||\|&\|+\|-\|<\|>\|=\|%\|\/\|*\|\~\|\^\)/
+syntax keyword jsBoolean        true false
+
 "" JavaScript comments
 syntax keyword jsCommentTodo    TODO FIXME XXX TBD contained
 syntax region  jsLineComment    start=+\/\/+ end=+$+ keepend contains=jsCommentTodo,@Spell
@@ -50,15 +58,15 @@ if !exists("javascript_ignore_javaScriptdoc")
   syntax region jsDocComment      matchgroup=jsComment start="/\*\*\s*"  end="\*/" contains=jsDocTags,jsCommentTodo,jsCvsTag,@jsHtml,@Spell fold
 
   " tags containing a param
-  syntax match  jsDocTags         contained "@\(augments\|base\|borrows\|class\|constructs\|default\|exception\|exports\|extends\|file\|member\|memberOf\|methodOf\|module\|name\|namespace\|optional\|requires\|title\|throws\|version\)\>" nextgroup=jsDocParam skipwhite
+  syntax match  jsDocTags         contained "@\(alias\|augments\|borrows\|class\|constructs\|default\|defaultvalue\|emits\|exception\|exports\|extends\|file\|fires\|kind\|listens\|member\|memberOf\|mixes\|module\|name\|namespace\|requires\|throws\|var\|variation\|version\)\>" nextgroup=jsDocParam skipwhite
   " tags containing type and param
-  syntax match  jsDocTags         contained "@\(argument\|param\|property\)\>" nextgroup=jsDocType skipwhite
+  syntax match  jsDocTags         contained "@\(arg\|argument\|param\|property\)\>" nextgroup=jsDocType skipwhite
   " tags containing type but no param
-  syntax match  jsDocTags         contained "@\(type\|return\|returns\|api\)\>" nextgroup=jsDocTypeNoParam skipwhite
+  syntax match  jsDocTags         contained "@\(callback\|enum\|external\|this\|type\|typedef\|return\|returns\)\>" nextgroup=jsDocTypeNoParam skipwhite
   " tags containing references
-  syntax match  jsDocTags         contained "@\(lends\|link\|see\)\>" nextgroup=jsDocSeeTag skipwhite
+  syntax match  jsDocTags         contained "@\(lends\|see\)\>" nextgroup=jsDocSeeTag skipwhite
   " other tags (no extra syntax)
-  syntax match  jsDocTags         contained "@\(access\|addon\|alias\|author\|beta\|constant\|const\|constructor\|copyright\|deprecated\|description\|event\|example\|exec\|field\|fileOverview\|fileoverview\|function\|global\|ignore\|inner\|license\|overview\|private\|protected\|project\|public\|readonly\|since\|static\)\>"
+  syntax match  jsDocTags         contained "@\(abstract\|access\|author\|classdesc\|constant\|const\|constructor\|copyright\|deprecated\|desc\|description\|event\|example\|fileOverview\|function\|global\|ignore\|inner\|instance\|license\|method\|mixin\|overview\|private\|protected\|public\|readonly\|since\|static\|todo\|summary\|undocumented\|virtual\)\>"
 
   syntax region jsDocType         start="{" end="}" oneline contained nextgroup=jsDocParam skipwhite
   syntax match  jsDocType         contained "\%(#\|\"\|\w\|\.\|:\|\/\)\+" nextgroup=jsDocParam skipwhite
@@ -73,6 +81,7 @@ endif   "" JSDoc end
 syntax case match
 
 "" Syntax in the JavaScript code
+syntax match   jsFuncCall        /\k\+\%(\s*(\)\@=/
 syntax match   jsSpecial         "\v\\%(0|\\x\x\{2\}\|\\u\x\{4\}\|\c[A-Z]|.)"
 syntax region  jsStringD         start=+"+  skip=+\\\\\|\\$"+  end=+"+  contains=jsSpecial,@htmlPreproc
 syntax region  jsStringS         start=+'+  skip=+\\\\\|\\$'+  end=+'+  contains=jsSpecial,@htmlPreproc
@@ -86,38 +95,40 @@ syntax cluster jsRegexpSpecial   contains=jsRegexpBoundary,jsRegexpBackRef,jsReg
 syntax region  jsRegexpGroup     start="\\\@<!(" matchgroup=jsRegexGroup end="\\\@<!)" contained contains=jsRegexpCharClass,@jsRegexpSpecial
 syntax region  jsRegexpString    start=+\(\(\(return\|case\)\s\+\)\@<=\|\(\([)\]"']\|\d\|\w\)\s*\)\@<!\)/\(\*\|/\)\@!+ skip=+\\\\\|\\/+ end=+/[gimy]\{,4}+ contains=jsSpecial,jsRegexpCharClass,jsRegexpGroup,@jsRegexpSpecial,@htmlPreproc oneline
 syntax match   jsNumber          /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
+syntax keyword jsNumber          Infinity
 syntax match   jsFloat           /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
-syntax match   jsLabel           /\<[a-zA-Z_$][0-9a-zA-Z_$\-]*\(\s*:\)\@=/
 
 "" JavaScript Prototype
 syntax keyword jsPrototype      prototype
-
-"" Program Keywords
-syntax keyword jsSource         import export
-syntax keyword jsCommonJS       require module exports
-syntax keyword jsType           const undefined var void yield
-syntax keyword jsOperator       delete new in instanceof let typeof
-syntax keyword jsBoolean        true false
 
 if g:javascript_conceal == 1
   syntax keyword jsNull           null conceal cchar=ø
   syntax keyword jsThis           this conceal cchar=@
   syntax keyword jsReturn         return conceal cchar=⇚
+  syntax keyword jsUndefined      undefined conceal cchar=¿
+  syntax keyword jsNan            NaN conceal cchar=ℕ
 else
   syntax keyword jsNull           null
   syntax keyword jsThis           this
   syntax keyword jsReturn         return
+  syntax keyword jsUndefined      undefined
+  syntax keyword jsNan            NaN
 endif
 
 "" Statement Keywords
-syntax keyword jsConditional    if else
+syntax keyword jsStatement      break continue with
+syntax keyword jsConditional    if else switch
 syntax keyword jsRepeat         do while for
-syntax keyword jsBranch         break continue switch case default
-syntax keyword jsStatement      try catch throw with finally
+syntax keyword jsLabel          case default
+syntax keyword jsKeyword        yield
+syntax keyword jsException      try catch throw finally
 
-syntax keyword jsGlobalObjects  Array Boolean Date Function Infinity JavaArray JavaClass JavaObject JavaPackage Math Number NaN Object Packages RegExp String Undefined java netscape sun
+syntax keyword jsGlobalObjects   Array Boolean Date Function Iterator Number Object RegExp String Proxy ParallelArray ArrayBuffer DataView Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray Intl JSON Math console document window
+syntax match   jsGlobalObjects  /\%(Intl\.\)\@<=\(Collator\|DateTimeFormat\|NumberFormat\)/
 
-syntax keyword jsExceptions     Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
+syntax keyword jsExceptions     Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError
+
+syntax keyword jsBuiltins       decodeURI decodeURIComponent encodeURI encodeURIComponent eval isFinite isNaN parseFloat parseInt uneval
 
 syntax keyword jsFutureKeys     abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws goto private transient debugger implements protected volatile double import public
 
@@ -171,11 +182,12 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster jsExpression contains=jsComment,jsLineComment,jsDocComment,jsStringD,jsStringS,jsRegexpString,jsNumber,jsFloat,jsSource,jsCommonJS,jsThis,jsType,jsOperator,jsBoolean,jsNull,jsFunction,jsGlobalObjects,jsExceptions,jsFutureKeys,jsDomErrNo,jsDomNodeConsts,jsHtmlEvents,jsDotNotation,jsBracket,jsParen,jsBlock,jsParenError
-syntax cluster jsAll        contains=@jsExpression,jsLabel,jsConditional,jsRepeat,jsBranch,jsReturn,jsStatement,jsTernaryIf
-syntax region  jsBracket    matchgroup=jsBracket transparent start="\[" end="\]" contains=@jsAll,jsParensErrB,jsParensErrC,jsBracket,jsParen,jsBlock,@htmlPreproc
-syntax region  jsParen      matchgroup=jsParen   transparent start="("  end=")"  contains=@jsAll,jsParensErrA,jsParensErrC,jsParen,jsBracket,jsBlock,@htmlPreproc
-syntax region  jsBlock      matchgroup=jsBlock   transparent start="{"  end="}"  contains=@jsAll,jsParensErrA,jsParensErrB,jsParen,jsBracket,jsBlock,@htmlPreproc
+syntax cluster jsExpression contains=jsComment,jsLineComment,jsDocComment,jsStringD,jsStringS,jsRegexpString,jsNumber,jsFloat,jsThis,jsOperator,jsBoolean,jsNull,jsFunction,jsGlobalObjects,jsExceptions,jsFutureKeys,jsDomErrNo,jsDomNodeConsts,jsHtmlEvents,jsDotNotation,jsBracket,jsParen,jsBlock,jsParenError,jsFuncCall,jsUndefined,jsNan,jsKeyword,jsStorageClass,jsPrototype,jsBuiltins
+syntax cluster jsAll        contains=@jsExpression,jsLabel,jsConditional,jsRepeat,jsBranch,jsReturn,jsStatement,jsTernaryIf,jsNoise,jsException
+syntax region  jsBracket    matchgroup=jsBrackets     start="\[" end="\]" contains=@jsAll,jsParensErrB,jsParensErrC,jsBracket,jsParen,jsBlock,@htmlPreproc
+syntax region  jsParen      matchgroup=jsParens       start="("  end=")"  contains=@jsAll,jsParensErrA,jsParensErrC,jsParen,jsBracket,jsBlock,@htmlPreproc
+syntax region  jsBlock      matchgroup=jsBraces       start="{"  end="}"  contains=@jsAll,jsParensErrA,jsParensErrB,jsParen,jsBracket,jsBlock,@htmlPreproc
+syntax region  jsFuncBlock  matchgroup=jsFuncBraces   start="{"  end="}"  contains=@jsAll,jsParensErrA,jsParensErrB,jsParen,jsBracket,jsBlock,@htmlPreproc contained
 syntax region  jsTernaryIf  matchgroup=jsTernaryIfOperator start=+?+  end=+:+  contains=@jsExpression
 
 "" catch errors caused by wrong parenthesis
@@ -190,26 +202,17 @@ if main_syntax == "javascript"
   syntax sync match jsHighlight grouphere jsBlock /{/
 endif
 
-"" Fold control
-if exists("b:javascript_fold")
-  if g:javascript_conceal == 1
-    syntax match   jsFunction       /\<function\>/ nextgroup=jsFuncName skipwhite conceal cchar=ƒ
-  else
-    syntax match   jsFunction       /\<function\>/ nextgroup=jsFuncName skipwhite
-  endif
-
-  syntax match   jsOpAssign       /=\@<!=/ nextgroup=jsFuncBlock skipwhite skipempty
-  syntax region  jsFuncName       contained matchgroup=jsFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=jsLineComment,jsComment nextgroup=jsFuncBlock skipwhite skipempty
-  syntax region  jsFuncBlock      contained matchgroup=jsFuncBlock start="{" end="}" contains=@jsAll,jsParensErrA,jsParensErrB,jsParen,jsBracket,jsBlock fold
+if g:javascript_conceal == 1
+  syntax match   jsFunction       /\<function\>/ nextgroup=jsFuncName,jsFuncArgs skipwhite conceal cchar=ƒ
 else
-  if g:javascript_conceal == 1
-    syntax keyword jsFunction       function conceal cchar=ƒ
-  else
-    syntax keyword jsFunction       function
-  endif
+  syntax match   jsFunction       /\<function\>/ nextgroup=jsFuncName,jsFuncArgs skipwhite
 endif
 
-
+syntax match   jsOpAssign       /=\@<!=/ nextgroup=jsFuncBlock skipwhite skipempty
+syntax match   jsFuncName       contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=jsFuncArgs skipwhite
+syntax region  jsFuncArgs       contained matchgroup=jsFuncParens start='(' end=')' contains=jsFuncArgCommas nextgroup=jsFuncBlock keepend skipwhite
+syntax match   jsFuncArgCommas  contained ','
+syntax keyword jsArgsObj        arguments contained containedin=jsFuncBlock
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -244,32 +247,43 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink jsRegexpGroup          jsRegexpString
   HiLink jsRegexpCharClass      Character
   HiLink jsCharacter            Character
-  HiLink jsPrototype            Type
+  HiLink jsPrototype            Special
   HiLink jsConditional          Conditional
   HiLink jsBranch               Conditional
-  HiLink jsReturn               Type
+  HiLink jsLabel                Label
+  HiLink jsReturn               Statement
   HiLink jsRepeat               Repeat
   HiLink jsStatement            Statement
-  HiLink jsFunction             Function
+  HiLink jsException            Exception
+  HiLink jsKeyword              Keyword
+  HiLink jsFunction             Type
+  HiLink jsFuncName             Function
+  HiLink jsFuncCall             Function
+  HiLink jsArgsObj              Special
   HiLink jsError                Error
   HiLink jsParensError          Error
   HiLink jsParensErrA           Error
   HiLink jsParensErrB           Error
   HiLink jsParensErrC           Error
   HiLink jsOperator             Operator
-  HiLink jsType                 Type
-  HiLink jsThis                 Type
+  HiLink jsStorageClass         StorageClass
+  HiLink jsThis                 Special
+  HiLink jsNan                  Number
   HiLink jsNull                 Type
+  HiLink jsUndefined            Type
   HiLink jsNumber               Number
-  HiLink jsFloat                Number
+  HiLink jsFloat                Float
   HiLink jsBoolean              Boolean
-  HiLink jsLabel                Label
+  HiLink jsNoise                Noise
+  HiLink jsBrackets             Noise
+  HiLink jsParens               Noise
+  HiLink jsBraces               Noise
+  HiLink jsFuncBraces           Noise
   HiLink jsSpecial              Special
-  HiLink jsSource               Special
-  HiLink jsCommonJS             Include
   HiLink jsGlobalObjects        Special
   HiLink jsExceptions           Special
   HiLink jsFutureKeys           Special
+  HiLink jsBuiltins             Special
 
   HiLink jsDomErrNo             Constant
   HiLink jsDomNodeConsts        Constant
