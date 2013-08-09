@@ -4,6 +4,7 @@ let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 
 let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
 
 call pathogen#infect()
 call pathogen#helptags()
