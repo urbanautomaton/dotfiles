@@ -3,7 +3,7 @@
 ###########
 
 # Ignore duplicate commands, space-prefixed, and misc boring cmds.
-export HISTIGNORE="&:[ ]*:exit:lsa:history:gs:gl"
+export HISTIGNORE="&:[ ]*:exit:gs:gl"
 # Massive main .bash_history...
 export HISTFILESIZE=10000
 # Larger session histories...
@@ -20,13 +20,13 @@ case "$-" in
 esac
 
 function append_path() {
-  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="${PATH:+"$PATH:"}$1"
   fi
 }
 
 function prepend_path() {
-  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="$1${PATH:+":$PATH"}"
   fi
 }
@@ -36,39 +36,29 @@ function prepend_path() {
 shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+if [[ -x /usr/bin/lesspipe ]]; then
+  eval "$(lesspipe)"
+fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color) color_prompt=yes;;
-  xterm-256color) color_prompt=yes;;
-  screen-256color) color_prompt=yes;;
-esac
-
-if [ "$color_prompt"=yes ]; then
+# set a fancy prompt
+if [[ "$TERM" =~ color ]]; then
   PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1) \$ '
 else
   PS1='\u@\h:\w\$ '
 fi
-unset color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
-*)
-    ;;
-esac
-
+if [[ "$TERM" =~ xterm*|rxvt* ]]; then
+  PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+fi
 
 # Alias definitions
-if [ -f ~/.bash_aliases ]; then
+if [[ -f ~/.bash_aliases ]]; then
     . ~/.bash_aliases
 fi
 
 # enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
+if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
   eval "`dircolors -b`"
   alias ls='ls --color=auto'
   alias grep='grep --color=auto'
@@ -80,46 +70,37 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+if [[ -f /etc/bash_completion ]]; then
+  . /etc/bash_completion
 fi
 
 # OSX dependent stuff
 case `uname` in
-'Darwin')
-# Mac specific settings
-  #alias git='hub'
-  export EDITOR="vim"
-  export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
-  function edit()
-  {
+  # Mac Specific
+  'Darwin')
+    export EDITOR="vim"
+    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+    function edit()
+    {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
-  }
-  function nf()
-  {
-    grep -rin $@ ~/notes
-  }
-  append_path ~/dev/tools/android/tools
-  append_path ~/dev/tools/android/platform-tools
-  append_path /usr/local/mysql/bin
-  ulimit -S -n 2048
-# End Mac specific settings
-;;
-'Linux')
-# Linux specific settings
-  alias vi='vim'
-# End Linux specific settings
-;;
+    }
+    append_path ~/dev/tools/android/tools
+    append_path ~/dev/tools/android/platform-tools
+    append_path /usr/local/mysql/bin
+    ulimit -S -n 2048
+    ;;
+  # Linux Specific
+  'Linux')
+    alias vi='vim'
+    ;;
 esac
 
-
 # Host-specific bashrc if present
-if [ -f ~/.bashrc.local ]; then
-    . ~/.bashrc.local
+if [[ -f ~/.bashrc.local ]]; then
+  . ~/.bashrc.local
 fi
 
-
-if [ -f ~/.git-completion ]; then
+if [[ -f ~/.git-completion ]]; then
   . ~/.git-completion
 fi
 
@@ -145,7 +126,4 @@ if [[ -f "/usr/local/share/chruby/chruby.sh" ]]; then
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
   source ~/bin/chgems_auto.sh
-  # if [[ ! -n  "$RUBY_VERSION_FILE" ]]; then
-  #   chruby 1.9.3
-  # fi
 fi

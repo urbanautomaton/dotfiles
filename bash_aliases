@@ -5,6 +5,10 @@ alias sc='pry'
 alias rl='source ~/.bashrc'
 alias pg='ps aux | egrep -i'
 
+alias grep='egrep --color=auto'
+alias fgrep='egrep --color=auto'
+alias egrep='egrep --color=auto'
+
 ruby_command='puts Config::CONFIG["configure_args"]'
 alias rubyconf="ruby -r rbconfig -e '$ruby_command'"
 
