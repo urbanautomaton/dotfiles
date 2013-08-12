@@ -1,6 +1,17 @@
 #!/bin/bash
 
 set -e
+# set -x
+
+usage () {
+  echo "usage: $0 [options]"
+  echo ""
+  echo "OPTIONS"
+  echo "-d DIR          set working directory (defaults to cwd)"
+  echo "-h              display this help"
+  echo "-n NAME         session name (defaults to directory basename)"
+  echo "-r (mysql|pg)   RDBMS; loads console to dev DB (mysql|pg)"
+}
 
 function load_dev_database()
 {
@@ -23,10 +34,10 @@ function load_dev_database()
 
 function create_session()
 {
-  local project=$1
+  local directory=$1
   local session_name=$2
-  local directory=$3
-  local rdbms=$4
+  local rdbms=$3
+  local project=`basename $1`
 
   tmux new-session -d -s $session_name
   tmux set-option -t $session_name default-path $directory
@@ -45,15 +56,45 @@ function create_session()
   tmux attach -t ${session_name}
 }
 
-directory=`greadlink -f $1`
-project=`basename $1`
-session_name=$2
-rdbms=$3
+# The actual script, then:
+
 original_pwd=`pwd -P`
+
+while getopts ":hd:n:r:" opt; do
+  case $opt in
+    d)
+      directory=`greadlink -f $OPTARG`
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    n)
+      session_name=$OPTARG
+      ;;
+    r)
+      rdbms=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+shift $((OPTIND -1))
+if [[ -n "$@" ]]; then
+  echo "Unrecognised arguments: '$@'"
+  usage
+  exit 1
+fi
+
+[[ -n "$directory" ]] || directory=`pwd -P`
+[[ -n "$session_name" ]] || session_name=`basename $directory`
 
 cd $directory
 
-create_session $project $session_name $directory $rdbms
+create_session $directory $session_name $rdbms
 
 cd $original_pwd
 
