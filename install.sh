@@ -1,20 +1,29 @@
 #! /bin/sh
 
+case `uname` in
+  'Darwin')
+    dircmd='ln -sfh'
+    ;;
+  'Linux')
+    dircmd='ln -sfT'
+    ;;
+esac
+
 ln -sf ~/dotfiles/bashrc ~/.bashrc
 ln -sf ~/dotfiles/bash_aliases ~/.bash_aliases
 
 ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sfh ~/dotfiles/vim ~/.vim
+$dircmd ~/dotfiles/vim ~/.vim
 
 ln -sf ~/dotfiles/irbrc ~/.irbrc
 ln -sf ~/dotfiles/gemrc ~/.gemrc
 
 ln -sf ~/dotfiles/git-completion ~/.git-completion
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
-ln -sfh ~/dotfiles/git_template ~/.git_template
+$dircmd ~/dotfiles/git_template ~/.git_template
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 
-ln -sfh ~/dotfiles/js ~/.js
+$dircmd ~/dotfiles/js ~/.js
 ln -sf ~/dotfiles/gvimrc ~/.gvimrc
 
 ln -sf ~/dotfiles/ackrc ~/.ackrc
