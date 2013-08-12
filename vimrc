@@ -3,8 +3,7 @@ set nocompatible
 let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 
-let g:Powerline_symbols = 'fancy'
-let g:airline_powerline_fonts = 1
+set rtp+=~/.vim/bundle/powerline.vim/powerline/bindings/vim
 
 call pathogen#infect()
 call pathogen#helptags()
