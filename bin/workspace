@@ -45,10 +45,10 @@ function create_session()
   tmux attach -t ${session_name}
 }
 
-project=$1
+directory=`greadlink -f $1`
+project=`basename $1`
 session_name=$2
 rdbms=$3
-directory="${HOME}/dev/${project}"
 original_pwd=`pwd -P`
 
 cd $directory
