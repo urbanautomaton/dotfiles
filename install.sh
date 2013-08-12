@@ -20,6 +20,7 @@ ln -sf ~/dotfiles/gvimrc ~/.gvimrc
 ln -sf ~/dotfiles/ackrc ~/.ackrc
 
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/tmux-osx.conf ~/.tmux-osx.conf
 
 mkdir -p ~/bin
 for script in $(ls ~/dotfiles/bin); do
