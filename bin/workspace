@@ -4,13 +4,12 @@ set -e
 # set -x
 
 usage () {
-  echo "usage: $0 [options]"
+  echo "usage: $0 [options] [dir]"
   echo ""
   echo "OPTIONS"
-  echo "-d DIR          set working directory (defaults to cwd)"
+  echo "-d (mysql|pg)   RDBMS; loads console to dev DB"
   echo "-h              display this help"
   echo "-n NAME         session name (defaults to directory basename)"
-  echo "-r (mysql|pg)   RDBMS; loads console to dev DB (mysql|pg)"
 }
 
 function load_dev_database()
@@ -60,10 +59,10 @@ function create_session()
 
 original_pwd=`pwd -P`
 
-while getopts ":hd:n:r:" opt; do
+while getopts ":hd:n:" opt; do
   case $opt in
     d)
-      directory=`greadlink -f $OPTARG`
+      rdbms=$OPTARG
       ;;
     h)
       usage
@@ -71,9 +70,6 @@ while getopts ":hd:n:r:" opt; do
       ;;
     n)
       session_name=$OPTARG
-      ;;
-    r)
-      rdbms=$OPTARG
       ;;
     \?)
       echo "Invalid option -$OPTARG" >&2
@@ -83,6 +79,13 @@ while getopts ":hd:n:r:" opt; do
 done
 
 shift $((OPTIND -1))
+if [[ -n "$1" ]]; then
+  directory=`greadlink -f $1`
+  shift
+else
+  directory=`pwd -P`
+fi
+
 if [[ -n "$@" ]]; then
   echo "Unrecognised arguments: '$@'"
   usage
