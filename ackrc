@@ -1,3 +1,6 @@
+--type-set=tags=tags,.ctags
+--type-set=solrindex=.fnm,.nrm
+--type-set=logs=.log
 --type-set=view=.erb,.haml
 --type-set=cuke=.feature
 --type-set=json=.json
@@ -6,3 +9,6 @@
 --pager=less -FRX
 --ignore-dir=.gem
 --ignore-dir=.bundle
+--notags
+--nologs
+--nosolrindex
