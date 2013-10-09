@@ -79,7 +79,9 @@ case `uname` in
   # Mac Specific
   'Darwin')
     export EDITOR="vim"
-    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+    if [[ ! "DYLD_LIBRARY_PATH" =~ /usr/local/mysql/lib ]]; then
+      export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+    fi
     function edit()
     {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
