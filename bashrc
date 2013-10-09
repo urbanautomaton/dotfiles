@@ -17,6 +17,7 @@ case "$-" in
     # ...make bash autocomplete with up arrow
     bind '"\e[A":history-search-backward'
     bind '"\e[B":history-search-forward'
+    bind '"\M-d":backward-kill-word'
 esac
 
 function append_path() {
