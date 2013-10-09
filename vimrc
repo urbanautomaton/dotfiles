@@ -136,7 +136,6 @@ map \u :s/^#//<CR>
 cmap w!! %!sudo tee > /dev/null %
 
 " Ctags
-set tags=./.ctags,.ctags,./tags,tags
 map <F4> :TagbarToggle<CR>
 imap <F4> <ESC>:TagbarToggle<CR>
 " Broken (because cword doesn't include !? in ruby) but possibly better
