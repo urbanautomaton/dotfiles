@@ -10,7 +10,7 @@
   s   = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --squash=$ref; }; f"
   d   = diff
   dw  = diff --word-diff
-  s   = status -sb
+  st  = status -sb
   l   = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate
   sed = ! git ls-files -z | xargs -0 sed -i -e
 
@@ -75,3 +75,5 @@
 
 [branch]
   autosetuprebase = always
+[rebase]
+  autosquash = true
