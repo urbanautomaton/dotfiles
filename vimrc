@@ -38,6 +38,7 @@ set ruler
 set showcmd       " show last command
 set directory=~/.vim/backups
 set backupdir=~/.vim/backups
+set hlsearch
 
 if !&scrolloff
   set scrolloff=1
