@@ -183,8 +183,12 @@ endfunction
 command! -nargs=+ -complete=command ToQF call s:RunShellCommandToQuickfix(<q-args>)
 
 " Testing!
+nnoremap <F6> :execute "Dispatch ".b:dispatch.":".line(".")<CR>
+nnoremap <F7> :execute "Focus ".b:dispatch<CR>
+nnoremap <F8> :Focus!<CR>
 nnoremap <F9> :Dispatch<CR>
 autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'rspec %'
+autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
 autocmd FileType cucumber let b:dispatch = 'cucumber %'
 autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 
