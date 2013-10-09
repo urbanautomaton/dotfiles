@@ -154,12 +154,12 @@ func! SetTabularizeMappings()
   nmap <Leader>a= :Tabularize /=\@<!=[\=>]\@!<CR>
   vmap <Leader>a= :Tabularize /=\@<!=[\=>]\@!<CR>
   " Tabularize argument lists
-  nmap <Leader>a, :Tabularize /,\zs<CR>
-  vmap <Leader>a, :Tabularize /,\zs<CR>
+  nmap <Leader>a, :Tabularize /,\zs/l1r0<CR>
+  vmap <Leader>a, :Tabularize /,\zs/l1r0<CR>
   " Tabularize JS style object definitions
   " Exclude ':' char from match to prevent colons being columnized:
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>a: :Tabularize /:\zs/l1r0<CR>
+  vmap <Leader>a: :Tabularize /:\zs/l1r0<CR>
   " Tabularize hashrockets
   nmap <Leader>ah :Tabularize /=><CR>
   vmap <Leader>ah :Tabularize /=><CR>
