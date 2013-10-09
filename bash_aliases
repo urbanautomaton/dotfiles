@@ -19,18 +19,19 @@ alias ll='ls -l'
 
 alias clean='mv $1 ~/clean/'
 alias f='find . -name'
+alias dircomp='diff -q -r'
 
 alias l='locate'
 
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
-alias gs='git s'
+alias gs='git st'
 alias gd='git d'
 alias ga='git add'
 alias gc='git checkout'
 alias gl='git l'
 alias bl='git l master..HEAD'
-alias gf='git commit -m "derp" && git rebase -i HEAD~2'
+
 alias screen='TERM=screen screen'
 
 alias couchstart='launchctl load -w ~/Library/LaunchAgents/org.apache.couchdb.plist'
@@ -42,3 +43,4 @@ alias td='workspace -n training ~/dev/training_data'
 alias chef='workspace -n chef ~/dev/chef-repo'
 alias pack='workspace -n pack ~/dev/packages'
 alias blog='workspace -n ua ~/dev/urbanautomaton.com'
+alias eliza='workspace -n eliza ~/dev/eliza-js'
