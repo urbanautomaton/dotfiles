@@ -13,6 +13,7 @@
   st  = status -sb
   l   = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate
   sed = ! git ls-files -z | xargs -0 sed -i -e
+  ctags = ! .git/hooks/ctags
 
 [merge]
   keepBackup = false
