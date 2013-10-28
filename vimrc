@@ -117,6 +117,7 @@ func! WordProcessorMode()
 endfu
 com! WP call WordProcessorMode()
 autocmd BufNewFile,BufRead *.{markdown,md} call WordProcessorMode()
+let g:vim_markdown_folding_disabled=1
 
 " Core keymappings
 nnoremap Y y$
