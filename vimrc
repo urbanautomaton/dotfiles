@@ -200,3 +200,5 @@ autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
+" git grep for the current cursor word
+nnoremap gr :silent !Ggrep! <cword><CR><C-L>:copen<CR>
