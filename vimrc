@@ -39,6 +39,7 @@ set showcmd       " show last command
 set directory=~/.vim/backups
 set backupdir=~/.vim/backups
 set hlsearch
+set synmaxcol=256
 
 if !&scrolloff
   set scrolloff=1
@@ -201,4 +202,4 @@ autocmd User fugitive
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
 " git grep for the current cursor word
-nnoremap gr :silent !Ggrep! <cword><CR><C-L>:copen<CR>
+nnoremap gr :Ggrep! <cword><CR><CR>:copen<CR>
