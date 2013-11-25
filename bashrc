@@ -83,12 +83,14 @@ case `uname` in
     if [[ ! "DYLD_LIBRARY_PATH" =~ /usr/local/mysql/lib ]]; then
       export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
     fi
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    prepend_path $JAVA_HOME
     function edit()
     {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
     }
-    append_path ~/dev/tools/android/tools
-    append_path ~/dev/tools/android/platform-tools
+    append_path ~/android/sdk/tools
+    append_path ~/android/sdk/platform-tools
     append_path /usr/local/mysql/bin
     ulimit -S -n 2048
     ;;
@@ -111,7 +113,7 @@ fi
 export EC2_HOME=$HOME/.ec2
 export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
-export JAVA_HOME=/opt/openjdk7
+# export JAVA_HOME=/opt/openjdk7
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
 
 # Ruby epic FASTNESS
