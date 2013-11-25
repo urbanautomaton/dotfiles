@@ -12,6 +12,8 @@ alias egrep='egrep --color=auto'
 ruby_command='puts Config::CONFIG["configure_args"]'
 alias rubyconf="ruby -r rbconfig -e '$ruby_command'"
 
+alias be='bundle exec'
+
 alias ls='ls -G'
 
 alias lsa='ls -laF'
