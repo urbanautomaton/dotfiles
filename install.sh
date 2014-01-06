@@ -19,6 +19,7 @@ $dircmd ~/dotfiles/vim ~/.vim
 
 ln -sf ~/dotfiles/irbrc ~/.irbrc
 ln -sf ~/dotfiles/gemrc ~/.gemrc
+ln -sf ~/dotfiles/pryrc ~/.pryrc
 
 ln -sf ~/dotfiles/git-completion ~/.git-completion
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
