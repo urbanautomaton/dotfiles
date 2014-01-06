@@ -97,6 +97,8 @@ fi
 
 cd $directory
 
+echo -ne "\033]0;ws: $session_name\007"
+
 create_session $directory $session_name $rdbms
 
 cd $original_pwd
