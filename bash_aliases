@@ -15,15 +15,12 @@ alias rubyconf="ruby -r rbconfig -e '$ruby_command'"
 alias be='bundle exec'
 
 alias ls='ls -G'
-
-alias lsa='ls -laF'
-alias ll='ls -l'
+alias ll='ls -alF'
+alias l='ls -l'
 
 alias clean='mv $1 ~/clean/'
 alias f='find . -name'
 alias dircomp='diff -q -r'
-
-alias l='locate'
 
 alias rs='rsync -avz --partial --progress --rsh=ssh'
 
