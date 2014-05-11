@@ -201,9 +201,16 @@ autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
 autocmd FileType cucumber let b:dispatch = 'cucumber %'
 autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 
+func! FourTab()
+  setlocal tabstop=4 shiftwidth=4
+endfunc
+autocmd FileType php call FourTab()
+
 " Fugitive stuff
+" Clean up fugitive buffers after they're closed
 autocmd BufReadPost fugitive://*
   \ set bufhidden=delete
+" Use '..' to navigate up git trees
 autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
