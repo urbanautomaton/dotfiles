@@ -17,11 +17,19 @@
 
 [merge]
   keepBackup = false
-  tool       = p4merge
+  tool       = p4mergetool
+
+[mergetool "p4mergetool"]
+  keepBackup = false
+  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED"
+  trustExitCode = false
 
 [diff]
-  tool = p4diff
+  tool = p4mergetool
   algorithm = patience
+
+[difftool "p4mergetool"]
+  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
 
 [status]
   showuntrackedfiles = all
@@ -70,9 +78,6 @@
 
 [push]
   default = upstream
-
-[mergetool]
-  keepBackup = false
 
 [branch]
   autosetuprebase = always
