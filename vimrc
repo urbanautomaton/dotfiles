@@ -40,6 +40,8 @@ set directory=~/.vim/backups//
 set backupdir=~/.vim/swap//
 set hlsearch
 set synmaxcol=256
+set formatoptions+=j " remove comment leader when joining comment lines
+set textwidth=78     " because we're not savages
 
 " If we're in tmux, use this nifty hack to change cursor shape in
 " insert mode
