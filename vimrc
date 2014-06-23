@@ -36,8 +36,8 @@ set number        " show line numbers
 set wildmenu
 set ruler
 set showcmd       " show last command
-set directory=~/.vim/backups
-set backupdir=~/.vim/backups
+set directory=~/.vim/backups//
+set backupdir=~/.vim/swap//
 set hlsearch
 set synmaxcol=256
 
