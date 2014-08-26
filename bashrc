@@ -130,8 +130,19 @@ append_path $HOME/bin
 append_path $EC2_HOME/bin
 append_path /usr/local/sbin
 
-if [[ -f "/usr/local/share/chruby/chruby.sh" ]]; then
-  source /usr/local/share/chruby/chruby.sh
-  source /usr/local/share/chruby/auto.sh
-  source ~/bin/chgems_auto.sh
+export CHRUBY_DEFAULT=2.0.0
+readonly CHRUBY_DEFAULT
+
+chruby_location=/usr/local/share/chruby/chruby.sh
+gem_home_location=/usr/local/share/gem_home/gem_home.sh
+ruby_env_auto_location=~/bin/ruby_env_auto.sh
+if [[ -f "$chruby_location" ]]; then
+  source $chruby_location
+  chruby $CHRUBY_DEFAULT
+fi
+if [[ -f "$gem_home_location" ]]; then
+  source $gem_home_location
+fi
+if [[ -f "$ruby_env_auto_location" ]]; then
+  source $ruby_env_auto_location
 fi
