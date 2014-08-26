@@ -38,6 +38,7 @@ set ruler
 set showcmd       " show last command
 set directory=~/.vim/backups//
 set backupdir=~/.vim/swap//
+set undodir=~/.vim/undo//
 set hlsearch
 set synmaxcol=256
 set formatoptions+=j " remove comment leader when joining comment lines
