@@ -1,6 +1,6 @@
 function ruby_env_auto() {
   local current_dir="$PWD"
-  local version_file
+  local version
 
   until [[ -z "$current_dir" ]]; do
 		if { read -r version <"$current_dir/.ruby-version"; } 2>/dev/null; then
