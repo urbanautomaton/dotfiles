@@ -92,7 +92,10 @@ case `uname` in
     append_path ~/android/sdk/tools
     append_path ~/android/sdk/platform-tools
     append_path /usr/local/mysql/bin
+    append_path /usr/local/packer
+    append_path /opt/pear/bin
     ulimit -S -n 2048
+    export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
     ;;
   # Linux Specific
   'Linux')
