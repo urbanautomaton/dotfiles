@@ -11,6 +11,7 @@
 --ignore-dir=.gem
 --ignore-dir=.bundle
 --ignore-dir=.librarian
+--ignore-dir=log
 --notags
 --nologs
 --nosolrindex
