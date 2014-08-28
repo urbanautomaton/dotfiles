@@ -116,15 +116,7 @@ fi
 export EC2_HOME=$HOME/.ec2
 export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
 export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
-# export JAVA_HOME=/opt/openjdk7
 export EC2_URL=https://ec2.us-west-1.amazonaws.com
-
-# Ruby epic FASTNESS
-export RUBY_HEAP_MIN_SLOTS=1000000
-export RUBY_HEAP_SLOTS_INCREMENT=100000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=100000000
-export RUBY_HEAP_FREE_MIN=500000
 
 # Visible cucumber step locations
 export CUCUMBER_COLORS=comment=cyan
@@ -133,19 +125,22 @@ append_path $HOME/bin
 append_path $EC2_HOME/bin
 append_path /usr/local/sbin
 
-export CHRUBY_DEFAULT=2.0.0
-readonly CHRUBY_DEFAULT
-
 chruby_location=/usr/local/share/chruby/chruby.sh
 gem_home_location=/usr/local/share/gem_home/gem_home.sh
 ruby_env_auto_location=~/bin/ruby_env_auto.sh
+
 if [[ -f "$chruby_location" ]]; then
+  export CHRUBY_DEFAULT=2.0.0
+  readonly CHRUBY_DEFAULT
+
   source $chruby_location
   chruby $CHRUBY_DEFAULT
-fi
-if [[ -f "$gem_home_location" ]]; then
-  source $gem_home_location
-fi
-if [[ -f "$ruby_env_auto_location" ]]; then
-  source $ruby_env_auto_location
+
+  if [[ -f "$gem_home_location" ]]; then
+    source $gem_home_location
+
+    if [[ -f "$ruby_env_auto_location" ]]; then
+      source $ruby_env_auto_location
+    fi
+  fi
 fi
