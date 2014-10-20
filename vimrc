@@ -127,8 +127,10 @@ func! WordProcessorMode()
   setlocal linebreak
 endfu
 com! WP call WordProcessorMode()
-autocmd BufNewFile,BufRead *.{markdown,md} call WordProcessorMode()
-let g:vim_markdown_folding_disabled=1
+augroup wordprocessormode
+  autocmd!
+  autocmd BufNewFile,BufRead *.{markdown,md} call WordProcessorMode()
+augroup END
 
 " Core keymappings
 nnoremap Y y$
@@ -182,7 +184,10 @@ func! SetTabularizeMappings()
   nmap <Leader>ab :Tabularize /\(^[^{]*\zs{\\|}$\)<CR>
   vmap <Leader>ab :Tabularize /\(^[^{]*\zs{\\|}$\)<CR>
 endfu
-autocmd VimEnter * if exists(":Tabularize") | exe "call SetTabularizeMappings()" | endif
+augroup tabularizemappings
+  autocmd!
+  autocmd VimEnter * if exists(":Tabularize") | exe "call SetTabularizeMappings()" | endif
+augroup END
 
 " Command abbreviations
 cabbrev te tabedit
@@ -199,24 +204,33 @@ nnoremap <F6> :execute "Dispatch ".b:dispatch.":".line(".")<CR>
 nnoremap <F7> :execute "Focus ".b:dispatch<CR>
 nnoremap <F8> :Focus!<CR>
 nnoremap <F9> :Dispatch<CR>
-autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'rspec %'
-autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
-autocmd FileType cucumber let b:dispatch = 'cucumber %'
-autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
+augroup dispatchsetup
+  autocmd!
+  autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'rspec %'
+  autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
+  autocmd FileType cucumber let b:dispatch = 'cucumber %'
+  autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
+augroup END
 
 func! FourTab()
   setlocal tabstop=4 shiftwidth=4
 endfunc
-autocmd FileType php call FourTab()
+augroup phptabsettings
+  autocmd!
+  autocmd FileType php call FourTab()
+augroup END
 
 " Fugitive stuff
 " Clean up fugitive buffers after they're closed
-autocmd BufReadPost fugitive://*
-  \ set bufhidden=delete
-" Use '..' to navigate up git trees
-autocmd User fugitive
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
+augroup fugitivebufferhandling
+  autocmd!
+  autocmd BufReadPost fugitive://*
+    \ set bufhidden=delete
+  " Use '..' to navigate up git trees
+  autocmd User fugitive
+    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+    \   nnoremap <buffer> .. :edit %:h<CR> |
+    \ endif
+augroup END
 " git grep for the current cursor word
 nnoremap gr :Ggrep! <cword><CR><CR>:copen<CR>
