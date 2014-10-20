@@ -97,7 +97,7 @@ fi
 
 if [[ ! -n "$session_name" ]]; then
   last_dir=`basename $directory`
-  session_name=${last_dir/\./_}
+  session_name=${last_dir//\./_}
 fi
 
 cd $directory
