@@ -3,17 +3,19 @@
   email = simon@tribesports.com
 
 [alias]
-  b   = branch
-  co  = checkout
-  ci  = commit
-  f   = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --fixup=$ref; }; f"
-  s   = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --squash=$ref; }; f"
-  d   = diff
-  dw  = diff --word-diff
-  st  = status -sb
-  l   = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate
-  sed = ! git ls-files -z | xargs -0 sed -i -e
+  b     = branch
+  co    = checkout
+  ci    = commit
+  f     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --fixup=$ref; }; f"
+  s     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --squash=$ref; }; f"
+  d     = diff
+  dw    = diff --word-diff
+  st    = status -sb
+  l     = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate
+  sed   = ! git ls-files -z | xargs -0 sed -i -e
   ctags = ! .git/hooks/ctags
+  lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
+  lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
 
 [merge]
   keepBackup = false
