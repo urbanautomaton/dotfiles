@@ -3,8 +3,10 @@
 set -e
 shopt -s nullglob
 
+. ~/bin/log_helpers.sh
+
 index() {
-  echo "  indexing $1"
+  log "  indexing $1"
   (builtin cd "$1"; ctags -R --languages=ruby)
 }
 
@@ -19,11 +21,11 @@ index_LOAD_PATH() {
   elif [[ -d "$1"/lib && -w "$1"/lib ]]; then
     LOAD_PATH+=("$1"/lib "$1"/site "$1"/vendor)
   else
-    echo "No \$LOAD_PATH directories found in $1" >&2
+    err "No \$LOAD_PATH directories found in $1"
     return 1
   fi
 
-  echo "Generating ctags for $1"
+  log "Generating ctags for $1"
 
   for dir in ${LOAD_PATH[@]}; do
     [[ -d "$dir" ]] && index "$dir"
@@ -48,7 +50,7 @@ case "$#" in
     if [[ -n "$match" ]]; then
       index_LOAD_PATH "$match"
     else
-      echo "Unknown Ruby: $1" >&2
+      err "Unknown Ruby: $1"
       exit 1
     fi
     ;;

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-set -e
-# set -x
+set -euo pipefail
+
+. ~/bin/log_helpers.sh
 
 usage () {
   echo "usage: $0 [options] [dir]"
@@ -35,8 +36,8 @@ function create_session()
 {
   local directory=$1
   local session_name=$2
-  local rdbms=$3
-  local project=`basename $1`
+  local rdbms=${3:-''}
+  local project=`basename $directory`
 
   tmux new-session -d -s $session_name
   tmux set-option -t $session_name default-path $directory
@@ -58,6 +59,8 @@ function create_session()
 # The actual script, then:
 
 original_pwd=`pwd -P`
+rdbms=''
+session_name=''
 
 while getopts ":hd:n:" opt; do
   case $opt in
@@ -72,7 +75,7 @@ while getopts ":hd:n:" opt; do
       session_name=$OPTARG
       ;;
     \?)
-      echo "Invalid option -$OPTARG" >&2
+      err "Invalid option -$OPTARG" >&2
       exit 1
       ;;
   esac
@@ -86,14 +89,16 @@ else
   directory=`pwd -P`
 fi
 
-if [[ -n "$@" ]]; then
-  echo "Unrecognised arguments: '$@'"
+if [[ -n "$*" ]]; then
+  err "Unrecognised arguments: '$*'"
   usage
   exit 1
 fi
 
-[[ -n "$directory" ]] || directory=`pwd -P`
-[[ -n "$session_name" ]] || session_name=`basename $directory`
+if [[ ! -n "$session_name" ]]; then
+  last_dir=`basename $directory`
+  session_name=${last_dir/\./_}
+fi
 
 cd $directory
 
