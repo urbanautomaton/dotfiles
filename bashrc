@@ -36,11 +36,6 @@ function prepend_path() {
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-if [[ -x /usr/bin/lesspipe ]]; then
-  eval "$(lesspipe)"
-fi
-
 # set a fancy prompt
 if [[ "$TERM" =~ color ]]; then
   PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1) \$ '
