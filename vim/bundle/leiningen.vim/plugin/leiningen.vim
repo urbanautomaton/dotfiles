@@ -10,6 +10,10 @@ if !exists('g:classpath_cache')
   let g:classpath_cache = '~/.cache/vim/classpath'
 endif
 
+if !isdirectory(expand(g:classpath_cache))
+  call mkdir(expand(g:classpath_cache), 'p')
+endif
+
 function! s:portfile() abort
   if !exists('b:leiningen_root')
     return ''
@@ -71,7 +75,7 @@ function! s:connect(autostart) abort
     return {}
   endif
   let portfile = s:portfile()
-  if a:autostart && empty(portfile) && exists(':Start') ==# 2
+  if !exists('g:leiningen_no_auto_repl') && a:autostart && empty(portfile) && exists(':Start') ==# 2
     call s:repl(1, '')
     let portfile = s:portfile()
   endif
@@ -136,7 +140,7 @@ function! s:path() abort
       let response = conn.eval(
             \ '[(System/getProperty "path.separator") (System/getProperty "java.class.path")]',
             \ {'session': ''})
-      let path = split(eval(response.value[-1][5:-2]), response.value[-1][2])
+      let path = split(eval(response.value[5:-2]), response.value[2])
       call writefile([join(path, ',')], cache)
     endif
   endif
@@ -191,14 +195,19 @@ function! s:projectionist_detect() abort
   let projections['*'] = {'start': 'lein run'}
   call projectionist#append(b:leiningen_root, projections)
   let projections = {}
+
+  let proj = {'type': 'test', 'alternate': map(copy(main), 'v:val."/{}.clj"')}
   for path in test
-    let proj = {'type': 'test', 'alternate': map(copy(main), 'v:val."/{}.clj"')}
     let projections[path.'/*_test.clj'] = proj
     let projections[path.'/**/test/*.clj'] = proj
     let projections[path.'/**/t_*.clj'] = proj
     let projections[path.'/**/test_*.clj'] = proj
     let projections[path.'/*.clj'] = {'dispatch': ':RunTests {dot|hyphenate}'}
   endfor
+  for path in spec
+    let projections[path.'/*_spec.clj'] = proj
+  endfor
+
   for path in main
     let proj = {'type': 'main', 'alternate': map(copy(spec), 'v:val."/{}_spec.clj"')}
     for tpath in test
