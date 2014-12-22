@@ -222,6 +222,13 @@ augroup phptabsettings
   autocmd FileType php call FourTab()
 augroup END
 
+" Clojure
+augroup clojuresettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.clj RainbowParenthesesToggle
+  autocmd BufNewFile,BufRead *.cljs RainbowParenthesesToggle
+augroup END
+
 " Fugitive stuff
 " Clean up fugitive buffers after they're closed
 augroup fugitivebufferhandling
