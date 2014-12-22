@@ -1,8 +1,7 @@
 # Load plugins (only those I whitelist)
 Pry.config.should_load_plugins = false
 Pry.plugins["doc"].activate!
-Pry.plugins["debugger"].activate!
-Pry.plugins["stack_explorer"].activate!
+Pry.plugins["byebug"].activate!
 
 Pry.commands.alias_command 'c', 'continue'
 Pry.commands.alias_command 's', 'step'
