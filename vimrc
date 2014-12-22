@@ -2,6 +2,7 @@ set nocompatible
 
 let g:pathogen_disabled = []
 let g:slime_target = "tmux"
+let g:syntastic_tex_checkers = ['lacheck']
 
 set rtp+=~/.vim/bundle/powerline.vim/powerline/bindings/vim
 
