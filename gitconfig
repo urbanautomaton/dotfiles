@@ -17,6 +17,11 @@
   lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
   lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
 
+  unchanged        = update-index --assume-unchanged
+  nounchanged      = update-index --no-assume-unchanged
+  marked-unchanged = !git ls-files -v | grep "^[[:lower:]]" | cut -f2 -d' '
+  reset-unchanged  = !git update-index --no-assume-unchanged $(git marked-unchanged)
+
 [merge]
   keepBackup = false
   tool       = p4mergetool
