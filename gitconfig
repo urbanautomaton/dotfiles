@@ -3,9 +3,6 @@
   email = simon@urbanautomaton.com
 
 [alias]
-  b     = branch
-  co    = checkout
-  ci    = commit
   f     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --fixup=$ref; }; f"
   s     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --squash=$ref; }; f"
   d     = diff
@@ -21,6 +18,8 @@
   nounchanged      = update-index --no-assume-unchanged
   marked-unchanged = !git ls-files -v | grep "^[[:lower:]]" | cut -f2 -d' '
   reset-unchanged  = !git update-index --no-assume-unchanged $(git marked-unchanged)
+
+  root = rev-parse --show-toplevel
 
 [merge]
   keepBackup = false
