@@ -211,7 +211,9 @@ augroup END
 " Command abbreviations
 cabbrev te tabedit
 " use %% as a shorthand for 'the directory of the current file'
-cabbrev <expr> %% expand('%:p:h')
+cabbrev <expr> %% expand('%:p:h').'/'
+map <leader>e :edit %%
+map <leader>v :view %%
 
 " Run a shell command and put its output in a quickfix buffer
 let g:command_output=".quickfix.tmp"
