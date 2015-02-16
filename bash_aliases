@@ -28,3 +28,4 @@ alias gl='git l'
 alias bl='git l master..HEAD'
 
 alias blog='workspace -n ua ~/dev/sites/urbanautomaton.com'
+alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
