@@ -46,6 +46,12 @@ set synmaxcol=256
 set formatoptions+=j " remove comment leader when joining comment lines
 set textwidth=78     " because we're not savages
 
+set incsearch
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
 " If we're in tmux, use this nifty hack to change cursor shape in
 " insert mode
 if !empty($TMUX)
