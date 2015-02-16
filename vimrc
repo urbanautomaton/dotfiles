@@ -156,6 +156,17 @@ map \c :s/^/#/<CR>
 map \u :s/^#//<CR>
 " Save with sudo:
 cmap w!! %!sudo tee > /dev/null %
+" Tab-complete without c-p/c-n
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
 
 " Ctags
 map <F4> :TagbarToggle<CR>
