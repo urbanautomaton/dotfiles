@@ -39,8 +39,9 @@ function create_session()
   local rdbms=${3:-''}
   local project=`basename $directory`
 
-  tmux new-session -d -s $session_name
-  tmux set-option -t $session_name default-path $directory
+  cd $directory
+
+  tmux new-session -d -s $session_name -c $directory
 
   tmux rename-window -t ${session_name}:1 'vim'
   tmux send-keys -t ${session_name}:1 'vim .' C-m
@@ -54,11 +55,12 @@ function create_session()
   tmux select-window -t ${session_name}:1
 
   tmux attach -t ${session_name}
+
+  cd -
 }
 
 # The actual script, then:
 
-original_pwd=`pwd -P`
 rdbms=''
 session_name=''
 
@@ -99,12 +101,4 @@ if [[ ! -n "$session_name" ]]; then
   last_dir=`basename $directory`
   session_name=${last_dir//\./_}
 fi
-
-cd $directory
-
-echo -ne "\033]0;ws: $session_name\007"
-
 create_session $directory $session_name $rdbms
-
-cd $original_pwd
-
