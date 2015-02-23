@@ -267,5 +267,6 @@ augroup fugitivebufferhandling
     \   nnoremap <buffer> .. :edit %:h<CR> |
     \ endif
 augroup END
+
 " git grep for the current cursor word
-nnoremap gr :Ggrep! <cword><CR><CR>:copen<CR>
+nnoremap gr :Ggrep <cword><CR><CR>:copen<CR><CR>
