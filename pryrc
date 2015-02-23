@@ -16,10 +16,10 @@ rails = File.join Dir.getwd, 'config', 'environment.rb'
 if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   require rails
 
-  if Rails.version[0..0] == "2"
+  if Rails::VERSION::MAJOR == 2
     require 'console_app'
     require 'console_with_helpers'
-  elsif Rails.version[0..0] == "3"
+  elsif [3,4].include?(Rails::VERSION::MAJOR)
     require 'rails/console/app'
     require 'rails/console/helpers'
   else
