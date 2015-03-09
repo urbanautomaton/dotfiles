@@ -142,6 +142,8 @@ com! WP call WordProcessorMode()
 augroup wordprocessormode
   autocmd!
   autocmd BufNewFile,BufRead *.{markdown,md} call WordProcessorMode()
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup END
 
 " Core keymappings
