@@ -82,7 +82,11 @@ set viminfo^=!
 if exists("&colorcolumn")
   set colorcolumn=80
 endif
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
+if exists('*fugitive#statusline')
+  set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
+else
+  set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]
+endif
 
 set ttimeout
 set ttimeoutlen=50
