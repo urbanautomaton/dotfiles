@@ -90,6 +90,7 @@ case `uname` in
     append_path /usr/local/packer
     append_path /opt/pear/bin
     append_path /usr/texbin
+    append_path /usr/local/heroku/bin
     ulimit -S -n 2048
     export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
     ;;
