@@ -124,6 +124,17 @@ append_path /usr/local/sbin
 chruby_location=/usr/local/share/chruby/chruby.sh
 gem_home_location=/usr/local/share/gem_home/gem_home.sh
 ruby_env_auto_location=~/bin/ruby_env_auto.sh
+go_env_auto_location=~/bin/go_env_auto.sh
+env_handlers=""
+
+function add_env_handler() {
+  local handler=$1
+  if [[ -n "$env_handlers" ]]; then
+    env_handlers="$env_handlers && $handler"
+  else
+    env_handlers=$handler
+  fi
+}
 
 if [[ -f "$chruby_location" ]]; then
   export CHRUBY_DEFAULT=2.0.0
@@ -137,6 +148,21 @@ if [[ -f "$chruby_location" ]]; then
 
     if [[ -f "$ruby_env_auto_location" ]]; then
       source $ruby_env_auto_location
+      add_env_handler ruby_env_auto
     fi
   fi
+fi
+
+if [[ -f "$go_env_auto_location" ]]; then
+  source $go_env_auto_location
+  add_env_handler go_env_auto
+fi
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ ! "$preexec_functions" == *ruby_env_auto* ]]; then
+    preexec_functions+=("$env_handlers")
+  fi
+elif [[ -n "$BASH_VERSION" ]]; then
+  prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
+  trap "$prompt_test && $env_handlers" DEBUG
 fi
