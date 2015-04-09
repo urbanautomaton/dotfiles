@@ -18,6 +18,7 @@
   nounchanged      = update-index --no-assume-unchanged
   marked-unchanged = !git ls-files -v | grep "^[[:lower:]]" | cut -f2 -d' '
   reset-unchanged  = !git update-index --no-assume-unchanged $(git marked-unchanged)
+  tracking-changes = !git fetch && git diff --stat HEAD...@{u}
 
   root = rev-parse --show-toplevel
 
