@@ -121,6 +121,7 @@ export CUCUMBER_COLORS=comment=cyan
 append_path $HOME/bin
 append_path $EC2_HOME/bin
 append_path /usr/local/sbin
+append_path /usr/local/go/bin
 
 chruby_location=/usr/local/share/chruby/chruby.sh
 gem_home_location=/usr/local/share/gem_home/gem_home.sh
