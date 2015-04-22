@@ -14,7 +14,6 @@ function go_env_auto() {
     if [[ -f "$current_dir/.goworkspace" ]]; then
       [[ "$GOPATH_AUTO" == "$current_dir" ]] && return
 
-      echo "Setting GOPATH to $current_dir"
       GOPATH_AUTO=$current_dir
       export GOPATH=$current_dir
       export PATH=$PATH:$GOPATH/bin
@@ -25,7 +24,6 @@ function go_env_auto() {
   done
 
   if [[ -n "$GOPATH_AUTO" ]]; then
-    echo "Unsetting GOPATH"
     [[ -n "$GOPATH" ]] && remove_from_path $GOPATH/bin
     unset GOPATH_AUTO
     unset GOPATH
