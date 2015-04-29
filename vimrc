@@ -256,6 +256,12 @@ augroup phptabsettings
   autocmd FileType php call FourTab()
 augroup END
 
+augroup gotabsettings
+  autocmd!
+  autocmd Filetype go setlocal noexpandtab
+  autocmd FileType go call FourTab()
+augroup END
+
 " Clojure
 augroup clojuresettings
   autocmd!
