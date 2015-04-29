@@ -16,9 +16,6 @@ path, making this plugin ideal for "gem open" or "bundle open".
 
 COMMANDS                                        *rake-commands*
 
-All commands except |:Rake| support an alternate form that starts with R, for
-backwards compatibility.
-
                                                 *rake-:Rake*
 :Rake [task]            Invoke |:make| followed by |:cwindow| with rake as the
                         'makeprg'.  Uses `bin/rake` if available.
@@ -48,8 +45,8 @@ backwards compatibility.
 
                                                 *rake-:Elib* *rake-:Rlib*
 :Elib [file]            Edit a Ruby file under lib/, or Gemfile if no argument
-                        is given.  Variants exist for :ESlib, :EVlib, :ETlib,
-                        and :EDlib.
+                        is given.  Variants exist for :Slib (|:split|), :Vlib
+                        (|:vsplit|), :Tlib (|:tabedit|), and :Dlib (|:read|).
 
                                                 *rake-:Etest* *rake-:Rtest*
 :Etest [file]           Edit a test file under test/ or a spec file under
@@ -68,10 +65,11 @@ backwards compatibility.
                         argument is given.  Has the same variants as |:Elib|.
 
                                                 *rake-:Ctags* *rake-:Rtags*
-:Ctags                  Invoke ctags for the project.  Ordinarily it will
-                        place the resulting tags file in the root of the
-                        project, but if the directory is read only (e.g., a
-                        system gem), it will be placed in a temp file instead.
+:Ctags                  Removed without replacement.
+
+                                                *g:rake_legacy*
+Set g:rake_legacy to 1 to enable the old, legacy R command variants.  This
+option will eventually be removed.
 
 ABOUT                                           *rake-about*
 

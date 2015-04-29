@@ -1,11 +1,12 @@
 # rake.vim
 
-With rake.vim, you can use all those parts of [rails.vim][] that you wish you
-could use on your other Ruby projects on anything with a `Rakefile`, including
-`:A`, `:Elib` and friends, and of course `:Rake`.  It's great when paired with
-[`gem open`][gem-browse] and `bundle open` and complemented nicely by
-[bundler.vim][].
+Rake.vim is a plugin leveraging [projectionist.vim][] to enable you to use all
+those parts of [rails.vim][] that you wish you could use on your other Ruby
+projects, including `:A`, `:Elib` and friends, and of course `:Rake`.  It's
+great when paired with [`gem open`][gem-browse] and `bundle open` and
+complemented nicely by [bundler.vim][].
 
+[projectionist.vim]: https://github.com/tpope/vim-projectionist
 [bundler.vim]: https://github.com/tpope/vim-bundler
 [rails.vim]: https://github.com/tpope/vim-rails
 [gem-browse]: https://github.com/tpope/gem-browse
@@ -18,6 +19,7 @@ then simply copy and paste:
 
     cd ~/.vim/bundle
     git clone git://github.com/tpope/vim-rake.git
+    git clone git://github.com/tpope/vim-projectionist.git
 
 Once help tags have been generated, you can view the manual with
 `:help rake`.
