@@ -241,6 +241,12 @@ augroup dispatchsetup
   autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 augroup END
 
+augroup typescriptsetup
+  autocmd!
+  let g:typescript_compiler_options = '--module "commonjs" --noEmit'
+  autocmd FileType typescript call FourTab()
+augroup END
+
 func! FourTab()
   setlocal tabstop=4 shiftwidth=4
 endfunc
