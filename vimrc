@@ -72,7 +72,7 @@ set autowrite
 set fileformats+=mac
 
 set nrformats-=octal
-set shiftround
+set shiftround " always shift by multiple of shiftwidth (e.g. >>, <<)
 
 if &history < 1000
   set history=1000
@@ -102,28 +102,6 @@ endif
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
-
-function! OpenWithSpecs(...)
-	let l:file_globs=a:000
-  for glob in file_globs
-    for filename in split(glob(glob), "\n")
-      let l:specname = 
-            \ substitute(filename, "^app/\\(.*\\).rb$", "spec/\\1_spec.rb", "")
-      exec 'tabedit '.specname
-      exec 'rightbelow vsplit '.filename
-    endfor
-  endfor
-endfunction
-
-function! OpenSpecFor(filename)
-  let l:filename=a:filename
-  let l:specname = 
-        \ substitute(filename, "^app/\\(.*\\).rb$", "spec/\\1_spec.rb", "")
-  exec 'leftbelow vsplit '.specname
-endfunction
-
-command! -complete=file -nargs=+ SpecEdit call OpenWithSpecs(<f-args>)
-cabbrev spe SpecEdit
 
 " Word processor mode
 func! WordProcessorMode()
