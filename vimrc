@@ -227,7 +227,8 @@ augroup END
 
 augroup typescriptsetup
   autocmd!
-  let g:typescript_compiler_options = '--module "commonjs" --noEmit'
+  let g:typescript_compiler_options = '--noEmit --module "commonjs"'
+  autocmd Filetype typescript setlocal noexpandtab
   autocmd FileType typescript call FourTab()
 augroup END
 
