@@ -56,7 +56,8 @@ function ruby_env_auto() {
         ruby_env_setup_gc
         if [[ -f "$current_dir/.gemset" ]]; then
           RUBY_GEMSET="$current_dir"
-          gem_home "$current_dir"
+          gem_home "$RUBY_GEMSET"
+          prepend_path $RUBY_GEMSET/.bin
         fi
         return
       fi
@@ -66,6 +67,7 @@ function ruby_env_auto() {
   done
 
   if [[ -n "$RUBY_GEMSET" ]]; then
+    remove_from_path "$RUBY_GEMSET/.bin"
     unset RUBY_GEMSET
     gem_home -
   fi

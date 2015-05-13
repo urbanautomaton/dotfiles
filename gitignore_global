@@ -9,3 +9,4 @@
 .chgems
 .gemset
 *.pyc
+.bin
