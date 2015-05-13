@@ -1,12 +1,3 @@
-function remove_from_path() {
-  local readonly remove=$1
-  local work=:$PATH:
-  work=${work/:$remove:/:}
-  work=${work#:}
-  work=${work%:}
-  export PATH=$work
-}
-
 function go_env_auto() {
   local current_dir="$PWD"
 
@@ -16,7 +7,7 @@ function go_env_auto() {
 
       GOPATH_AUTO=$current_dir
       export GOPATH=$current_dir
-      export PATH=$PATH:$GOPATH/bin
+      append_path $GOPATH/bin
       return
     fi
 

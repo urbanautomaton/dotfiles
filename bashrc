@@ -20,16 +20,37 @@ case "$-" in
     bind '"\M-d":backward-kill-word'
 esac
 
+function append_path_if_present() {
+  if [[ -d "$1" ]]; then
+    append_path "$1"
+  fi
+}
+
+function prepend_path_if_present() {
+  if [[ -d "$1" ]]; then
+    prepend_path "$1"
+  fi
+}
+
 function append_path() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="${PATH:+"$PATH:"}$1"
   fi
 }
 
 function prepend_path() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="$1${PATH:+":$PATH"}"
   fi
+}
+
+function remove_from_path() {
+  local readonly remove=$1
+  local work=:$PATH:
+  work=${work/:$remove:/:}
+  work=${work#:}
+  work=${work%:}
+  export PATH=$work
 }
 
 # check the window size after each command and, if necessary,
@@ -79,18 +100,20 @@ case `uname` in
       export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
     fi
     export JAVA_HOME=$(/usr/libexec/java_home)
-    prepend_path $JAVA_HOME
+    prepend_path_if_present $JAVA_HOME
     function edit()
     {
       /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
     }
-    append_path ~/android/sdk/tools
-    append_path ~/android/sdk/platform-tools
-    append_path /usr/local/mysql/bin
-    append_path /usr/local/packer
-    append_path /opt/pear/bin
-    append_path /usr/texbin
-    append_path /usr/local/heroku/bin
+    append_path_if_present ~/android/sdk/tools
+    append_path_if_present ~/android/sdk/platform-tools
+    append_path_if_present /usr/local/mysql/bin
+    append_path_if_present /usr/local/packer
+    append_path_if_present /opt/pear/bin
+    append_path_if_present /usr/texbin
+    append_path_if_present /usr/local/heroku/bin
+    export EC2_HOME=/opt/ec2
+    append_path_if_present /opt/ec2/bin
     ulimit -S -n 2048
     export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
     ;;
@@ -118,10 +141,10 @@ export EC2_URL=https://ec2.us-west-1.amazonaws.com
 # Visible cucumber step locations
 export CUCUMBER_COLORS=comment=cyan
 
-append_path $HOME/bin
-append_path $EC2_HOME/bin
-append_path /usr/local/sbin
-append_path /usr/local/go/bin
+append_path_if_present $HOME/bin
+append_path_if_present $EC2_HOME/bin
+append_path_if_present /usr/local/sbin
+append_path_if_present /usr/local/go/bin
 
 chruby_location=/usr/local/share/chruby/chruby.sh
 gem_home_location=/usr/local/share/gem_home/gem_home.sh
