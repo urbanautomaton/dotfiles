@@ -219,6 +219,12 @@ augroup dispatchsetup
   autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 augroup END
 
+" I'm not 100% sure why this needs doing tbh.
+augroup shellsetup
+  autocmd!
+  autocmd Filetype sh setlocal formatoptions-=t formatoptions+=croql
+augroup END
+
 augroup typescriptsetup
   autocmd!
   let g:typescript_compiler_options = '--module "commonjs" --noEmit'
