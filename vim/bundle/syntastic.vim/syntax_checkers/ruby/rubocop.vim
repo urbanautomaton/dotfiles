@@ -22,7 +22,7 @@ function! SyntaxCheckers_ruby_rubocop_IsAvailable() dict
     if !executable(self.getExec())
         return 0
     endif
-    return syntastic#util#versionIsAtLeast(self.getVersion(), [0, 12, 0])
+    return syntastic#util#versionIsAtLeast(self.getVersion('rubocop --version 2>/dev/null'), [0, 12, 0])
 endfunction
 
 function! SyntaxCheckers_ruby_rubocop_GetLocList() dict
