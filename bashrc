@@ -10,6 +10,9 @@ export HISTFILESIZE=10000
 export HISTSIZE=1000
 # And don't overwrite .bash_history on exit
 shopt -s histappend
+# Use funky extended bash globbing:
+# http://www.linuxjournal.com/content/bash-extended-globbing
+shopt -s extglob
 
 # If this is an interactive shell...
 case "$-" in
