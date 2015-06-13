@@ -55,9 +55,12 @@ function ruby_env_auto() {
         chruby "$version"
         ruby_env_setup_gc
         if [[ -f "$current_dir/.gemset" ]]; then
-          RUBY_GEMSET="$current_dir"
+          gem_dir=${current_dir//\//\%}
+          gem_dir=${gem_dir// /_}
+          gem_dir="~/.gem/gemsets/${gem_dir}"
+          RUBY_GEMSET="$gem_dir"
           gem_home "$RUBY_GEMSET"
-          prepend_path $RUBY_GEMSET/.bin
+          prepend_path $current_dir/.bin
         fi
         return
       fi
