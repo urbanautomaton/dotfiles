@@ -57,7 +57,7 @@ function ruby_env_auto() {
         if [[ -f "$current_dir/.gemset" ]]; then
           gem_dir=${current_dir//\//\%}
           gem_dir=${gem_dir// /_}
-          gem_dir="~/.gem/gemsets/${gem_dir}"
+          gem_dir="${HOME}/.gem/gemsets/${gem_dir}"
           RUBY_GEMSET="$gem_dir"
           gem_home "$RUBY_GEMSET"
           prepend_path $current_dir/.bin
