@@ -135,17 +135,10 @@ if [[ -f ~/.git-completion ]]; then
   . ~/.git-completion
 fi
 
-# AWS toolkit variables
-export EC2_HOME=$HOME/.ec2
-export EC2_PRIVATE_KEY=$EC2_HOME/pk-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
-export EC2_CERT=$EC2_HOME/cert-23AHI74KQ3OGF4W7ZDQIPH6ETKPEJTHF.pem
-export EC2_URL=https://ec2.us-west-1.amazonaws.com
-
 # Visible cucumber step locations
 export CUCUMBER_COLORS=comment=cyan
 
 append_path_if_present $HOME/bin
-append_path_if_present $EC2_HOME/bin
 append_path_if_present /usr/local/sbin
 append_path_if_present /usr/local/go/bin
 
