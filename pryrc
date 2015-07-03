@@ -1,12 +1,11 @@
-# Load plugins (only those I whitelist)
-Pry.config.should_load_plugins = false
-Pry.plugins["doc"].activate!
-Pry.plugins["byebug"].activate!
+Pry.config.should_load_plugins = true
 
-Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
-Pry.commands.alias_command 'f', 'finish'
+if Pry.plugins.has_key?("byebug")
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end
 
 # Launch Pry with access to the entire Rails stack.
 # If you have Pry in your Gemfile, you can pass: ./script/console --irb=pry instead.
