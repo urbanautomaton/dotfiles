@@ -12,7 +12,10 @@
 --ignore-dir=.gem
 --ignore-dir=.bundle
 --ignore-dir=.librarian
+--ignore-dir=Godeps
 --ignore-dir=log
+--ignore-dir=coverage
+--ignore-file=match:/\.js\.map$/
 --notags
 --nologs
 --nosolrindex
