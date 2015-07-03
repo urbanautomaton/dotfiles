@@ -164,6 +164,12 @@ nnoremap <F5> :set invpaste paste?<Enter>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
+" unimpaired.vim style nav for preview-window tags
+nnoremap ]g :ptnext<CR>
+nnoremap [g :ptprevious<CR>
+nnoremap ]G :ptlast<CR>
+nnoremap [G :ptfirst<CR>
+
 " Tabularize mappings
 func! SetTabularizeMappings()
   " Tabularize assignments
