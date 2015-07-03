@@ -72,6 +72,7 @@
   pager        = less -FRSX
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/.gitignore_global
+  safecrlf = true
 
 [github]
   user = urbanautomaton
