@@ -4,6 +4,8 @@ let g:pathogen_disabled = []
 let g:slime_target = "tmux"
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_eruby_checkers = []
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_mri_args = '-wc'
 
 set rtp+=~/.vim/bundle/powerline.vim/powerline/bindings/vim
 
