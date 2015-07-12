@@ -78,9 +78,6 @@
   user = urbanautomaton
   token = fa17d54ca373e548d446c0657158f34f
 
-[gui]
-  recentrepo = /Users/simon/dev/shopsearch
-
 [init]
   templatedir = ~/.git_template
 
