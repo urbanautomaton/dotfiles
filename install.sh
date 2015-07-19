@@ -9,30 +9,40 @@ case `uname` in
     ;;
 esac
 
-ln -sf ~/dotfiles/bashrc ~/.bashrc
-ln -sf ~/dotfiles/bash_aliases ~/.bash_aliases
+readonly DOTDIRECTORIES="
+  vim
+  git_template
+"
 
-ln -sf ~/dotfiles/inputrc ~/.inputrc
+readonly DOTFILES="
+  bashrc
+  bash_aliases
+  inputrc
+  vimrc
+  irbrc
+  gemrc
+  pryrc
+  git-completion
+  gitconfig
+  gitignore_global
+  gitattributes
+  gvimrc
+  ackrc
+  tmux.conf
+  tmux-osx.conf
+"
 
-ln -sf ~/dotfiles/vimrc ~/.vimrc
-$dircmd ~/dotfiles/vim ~/.vim
+for dir in $DOTDIRECTORIES; do
+  if [[ -n "$dir" ]]; then
+    $dircmd ~/dotfiles/$dir ~/.$dir
+  fi
+done
 
-ln -sf ~/dotfiles/irbrc ~/.irbrc
-ln -sf ~/dotfiles/gemrc ~/.gemrc
-ln -sf ~/dotfiles/pryrc ~/.pryrc
-
-ln -sf ~/dotfiles/git-completion ~/.git-completion
-ln -sf ~/dotfiles/gitconfig ~/.gitconfig
-$dircmd ~/dotfiles/git_template ~/.git_template
-ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
-
-$dircmd ~/dotfiles/js ~/.js
-ln -sf ~/dotfiles/gvimrc ~/.gvimrc
-
-ln -sf ~/dotfiles/ackrc ~/.ackrc
-
-ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/tmux-osx.conf ~/.tmux-osx.conf
+for file in $DOTFILES; do
+  if [[ -n "$file" ]]; then
+    ln -sf ~/dotfiles/$file ~/.$file
+  fi
+done
 
 mkdir -p ~/bin
 for script in $(ls ~/dotfiles/bin); do

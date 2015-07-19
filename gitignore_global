@@ -6,7 +6,6 @@
 .rvmrc
 .ruby-version
 .gem
-.chgems
 .gemset
 *.pyc
 .bin
