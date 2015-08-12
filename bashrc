@@ -115,10 +115,14 @@ case `uname` in
     append_path_if_present /opt/pear/bin
     append_path_if_present /usr/texbin
     append_path_if_present /usr/local/heroku/bin
+    append_path_if_present /Applications/SWI-Prolog.app/Contents/MacOS
     export EC2_HOME=/opt/ec2
     append_path_if_present /opt/ec2/bin
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
     ulimit -S -n 2048
     export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+    export JRUBY_OPTS="-J-Xmx4g"
     ;;
   # Linux Specific
   'Linux')
