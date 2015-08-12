@@ -84,8 +84,16 @@ while getopts ":hd:n:" opt; do
 done
 
 shift $((OPTIND -1))
-if [[ -n "$1" ]]; then
-  directory=`greadlink -f $1`
+
+dirname=${1:-''}
+
+if [[ ! -n "$dirname" ]]; then
+  usage
+  exit 1
+fi
+
+if [[ -n "$dirname" ]]; then
+  directory=`greadlink -f $dirname`
   shift
 else
   directory=`pwd -P`
