@@ -116,6 +116,7 @@ case `uname` in
     append_path_if_present /usr/texbin
     append_path_if_present /usr/local/heroku/bin
     append_path_if_present /Applications/SWI-Prolog.app/Contents/MacOS
+    append_path_if_present /usr/local/terraform/bin
     export EC2_HOME=/opt/ec2
     append_path_if_present /opt/ec2/bin
     export NVM_DIR=~/.nvm
