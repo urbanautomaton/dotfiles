@@ -61,6 +61,11 @@ The full list of available properties in a projection is as follows:
 "alternate" ~
         Determines the destination of the |projectionist-:A| command.  If this
         is a list, the first readable file will be used.
+						*projectionist-console*
+"console" ~
+        Command to run to start a REPL or other interactive shell.  Will be
+        defined as :Console.  This is useful to set from a "*" projection or
+        on a simple file glob like "*.js".  Experimental.
 						*projectionist-dispatch*
 "dispatch" ~
         Default task to use for |:Dispatch| in dispatch.vim.  If not provided,
@@ -71,6 +76,11 @@ The full list of available properties in a projection is as follows:
         Sets 'makeprg'.  Also loads a |:compiler| plugin if one is available
         matching the executable name.  This is useful to set from a "*"
         projection.  Expansions are shell escaped.
+						*projectionist-path*
+"path" ~
+        Additional directories to add to 'path'.  Can be relative to the
+        project root or absolute.  This is useful to set on a simple file glob
+        like "*.js".
 						*projectionist-start*
 "start" ~
         Command to run to "boot" the project.  Examples include `lein run`,
@@ -131,7 +141,10 @@ are available.
 :AT [file]              Like :A, but open in a tab.
 
                                                 *projectionist-:AD*
-:AD [file]              Like :A, but |:read| the file into the current buffer.
+:AD                     Replace the contents of the buffer with the new file
+                        template.
+
+:AD {file}              Like :A, but |:read| the file into the current buffer.
 
                                                 *projectionist-:Cd*
 :Cd                     |:cd| to the innermost root.
