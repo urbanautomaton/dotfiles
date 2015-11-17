@@ -74,7 +74,12 @@ fi
 
 # Alias definitions
 if [[ -f ~/.bash_aliases ]]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
+fi
+
+# Laptop-specific helper functions
+if [[ -f ~/.bash_helpers.local ]]; then
+  . ~/.bash_helpers.local
 fi
 
 # enable color support of ls and also add handy aliases
