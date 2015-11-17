@@ -587,24 +587,37 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
-	<key>NSFontPanelPreviewHeight</key>
-	<real>0.0</real>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm/profiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{962, 671}</string>
+	<string>{1233, 714}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSTableView Columns KeyBingingTable</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATCG
+		</data>
+		<string>198</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATGG
+		</data>
+		<string>302</string>
+	</array>
+	<key>NSTableView Hidden Columns KeyBingingTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering KeyBingingTable</key>
+	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>247 294 924 485 0 0 1440 878 </string>
+	<string>-1577 203 924 485 -1920 -180 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 400 585 473 0 0 1440 878 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-2186 212 585 473 -2560 0 2560 1418 </string>
+	<string>-1920 0 1920 1057 -1920 0 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1347,16 +1360,18 @@
 			<string>/Users/simon</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>454523764.02186602</real>
+	<real>466343209.00453299</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>466291471.18269998</real>
+	<real>466679008.118038</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
-	<true/>
+	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
 	<key>PassOnControlClick</key>
@@ -1415,7 +1430,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-10-11T17:07:39Z</date>
+	<date>2015-10-16T09:03:22Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
