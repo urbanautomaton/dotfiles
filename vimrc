@@ -215,13 +215,21 @@ endfunction
 command! -nargs=+ -complete=command ToQF call s:RunShellCommandToQuickfix(<q-args>)
 
 " Testing!
+
+" This allows you to override the built-in dispatch compiler detection. As a
+" bonus it effectively lets you ignore command prefixes if you want, like
+" `bundle exec` and friends. I use binstubs for `bundle exec` anyway, but
+" would like to set an environment variable sometimes.
+let g:dispatch_compilers = {
+      \ 'DISPATCH=true': ''
+      \ }
 nnoremap <F6> :execute "Dispatch ".b:dispatch.":".line(".")<CR>
 nnoremap <F7> :execute "Focus ".b:dispatch<CR>
 nnoremap <F8> :Focus!<CR>
 nnoremap <F9> :Dispatch<CR>
 augroup dispatchsetup
   autocmd!
-  autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'rspec %'
+  autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'DISPATCH=true rspec %'
   autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
   autocmd FileType cucumber let b:dispatch = 'cucumber %'
   autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
