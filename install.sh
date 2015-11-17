@@ -14,6 +14,7 @@ esac
 readonly DOTDIRECTORIES="
   vim
   git_template
+  env_handlers
 "
 
 readonly DOTFILES="
