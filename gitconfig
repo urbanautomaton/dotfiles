@@ -89,3 +89,6 @@
   autosetuprebase = always
 [rebase]
   autosquash = true
+
+[include]
+  path = ~/.gitconfig_local
