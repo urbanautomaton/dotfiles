@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+if [[ `uname` == "Darwin" ]]; then
+  if [[ ! "DYLD_LIBRARY_PATH" =~ /usr/local/mysql/lib ]]; then
+    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+  fi
+
+  function edit()
+  {
+    /Applications/TextEdit.app/Contents/MacOS/TextEdit $@ 2>/dev/null
+  }
+
+  append_path_if_present /usr/local/mysql/bin
+  append_path_if_present /usr/local/packer
+  append_path_if_present /opt/pear/bin
+  append_path_if_present /usr/texbin
+  append_path_if_present /usr/local/heroku/bin
+  append_path_if_present /usr/local/terraform/bin
+  append_path_if_present /Applications/SWI-Prolog.app/Contents/MacOS
+  append_path_if_present /usr/local/terraform/bin
+  append_path_if_present /usr/local/go/bin
+
+  export NVM_DIR=~/.nvm
+  source $(brew --prefix nvm)/nvm.sh
+
+  ulimit -S -n 2048
+
+  export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+  export JRUBY_OPTS="-J-Xmx4g"
+fi

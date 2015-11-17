@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+env_handlers=""
+
+function add_env_handler() {
+  local readonly handler=$1
+  if [[ -n "$env_handlers" ]]; then
+    env_handlers="$env_handlers && $handler"
+  else
+    env_handlers=$handler
+  fi
+}
+
+function register_env_hook {
+  local readonly hook_file=$1
+  local readonly hook_function_root=$2
+
+  if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
+    echo "You must specify both the hook file and the function root!" >&2
+    return
+  fi
+
+  add_env_handler "run_env_hook ${hook_file} ${hook_function_root}"
+}
+
+function run_env_hook {
+  local readonly hook_file=$1
+  local readonly hook_function_root=$2
+  local readonly enter_hook=enter_${hook_function_root}
+  local readonly exit_hook=exit_${hook_function_root}
+
+  if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
+    echo "You must specify both the hook file and the function root!" >&2
+    return
+  fi
+
+  if type -t "${enter_hook}" >/dev/null && type -t "${exit_hook}" >/dev/null; then
+    local current_dir="$PWD"
+
+    until [[ -z "${current_dir}" ]]; do
+      if [[ -f "${current_dir}/${hook_file}" ]]; then
+        ${enter_hook} ${current_dir}
+        return
+      fi
+
+      current_dir="${current_dir%/*}"
+    done
+
+    ${exit_hook}
+  else
+    echo "You must define both the ${enter_hook} and ${exit_hook} functions" >&2
+    return
+  fi
+}
+
+for hook in $(ls ~/.env_hooks); do
+  source ~/.env_hooks/${hook}
+done
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ -n "$env_handlers" ]]; then
+    preexec_functions+=("$env_handlers")
+  fi
+elif [[ -n "$BASH_VERSION" ]]; then
+  if [[ -n "$env_handlers" ]]; then
+    prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
+    trap "$prompt_test && $env_handlers" DEBUG
+  fi
+fi

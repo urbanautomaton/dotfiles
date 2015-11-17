@@ -7,6 +7,12 @@
 #"\e\e[C": forward-word
 #"\e\e[D": backward-word
 
+# Arrow keys search history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+# Option-backspace deletes last word
+"\M-d": backward-kill-word
+
 "\e[1;6D": backward-word
 "\e[1;6C": forward-word
 

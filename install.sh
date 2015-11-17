@@ -14,12 +14,14 @@ esac
 readonly DOTDIRECTORIES="
   vim
   git_template
-  env_handlers
+  env_hooks
 "
 
 readonly DOTFILES="
   bashrc
+  bashrc.darwin
   bash_aliases
+  env_hooker
   inputrc
   vimrc
   irbrc
