@@ -163,7 +163,7 @@ function add_env_handler() {
 }
 
 if [[ -f "$chruby_location" ]]; then
-  export CHRUBY_DEFAULT=2.0.0
+  export CHRUBY_DEFAULT=2.2
   readonly CHRUBY_DEFAULT
 
   source $chruby_location
