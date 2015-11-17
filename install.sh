@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -euo pipefail
+
 case `uname` in
   'Darwin')
     dircmd='ln -sfh'
