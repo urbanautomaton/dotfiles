@@ -26,20 +26,28 @@ shopt -s checkwinsize
 # Path helpers #
 ################
 
+function path_contains() {
+  [[ ":$PATH:" == *":$1:"* ]]
+}
+
+function directory_exists() {
+  [[ -d "$1" ]]
+}
+
 function append_path() {
-  [[ ":$PATH:" != *":$1:"* ]] && export PATH="${PATH:+"$PATH:"}$1"
+  path_contains $1 || export PATH="${PATH:+"$PATH:"}$1"
 }
 
 function prepend_path() {
-  [[ ":$PATH:" != *":$1:"* ]] && export PATH="$1${PATH:+":$PATH"}"
+  path_contains $1 || export PATH="$1${PATH:+":$PATH"}"
 }
 
 function append_path_if_present() {
-  [[ -d "$1" ]] && append_path "$1"
+  directory_exists $1 && append_path "$1"
 }
 
 function prepend_path_if_present() {
-  [[ -d "$1" ]] && prepend_path "$1"
+  directory_exists $1 && prepend_path "$1"
 }
 
 function remove_from_path() {
