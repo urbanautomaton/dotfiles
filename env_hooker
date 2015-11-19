@@ -1,29 +1,15 @@
 #!/usr/bin/env bash
 
-env_handlers=""
-
-function add_env_handler() {
+function __env_hooker_add_env_handler() {
   local readonly handler=$1
-  if [[ -n "$env_handlers" ]]; then
-    env_handlers="$env_handlers && $handler"
+  if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
+    __ENV_HOOKER_HANDLERS="$__ENV_HOOKER_HANDLERS && $handler"
   else
-    env_handlers=$handler
+    __ENV_HOOKER_HANDLERS=$handler
   fi
 }
 
-function register_env_hook {
-  local readonly hook_file=$1
-  local readonly hook_function_root=$2
-
-  if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
-    echo "You must specify both the hook file and the function root!" >&2
-    return
-  fi
-
-  add_env_handler "run_env_hook ${hook_file} ${hook_function_root}"
-}
-
-function run_env_hook {
+function __env_hooker_run_env_hook {
   local readonly hook_file=$1
   local readonly hook_function_root=$2
   local readonly enter_hook=enter_${hook_function_root}
@@ -53,17 +39,39 @@ function run_env_hook {
   fi
 }
 
-for hook in $(ls ~/.env_hooks); do
-  source ~/.env_hooks/${hook}
-done
+function register_env_hook {
+  local readonly hook_file=$1
+  local readonly hook_function_root=$2
 
-if [[ -n "$ZSH_VERSION" ]]; then
-  if [[ -n "$env_handlers" ]]; then
-    preexec_functions+=("$env_handlers")
+  if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
+    echo "You must specify both the hook file and the function root!" >&2
+    return
   fi
-elif [[ -n "$BASH_VERSION" ]]; then
-  if [[ -n "$env_handlers" ]]; then
-    prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
-    trap "$prompt_test && $env_handlers" DEBUG
+
+  __env_hooker_add_env_handler "__env_hooker_run_env_hook ${hook_file} ${hook_function_root}"
+}
+
+function load_env_hooks() {
+  local readonly hooks_dir=${1:-~/.env_hooks}
+  __ENV_HOOKER_HANDLERS=""
+
+  if [[ ! -d "$hooks_dir" ]]; then
+    echo "Could not find env hooks directory: ${hooks_dir}"
+    return
   fi
-fi
+
+  for hook in $(ls ~/.env_hooks); do
+    source ~/.env_hooks/${hook}
+  done
+
+  if [[ -n "$ZSH_VERSION" ]]; then
+    if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
+      preexec_functions+=("$__ENV_HOOKER_HANDLERS")
+    fi
+  elif [[ -n "$BASH_VERSION" ]]; then
+    if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
+      prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
+      trap "$prompt_test && $__ENV_HOOKER_HANDLERS" DEBUG
+    fi
+  fi
+}

@@ -118,6 +118,7 @@ source_if_present ~/.git-completion
 
 # Load environment hook scripts
 source_if_present ~/.env_hooker
+load_env_hooks ~/.env_hooks
 
 # Start a flame war
 export EDITOR="vim"
