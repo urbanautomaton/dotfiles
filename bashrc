@@ -22,9 +22,13 @@ shopt -s extglob
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-################
-# Path helpers #
-################
+####################
+# Helper Functions #
+####################
+
+function source_if_present() {
+  [[ -f "$1" ]] && source $1
+}
 
 function path_contains() {
   [[ ":$PATH:" == *":$1:"* ]]
@@ -59,6 +63,10 @@ function remove_from_path() {
   export PATH=$work
 }
 
+#########################
+# Custom PATH locations #
+#########################
+
 append_path_if_present $HOME/bin
 append_path_if_present /usr/local/sbin
 
@@ -85,39 +93,31 @@ export CUCUMBER_COLORS=comment=cyan
 # Ruby env management #
 #######################
 
-chruby_location=/usr/local/share/chruby/chruby.sh
-if [[ -f "$chruby_location" ]]; then
+source_if_present /usr/local/share/chruby/chruby.sh
+source_if_present /usr/local/share/gem_home/gem_home.sh
+
+if type -t chruby >/dev/null; then
   export CHRUBY_DEFAULT=2.2
   readonly CHRUBY_DEFAULT
-
-  source $chruby_location
   chruby $CHRUBY_DEFAULT
-fi
-
-gem_home_location=/usr/local/share/gem_home/gem_home.sh
-if [[ -f "$gem_home_location" ]]; then
-  source $gem_home_location
 fi
 
 ################
 # And the rest #
 ################
 
-# Alias definitions
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-
-# OS- and host-specific configuration
-[[ -f ~/.bashrc.darwin ]] && . ~/.bashrc.darwin
-[[ -f ~/.bashrc.local ]] && . ~/.bashrc.local
+source_if_present ~/.bash_aliases
+source_if_present ~/.bashrc.darwin
+source_if_present ~/.bashrc.local
 
 # Enable programmable bash command-line completion
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+source_if_present /etc/bash_completion
 
 # Enable git command-line completion
-[[ -f ~/.git-completion ]] && . ~/.git-completion
+source_if_present ~/.git-completion
 
 # Load environment hook scripts
-[[ -f ~/.env_hooker ]] && . ~/.env_hooker
+source_if_present ~/.env_hooker
 
 # Start a flame war
 export EDITOR="vim"
