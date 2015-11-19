@@ -20,23 +20,23 @@ function __env_hooker_run_env_hook {
     return
   fi
 
-  if type -t "${enter_hook}" >/dev/null && type -t "${exit_hook}" >/dev/null; then
-    local current_dir="$PWD"
-
-    until [[ -z "${current_dir}" ]]; do
-      if [[ -f "${current_dir}/${hook_file}" ]]; then
-        ${enter_hook} ${current_dir}
-        return
-      fi
-
-      current_dir="${current_dir%/*}"
-    done
-
-    ${exit_hook}
-  else
+  if ! type -t "${enter_hook}" >/dev/null || ! type -t "${exit_hook}" >/dev/null; then
     echo "You must define both the ${enter_hook} and ${exit_hook} functions" >&2
     return
   fi
+
+  local current_dir="$PWD"
+
+  until [[ -z "${current_dir}" ]]; do
+    if [[ -f "${current_dir}/${hook_file}" ]]; then
+      ${enter_hook} ${current_dir}
+      return
+    fi
+
+    current_dir="${current_dir%/*}"
+  done
+
+  ${exit_hook}
 }
 
 function register_env_hook {
