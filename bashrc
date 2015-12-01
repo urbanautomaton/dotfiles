@@ -38,6 +38,10 @@ function directory_exists() {
   [[ -d "$1" ]]
 }
 
+function command_exists() {
+  type -t $1 >/dev/null
+}
+
 function append_path() {
   path_contains $1 || export PATH="${PATH:+"$PATH:"}$1"
 }
@@ -110,11 +114,13 @@ source_if_present ~/.bash_aliases
 source_if_present ~/.bashrc.darwin
 source_if_present ~/.bashrc.local
 
-# Enable programmable bash command-line completion
+# Enable programmable bash command-line completion (Debian derivs)
 source_if_present /etc/bash_completion
 
-# Enable git command-line completion
-source_if_present ~/.git-completion
+# Enable bash completion in homebrew setups
+if command_exists brew; then
+  source_if_present $(brew --prefix)/etc/bash_completion
+fi
 
 # Load environment hook scripts
 source_if_present ~/.env_hooker

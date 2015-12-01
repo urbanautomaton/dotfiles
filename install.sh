@@ -27,7 +27,6 @@ readonly DOTFILES="
   irbrc
   gemrc
   pryrc
-  git-completion
   gitconfig
   gitignore_global
   gitattributes
