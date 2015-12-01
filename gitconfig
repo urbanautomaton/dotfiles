@@ -1,3 +1,5 @@
+# vim: filetype=gitconfig
+
 [user]
   name  = Simon Coffey
   email = simon@urbanautomaton.com
@@ -74,10 +76,6 @@
   excludesfile   = ~/.gitignore_global
   safecrlf       = true
   attributesFile = ~/.gitattributes
-
-[github]
-  user = urbanautomaton
-  token = fa17d54ca373e548d446c0657158f34f
 
 [init]
   templatedir = ~/.git_template
