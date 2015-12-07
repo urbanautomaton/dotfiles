@@ -13,6 +13,8 @@ function enter_ruby_version {
   local version
   local gem_dir
 
+  [[ -n "${RUBY_AUTO_VERSION}" ]] && return
+
   if { read -r version <"${current_dir}/.ruby-version"; } 2>/dev/null; then
     chruby "${version}"
     RUBY_AUTO_VERSION="${version}"
@@ -23,21 +25,27 @@ function enter_ruby_version {
       gem_dir="${HOME}/.gem/gemsets/${gem_dir}"
       RUBY_GEMSET="${gem_dir}"
       gem_home "${RUBY_GEMSET}"
-      prepend_path ${current_dir}/.bin
     fi
+
+    RUBY_AUTO_BINSTUBS="${current_dir}/.bin"
+    prepend_path ${current_dir}/.bin
   fi
 }
 
 function exit_ruby_version {
+  if [[ -n "${RUBY_AUTO_BINSTUBS}" ]]; then
+    remove_from_path "$RUBY_AUTO_BINSTUBS"
+    unset RUBY_AUTO_BINSTUBS
+  fi
+
   if [[ -n "${RUBY_GEMSET}" ]]; then
-    remove_from_path "${RUBY_GEMSET}/.bin"
-    unset RUBY_GEMSET
     gem_home -
+    unset RUBY_GEMSET
   fi
 
   if [[ -n "${RUBY_AUTO_VERSION}" ]]; then
-    unset RUBY_AUTO_VERSION
     chruby_default
+    unset RUBY_AUTO_VERSION
   fi
 }
 
