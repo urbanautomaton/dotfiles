@@ -11,6 +11,7 @@ ruby_command='puts RbConfig::CONFIG["configure_args"]'
 alias rubyconf="ruby -r rbconfig -e '$ruby_command'"
 
 alias be='bundle exec'
+alias genri='gem rdoc --all --ri --no-rdoc'
 
 alias ls='ls -G'
 alias ll='ls -lahF'
