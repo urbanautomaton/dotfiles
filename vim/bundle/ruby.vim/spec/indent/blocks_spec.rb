@@ -21,6 +21,22 @@ describe "Indenting" do
     EOF
   end
 
+  specify "blocks with assignment on the previous line" do
+    assert_correct_indenting <<-EOF
+      foo =
+        something do
+          "other"
+        end
+    EOF
+
+    assert_correct_indenting <<-EOF
+      @foo ||=
+        something do
+          "other"
+        end
+    EOF
+  end
+
   specify "blocks with multiline parameters" do
     assert_correct_indenting <<-EOF
       def foo
@@ -34,14 +50,14 @@ describe "Indenting" do
   end
 
   specify "case-insensitive matching" do
-    @vim.set 'ignorecase'
+    vim.set 'ignorecase'
     assert_correct_indenting <<-EOF
       module X
         Class.new do
         end
       end
     EOF
-    @vim.set 'ignorecase&'
+    vim.set 'ignorecase&'
   end
 
   specify "blocks with tuple arguments" do
