@@ -49,6 +49,6 @@ function exit_ruby_version {
   fi
 }
 
-if type -t "chruby" >/dev/null && type -t "gem_home" >/dev/null; then
+if command_exists "chruby" && command_exists "gem_home"; then
   register_env_hook .ruby-version ruby_version
 fi
