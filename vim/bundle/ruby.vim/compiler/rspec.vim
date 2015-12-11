@@ -20,11 +20,12 @@ CompilerSet makeprg=rspec
 
 CompilerSet errorformat=
     \%f:%l:\ %tarning:\ %m,
-    \%E%.%#:in\ `load':\ %f:%l:%m,
+    \%E%.%#:in\ `load':\ %m\ --\ %f%.%#,
     \%E%f:%l:in\ `%*[^']':\ %m,
     \%-Z\ \ \ \ \ %\\+\#\ %f:%l:%.%#,
     \%E\ \ %\\d%\\+)%.%#,
     \%C\ \ \ \ \ %m,
+    \%C%\\s%#,
     \%-G%.%#
 
 let &cpo = s:cpo_save
