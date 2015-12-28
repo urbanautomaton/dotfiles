@@ -119,7 +119,7 @@ source_if_present /etc/bash_completion
 
 # Enable bash completion in homebrew setups
 if command_exists brew; then
-  source_if_present $(brew --prefix)/etc/bash_completion
+  source_if_present /usr/local/etc/bash_completion
 fi
 
 # Load environment hook scripts
