@@ -28,7 +28,7 @@ function enter_ruby_version {
     fi
 
     RUBY_AUTO_BINSTUBS="${current_dir}/.bin"
-    prepend_path ${current_dir}/.bin
+    prepend_path ${RUBY_AUTO_BINSTUBS}
   fi
 }
 
