@@ -26,19 +26,10 @@
 
 [merge]
   keepBackup = false
-  tool       = p4mergetool
+  tool       = fugitive
 
-[mergetool "p4mergetool"]
-  keepBackup = false
-  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED"
-  trustExitCode = false
-
-[diff]
-  tool = p4mergetool
-  algorithm = patience
-
-[difftool "p4mergetool"]
-  cmd = "/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 
 [status]
   showuntrackedfiles = all
