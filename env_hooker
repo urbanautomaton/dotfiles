@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+function __env_hooker_command_exists() {
+  type -t "$1" >/dev/null
+}
+
 function __env_hooker_add_env_handler() {
   local readonly handler=$1
   if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
@@ -15,12 +19,13 @@ function __env_hooker_run_env_hook {
   local readonly enter_hook=enter_${hook_function_root}
   local readonly exit_hook=exit_${hook_function_root}
 
+
   if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
     echo "You must specify both the hook file and the function root!" >&2
     return
   fi
 
-  if ! type -t "${enter_hook}" >/dev/null || ! type -t "${exit_hook}" >/dev/null; then
+  if ! __env_hooker_command_exists "${enter_hook}" || ! __env_hooker_command_exists "${exit_hook}"; then
     echo "You must define both the ${enter_hook} and ${exit_hook} functions" >&2
     return
   fi
