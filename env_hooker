@@ -34,7 +34,7 @@ function __env_hooker_run_env_hook {
 
   until [[ -z "${current_dir}" ]]; do
     if [[ -f "${current_dir}/${hook_file}" ]]; then
-      ${enter_hook} ${current_dir}
+      ${enter_hook} "${current_dir}"
       return
     fi
 
@@ -65,8 +65,10 @@ function load_env_hooks() {
     return
   fi
 
-  for hook in $(ls ~/.env_hooks); do
-    source ~/.env_hooks/${hook}
+  for hook in ~/.env_hooks/*; do
+    [[ -e $hook ]] || break
+    # shellcheck source=/dev/null
+    source "${hook}"
   done
 
   if [[ -n "$ZSH_VERSION" ]]; then
@@ -75,7 +77,9 @@ function load_env_hooks() {
     fi
   elif [[ -n "$BASH_VERSION" ]]; then
     if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
+      # shellcheck disable=SC2016
       prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
+      # shellcheck disable=SC2064
       trap "$prompt_test && $__ENV_HOOKER_HANDLERS" DEBUG
     fi
   fi
