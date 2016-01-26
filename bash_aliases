@@ -30,6 +30,7 @@ alias bl='git l master..HEAD'
 
 alias ws='workspace'
 alias blog='workspace -n ua ~/dev/sites/urbanautomaton.com'
+alias fl='workspace -d mysql ~/dev/futurelearn/futurelearn'
 alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
 alias vi='vim'
