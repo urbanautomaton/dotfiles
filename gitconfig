@@ -5,8 +5,8 @@
   email = simon@urbanautomaton.com
 
 [alias]
-  f     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --fixup=$ref; }; f"
-  s     = "!f() { local ref=$1; [[ -n \"$ref\" ]] || ref=HEAD; git commit --squash=$ref; }; f"
+  f     = "!f() { local ref=${1:-HEAD}; git commit --fixup=$ref; }; f"
+  s     = "!f() { local ref=${1:-HEAD}; git commit --squash=$ref; }; f"
   d     = diff
   dw    = diff --word-diff
   st    = status -sb
