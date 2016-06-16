@@ -27,8 +27,8 @@ function enter_ruby_version {
       gem_home "${RUBY_GEMSET}"
     fi
 
-    RUBY_AUTO_BINSTUBS="${current_dir}/.bin"
-    prepend_path ${RUBY_AUTO_BINSTUBS}
+    RUBY_AUTO_BINSTUBS="${current_dir}/bin:${current_dir}/.bin"
+    prepend_path "${RUBY_AUTO_BINSTUBS}"
   fi
 }
 
