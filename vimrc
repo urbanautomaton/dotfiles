@@ -229,6 +229,18 @@ nnoremap <F6> :execute "Dispatch ".b:dispatch.":'".line(".")."'"<CR>
 nnoremap <F7> :execute "Focus ".b:dispatch<CR>
 nnoremap <F8> :Focus!<CR>
 nnoremap <F9> :Dispatch<CR>
+
+let g:rspec_command = "Dispatch DISPATCH=true rspec {spec}"
+nnoremap <leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+nnoremap <Leader>f :call RunLastFailures()<CR>
+
+function! RunLastFailures()
+  execute "Dispatch DISPATCH=true rspec --only-failures"
+endfunction
+
 augroup dispatchsetup
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'DISPATCH=true rspec %'
