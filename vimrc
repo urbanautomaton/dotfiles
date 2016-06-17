@@ -254,11 +254,15 @@ augroup END
 autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it its specify shared_context shared_examples shared_examples_for shared_context include_examples include_context it_should_behave_like it_behaves_like before after around subject scenario feature background given described_class violated pending expect expect_any_instance_of allow allow_any_instance_of double instance_double mock xit fit
 highlight def link rubyRspec Function
 
-
 " I'm not 100% sure why this needs doing tbh.
 augroup shellsetup
   autocmd!
   autocmd Filetype sh setlocal formatoptions-=t formatoptions+=croql
+augroup END
+
+augroup rubysettings
+  autocmd!
+  autocmd FileType ruby map <buffer> <leader>rr :!rubocop %<CR>
 augroup END
 
 augroup typescriptsetup
