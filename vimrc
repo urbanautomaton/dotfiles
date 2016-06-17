@@ -225,7 +225,7 @@ let g:dispatch_compilers = {
       \ 'DISPATCH=true': '',
       \ 'spring': '',
       \ }
-nnoremap <F6> :execute "Dispatch ".b:dispatch.":".line(".")<CR>
+nnoremap <F6> :execute "Dispatch ".b:dispatch.":'".line(".")."'"<CR>
 nnoremap <F7> :execute "Focus ".b:dispatch<CR>
 nnoremap <F8> :Focus!<CR>
 nnoremap <F9> :Dispatch<CR>
