@@ -222,7 +222,8 @@ command! -nargs=+ -complete=command ToQF call s:RunShellCommandToQuickfix(<q-arg
 " `bundle exec` and friends. I use binstubs for `bundle exec` anyway, but
 " would like to set an environment variable sometimes.
 let g:dispatch_compilers = {
-      \ 'DISPATCH=true': ''
+      \ 'DISPATCH=true': '',
+      \ 'spring': '',
       \ }
 nnoremap <F6> :execute "Dispatch ".b:dispatch.":".line(".")<CR>
 nnoremap <F7> :execute "Focus ".b:dispatch<CR>
