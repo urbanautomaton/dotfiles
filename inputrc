@@ -1,24 +1,14 @@
-# these allow you to use ctrl+left/right arrow keys
-# to jump the cursor over words
-#"\e[1;5C": forward-word
-#"\e[1;5D": backward-word
-#"\e[5C": forward-word
-#"\e[5D": backward-word
-#"\e\e[C": forward-word
-#"\e\e[D": backward-word
-
 # Arrow keys search history
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 # Option-backspace deletes last word
 "\M-d": backward-kill-word
 
+# Meta+left/right arrow skip words
 "\e[1;6D": backward-word
 "\e[1;6C": forward-word
 
-#set editing-mode vi
-#set keymap vi
-set mark-symlinked-directories On
+set mark-symlinked-directories on
 
 # set completion-ignore-case on
 set completion-map-case on
