@@ -1,16 +1,3 @@
-###########
-# HISTORY #
-###########
-
-# Ignore duplicate commands, space-prefixed, and misc boring cmds.
-export HISTIGNORE="&:[ ]*:exit:gs:gl"
-# Massive main .bash_history...
-export HISTFILESIZE=10000
-# Larger session histories...
-export HISTSIZE=1000
-# And don't overwrite .bash_history on exit
-shopt -s histappend
-
 ##############
 # Misc shell #
 ##############
@@ -58,6 +45,10 @@ function prepend_path_if_present() {
   directory_exists $1 && prepend_path "$1"
 }
 
+function append_prompt_command() {
+  PROMPT_COMMAND=${PROMPT_COMMAND:+"${PROMPT_COMMAND}; "}$1
+}
+
 function remove_from_path() {
   local readonly remove=$1
   local work=:$PATH:
@@ -66,6 +57,25 @@ function remove_from_path() {
   work=${work%:}
   export PATH=$work
 }
+
+###########
+# HISTORY #
+###########
+
+# Ignore duplicate commands, space-prefixed, and misc boring cmds.
+export HISTIGNORE="&:[ ]*:exit:gs:gl"
+# Massive main .bash_history...
+export HISTFILESIZE=10000
+# Larger session histories...
+export HISTSIZE=1000
+# Nice timestamps...
+HISTTIMEFORMAT='%F %T '
+# Save multi-line commands as one command...
+shopt -s cmdhist
+# Save commands as they're issued...
+append_prompt_command 'history -a'
+# And don't overwrite .bash_history on exit
+shopt -s histappend
 
 #########################
 # Custom PATH locations #
@@ -87,7 +97,7 @@ fi
 
 # If this is an xterm set the title to user@host:dir
 if [[ "$TERM" =~ xterm*|rxvt* ]]; then
-  PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+  append_prompt_command 'echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
 fi
 
 # Visible cucumber step locations
