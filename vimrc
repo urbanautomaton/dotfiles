@@ -49,6 +49,9 @@ set synmaxcol=256
 set formatoptions+=j " remove comment leader when joining comment lines
 set textwidth=78     " because we're not savages
 
+set regexpengine=1   " Use old regexp engine because ruby syntax is slooooow
+                     " with the new one
+
 set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
