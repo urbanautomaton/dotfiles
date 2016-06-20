@@ -63,7 +63,7 @@
   untracked = cyan
 
 [core]
-  pager          = less -FRSX
+  pager          = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -FRSX
   excludesfile   = ~/.gitignore_global
   attributesFile = ~/.gitattributes
 
