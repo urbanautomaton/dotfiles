@@ -80,6 +80,7 @@
   autosetuprebase = always
 
 [rebase]
+  autostash = true
   autosquash = true
 
 [include]
