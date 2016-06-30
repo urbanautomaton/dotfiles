@@ -38,6 +38,9 @@
 [status]
   showuntrackedfiles = all
 
+[diff]
+  compactionHeuristic = true
+
 [color]
   diff        = auto
   status      = auto
