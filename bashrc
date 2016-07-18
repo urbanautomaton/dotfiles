@@ -127,6 +127,10 @@ source_if_present ~/.bashrc.local
 # Enable programmable bash command-line completion (Debian derivs)
 source_if_present /etc/bash_completion
 
+_git_pair () {
+  __gitcomp_nl "$(git config --get-all git-pair.authors | sed 's/\([^ ]*\).*/\1/')"
+}
+
 # Enable bash completion in homebrew setups
 if command_exists brew; then
   source_if_present /usr/local/etc/bash_completion
