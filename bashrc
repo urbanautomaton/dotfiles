@@ -26,23 +26,23 @@ function directory_exists() {
 }
 
 function command_exists() {
-  type -t $1 >/dev/null
+  type -t "$1" >/dev/null
 }
 
 function append_path() {
-  path_contains $1 || export PATH="${PATH:+"$PATH:"}$1"
+  path_contains "$1" || export PATH="${PATH:+"$PATH:"}$1"
 }
 
 function prepend_path() {
-  path_contains $1 || export PATH="$1${PATH:+":$PATH"}"
+  path_contains "$1" || export PATH="$1${PATH:+":$PATH"}"
 }
 
 function append_path_if_present() {
-  directory_exists $1 && append_path "$1"
+  directory_exists "$1" && append_path "$1"
 }
 
 function prepend_path_if_present() {
-  directory_exists $1 && prepend_path "$1"
+  directory_exists "$1" && prepend_path "$1"
 }
 
 function append_prompt_command() {
@@ -50,7 +50,8 @@ function append_prompt_command() {
 }
 
 function remove_from_path() {
-  local readonly remove=$1
+  local remove="$1"
+  readonly remove
   local work=:$PATH:
   work=${work/:$remove:/:}
   work=${work#:}
@@ -81,7 +82,7 @@ shopt -s histappend
 # Custom PATH locations #
 #########################
 
-append_path_if_present $HOME/bin
+append_path_if_present "$HOME/bin"
 append_path_if_present /usr/local/sbin
 
 ######################
