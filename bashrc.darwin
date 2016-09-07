@@ -25,6 +25,5 @@ if [[ `uname` == "Darwin" ]]; then
 
   ulimit -S -n 2048
 
-  export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
   export JRUBY_OPTS="-J-Xmx4g"
 fi
