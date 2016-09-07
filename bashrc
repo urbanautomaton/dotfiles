@@ -150,5 +150,7 @@ fi
 source_if_present ~/.env_hooker
 load_env_hooks ~/.env_hooks
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 # Start a flame war
 export EDITOR="vim"
