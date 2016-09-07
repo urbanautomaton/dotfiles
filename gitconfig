@@ -28,6 +28,9 @@
 
   root = rev-parse --show-toplevel
 
+[commit]
+  verbose = true
+
 [merge]
   keepBackup = false
   tool       = fugitive
