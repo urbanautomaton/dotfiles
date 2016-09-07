@@ -237,7 +237,6 @@ let g:rspec_command = "Dispatch DISPATCH=true rspec {spec}"
 nnoremap <leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <Leader>s :call RunNearestSpec()<CR>
 nnoremap <Leader>l :call RunLastSpec()<CR>
-nnoremap <Leader>a :call RunAllSpecs()<CR>
 nnoremap <Leader>f :call RunLastFailures()<CR>
 
 function! RunLastFailures()
