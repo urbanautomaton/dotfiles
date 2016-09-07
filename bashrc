@@ -14,7 +14,11 @@ shopt -s checkwinsize
 ####################
 
 function source_if_present() {
-  [[ -f "$1" ]] && source $1
+  # This warning complains about a non-constant source location, but that's
+  # the point of this function, so. What're you gonna do eh?
+  #
+  # shellcheck disable=SC1090
+  [[ -f "$1" ]] && source "$1"
 }
 
 function path_contains() {
@@ -98,6 +102,11 @@ fi
 
 # If this is an xterm set the title to user@host:dir
 if [[ "$TERM" =~ xterm*|rxvt* ]]; then
+  # This warning complains about the single quotes wrapping a string with
+  # apparent string interpolations - however it's that way around precisely to
+  # stop the interpolations happening at bashrc runtime.
+  #
+  # shellcheck disable=SC2016
   append_prompt_command 'echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
 fi
 
