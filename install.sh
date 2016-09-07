@@ -21,6 +21,7 @@ readonly DOTFILES="
   bashrc
   bashrc.darwin
   bash_aliases
+  bash_completion
   env_hooker
   inputrc
   vimrc
