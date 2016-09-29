@@ -102,6 +102,8 @@ else
   PS1='\u@\h:\w\$ '
 fi
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 # If this is an xterm set the title to user@host:dir
 if [[ "$TERM" =~ xterm*|rxvt* ]]; then
   # This warning complains about the single quotes wrapping a string with
@@ -149,8 +151,6 @@ fi
 # Load environment hook scripts
 source_if_present ~/.env_hooker
 load_env_hooks ~/.env_hooks
-
-export GIT_PS1_SHOWDIRTYSTATE=1
 
 # Start a flame war
 export EDITOR="vim"
