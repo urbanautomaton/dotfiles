@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 function __env_hooker_command_exists() {
   type -t "$1" >/dev/null
 }
