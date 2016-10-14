@@ -3,8 +3,7 @@ function __env_hooker_command_exists() {
 }
 
 function __env_hooker_add_env_handler() {
-  local handler=$1
-  readonly handler
+  local -r handler=$1
 
   if [[ -n "$__ENV_HOOKER_HANDLERS" ]]; then
     __ENV_HOOKER_HANDLERS="$__ENV_HOOKER_HANDLERS && $handler"
@@ -14,15 +13,10 @@ function __env_hooker_add_env_handler() {
 }
 
 function __env_hooker_run_env_hook {
-  local hook_file=$1
-  local hook_function_root=$2
-  local enter_hook=enter_${hook_function_root}
-  local exit_hook=exit_${hook_function_root}
-  readonly hook_file
-  readonly hook_function_root
-  readonly enter_hook
-  readonly exit_hook
-
+  local -r hook_file=$1
+  local -r hook_function_root=$2
+  local -r enter_hook=enter_${hook_function_root}
+  local -r exit_hook=exit_${hook_function_root}
 
   if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
     echo "You must specify both the hook file and the function root!" >&2
@@ -49,10 +43,8 @@ function __env_hooker_run_env_hook {
 }
 
 function register_env_hook {
-  local hook_file=$1
-  local hook_function_root=$2
-  readonly hook_file
-  readonly hook_function_root
+  local -r hook_file=$1
+  local -r hook_function_root=$2
 
   if [[ ! -n "$hook_file" || ! -n "$hook_function_root" ]]; then
     echo "You must specify both the hook file and the function root!" >&2
@@ -63,8 +55,8 @@ function register_env_hook {
 }
 
 function load_env_hooks() {
-  local hooks_dir=${1:-~/.env_hooks}
-  readonly hooks_dir
+  local -r hooks_dir=${1:-~/.env_hooks}
+
   __ENV_HOOKER_HANDLERS=""
 
   if [[ ! -d "$hooks_dir" ]]; then

@@ -7,7 +7,7 @@ function chruby_default() {
 }
 
 function enter_ruby_version {
-  readonly local current_dir=$1
+  local -r current_dir=$1
   local version
   local gem_dir
 
