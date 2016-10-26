@@ -1,0 +1,15 @@
+function enter_node_project {
+  local -r current_dir=$1
+
+  NODE_PATH_AUTO="${current_dir}/node_modules/.bin"
+  add_to_path "${NODE_PATH_AUTO}"
+}
+
+function exit_node_project {
+  if [[ -n "${NODE_PATH_AUTO}" ]]; then
+    remove_from_path "${NODE_PATH_AUTO}"
+    unset NODE_PATH_AUTO
+  fi
+}
+
+register_env_hook .nodeproject node_project
