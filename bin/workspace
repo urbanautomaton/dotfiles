@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+# shellcheck disable=SC1090
 . ~/bin/log_helpers.sh
 
 usage () {
@@ -27,7 +28,7 @@ function load_dev_database()
       echo "mysql -u root -D $database"
       ;;
     *)
-      echo "Usage: $0 {pg|mysql} <project_name>"
+      usage
       exit 1
   esac
 }
@@ -37,24 +38,25 @@ function create_session()
   local directory=$1
   local session_name=$2
   local rdbms=${3:-''}
-  local project=`basename $directory`
+  local project
+  project=$(basename "${directory}")
 
-  cd $directory
+  cd "${directory}"
 
-  tmux new-session -d -s $session_name -c $directory
+  tmux new-session -d -s "${session_name}" -c "${directory}"
 
-  tmux rename-window -t ${session_name}:1 'vim'
-  tmux send-keys -t ${session_name}:1 'vim' C-m
-  tmux new-window -t ${session_name}:2 -n 'bash'
-  tmux new-window -t ${session_name}:3 -n 'bash'
+  tmux rename-window -t "${session_name}:1" 'vim'
+  tmux send-keys -t "${session_name}:1" 'vim' C-m
+  tmux new-window -t "${session_name}:2" -n 'bash'
+  tmux new-window -t "${session_name}:3" -n 'bash'
   if [ -n "$rdbms" ]; then
-    tmux new-window -t ${session_name}:4 -n 'db'
-    tmux send-keys -t ${session_name}:4 "$(load_dev_database $rdbms $project)" C-m
+    tmux new-window -t "${session_name}:4" -n 'db'
+    tmux send-keys -t "${session_name}:4" "$(load_dev_database "${rdbms}" "${project}")" C-m
   fi
 
-  tmux select-window -t ${session_name}:1
+  tmux select-window -t "${session_name}":1
 
-  tmux attach -t ${session_name}
+  tmux attach -t "${session_name}"
 
   cd -
 }
@@ -93,10 +95,10 @@ if [[ ! -n "$dirname" ]]; then
 fi
 
 if [[ -n "$dirname" ]]; then
-  directory=`greadlink -f $dirname`
+  directory=$(greadlink -f "${dirname}")
   shift
 else
-  directory=`pwd -P`
+  directory=$(pwd -P)
 fi
 
 if [[ -n "$*" ]]; then
@@ -106,7 +108,7 @@ if [[ -n "$*" ]]; then
 fi
 
 if [[ ! -n "$session_name" ]]; then
-  last_dir=`basename $directory`
+  last_dir=$(basename "${directory}")
   session_name=${last_dir//\./_}
 fi
-create_session $directory $session_name $rdbms
+create_session "${directory}" "${session_name}" "${rdbms}"
