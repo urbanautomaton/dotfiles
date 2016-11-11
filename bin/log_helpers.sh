@@ -5,9 +5,9 @@
 # . ~/bin/log_helpers.sh
 
 if ! type -t log >/dev/null; then
-  : ${DATE_FORMAT:='%Y-%m-%dT%H:%M:%S%z'}
+  DATE_FORMAT=${DATE_FORMAT:-'%Y-%m-%dT%H:%M:%S%z'}
   readonly DATE_FORMAT
-  readonly SCRIPT_NAME=$(basename $0)
+  readonly SCRIPT_NAME=$(basename "$0")
 
   # Log in green if stdout is a color terminal
   if [[ -t 1 && $TERM =~ color ]]; then
@@ -26,12 +26,12 @@ if ! type -t log >/dev/null; then
   readonly ERR_FORMAT
 
   err() {
-    printf "$ERR_FORMAT" $(date +"$DATE_FORMAT") "$@" >&2
-    logger -p user.error -t $SCRIPT_NAME \""$@"\"
+    printf "$ERR_FORMAT" "$(date +"$DATE_FORMAT")" "$@" >&2
+    logger -p user.error -t "$SCRIPT_NAME" \""$@"\"
   }
 
   log() {
-    printf "$LOG_FORMAT" $(date +"$DATE_FORMAT") "$@"
+    printf "$LOG_FORMAT" "$(date +"$DATE_FORMAT")" "$@"
     logger -p user.notice -t $SCRIPT_NAME \""$@"\"
   }
 fi
