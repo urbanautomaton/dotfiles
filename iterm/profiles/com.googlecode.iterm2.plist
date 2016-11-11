@@ -591,10 +591,12 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSFontPanelPreviewHeight</key>
+	<real>0.0</real>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm/profiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{1233, 714}</string>
+	<string>{962, 671}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -626,13 +628,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>178 378 606 456 0 0 1440 900 </string>
+	<string>247 409 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 364 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1651 122 796 473 -1920 0 1920 1057 </string>
+	<string>269 274 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1920 0 1920 1080 -1920 0 1920 1057 </string>
+	<string>0 13 1439 864 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>-2186 212 585 473 -2560 0 2560 1418 </string>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1388,7 +1392,7 @@
 	<key>NoSyncHaveShownPromoWithId_4</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>632076AF-F823-4499-B2F4-DED7ACC371BC</string>
+	<string>C961B4EE-17D2-4011-83DA-5B9BF669756E</string>
 	<key>NoSyncNeverRemindPrefsChangesCopy</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
@@ -1397,20 +1401,20 @@
 	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
-	<key>NoSyncSuppressAnnyoingBellOffer</key>
-	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>486896768.75095201</real>
+	<real>487109710.94012803</real>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>478014777.61646199</real>
+	<real>477778898.81050801</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>478795542.09158701</real>
+	<real>483434123.344235</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
 	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
 	<key>PassOnControlClick</key>
@@ -1469,11 +1473,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=86</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=2</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-09-07T10:15:39Z</date>
+	<date>2016-10-27T10:42:13Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -1525,6 +1529,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.8</string>
+	<string>3.0.10</string>
 </dict>
 </plist>
