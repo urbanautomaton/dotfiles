@@ -7,6 +7,7 @@ let g:syntastic_eruby_checkers = []
 let g:syntastic_html_checkers = []
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_ruby_mri_args = '-wc'
+let g:markdown_fold_style = 'nested'
 
 set rtp+=~/.vim/bundle/powerline.vim/powerline/bindings/vim
 
