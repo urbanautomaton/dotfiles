@@ -77,7 +77,7 @@
   templatedir = ~/.git_template
 
 [push]
-  default = upstream
+  default = simple
 
 [branch]
   autosetuprebase = always
