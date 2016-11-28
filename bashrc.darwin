@@ -20,7 +20,7 @@ if [[ $(uname) == "Darwin" ]]; then
   append_path_if_present /usr/local/go/bin
   append_path_if_present /Applications/Postgres.app/Contents/Versions/latest/bin
 
-  ulimit -S -n 65536
+  ulimit -S -n 2048
 
   function nvminit() {
     export NVM_DIR="/Users/simon/.nvm"
