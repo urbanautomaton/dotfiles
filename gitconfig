@@ -16,7 +16,7 @@
   lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
   lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
 
-  reup = "!f() { SKIP_HOOKUP=1 git checkout master && git pull && SKIP_HOOKUP=1 git checkout - && git rebase master && ([[ ! -f 'Gemfile' ]] || bundle) && ([[ ! -f 'db/schema.rb' ]] || rake db:migrate) && } && f"
+  reup = "!f() { SKIP_HOOKUP=1 git checkout master && git pull && SKIP_HOOKUP=1 git checkout - && git rebase master && ([[ ! -f 'Gemfile' ]] || bundle) && ([[ ! -f 'db/schema.rb' ]] || rake db:migrate) }; f"
 
   reset-author = commit --amend --reset-author
 
