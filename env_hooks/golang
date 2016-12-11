@@ -1,3 +1,5 @@
+# vi: set ft=sh:
+
 function enter_goworkspace {
   local -r current_dir=$1
 

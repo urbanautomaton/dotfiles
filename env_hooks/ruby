@@ -1,3 +1,5 @@
+# vi: set ft=sh:
+
 function chruby_default() {
   if [[ -n "$CHRUBY_DEFAULT" ]]; then
     chruby "$CHRUBY_DEFAULT"

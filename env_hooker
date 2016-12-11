@@ -1,3 +1,5 @@
+# vi: set ft=sh:
+
 function __env_hooker_command_exists() {
   type -t "$1" >/dev/null
 }
