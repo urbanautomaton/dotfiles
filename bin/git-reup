@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cleanup() {
+  unset SKIP_HOOKUP
+}
+
+trap cleanup EXIT
+
+master_up_to_date() {
+  git merge-base --is-ancestor origin/master master
+}
+
+changes_in() {
+  [[ -n "$(git log --oneline "${1}".."${2}" "${3}")" ]]
+}
+
+git fetch origin
+
+if ! master_up_to_date; then
+  export SKIP_HOOKUP=1
+
+  current_master=$(git rev-parse master)
+  new_master=$(git rev-parse origin/master)
+
+  git checkout master
+  git rebase origin/master
+  git checkout -
+  git rebase master
+
+  changes_in "$current_master" "$new_master" Gemfile.lock && bundle
+  changes_in "$current_master" "$new_master" db/schema.rb && rake db:migrate
+fi
