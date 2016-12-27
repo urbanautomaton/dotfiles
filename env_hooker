@@ -67,7 +67,7 @@ function load_env_hooks() {
     return
   fi
 
-  for hook in ~/.env_hooks/*; do
+  for hook in ${hooks_dir}/*; do
     [[ -e $hook ]] || break
     # shellcheck source=/dev/null
     source "${hook}"
