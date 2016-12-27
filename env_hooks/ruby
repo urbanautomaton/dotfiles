@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # vi: set ft=sh:
 
 function chruby_default() {
