@@ -32,10 +32,8 @@ function __env_hooker_run_env_hook {
   local -r enter_hook=enter_${hook_function_root}
   local -r exit_hook=exit_${hook_function_root}
   local -r marker=ENV_HOOK_ENTERED_${hook_function_root}
+
   local entered=""
-
-  eval "entered=\$$marker"
-
   local current_dir="$PWD"
 
   until [[ -z "${current_dir}" ]]; do
@@ -49,6 +47,7 @@ function __env_hooker_run_env_hook {
     current_dir="${current_dir%/*}"
   done
 
+  eval "entered=\$$marker"
   if [[ -n "$entered" ]]; then
     eval "unset $marker"
     ${exit_hook}
@@ -84,10 +83,9 @@ function register_env_hook {
 }
 
 if [[ -n "$ZSH_VERSION" ]]; then
-  preexec_functions+=("__env_hooker_run_env_hooks")
+  if [[ ! "$preexec_functions" == *__env_hooker_run_env_hooks* ]]; then
+    preexec_functions+=("__env_hooker_run_env_hooks")
+  fi
 elif [[ -n "$BASH_VERSION" ]]; then
-  # shellcheck disable=SC2016
-  prompt_test='[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]]'
-  # shellcheck disable=SC2064
-  trap "$prompt_test && __env_hooker_run_env_hooks" DEBUG
+  trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && __env_hooker_run_env_hooks' DEBUG
 fi
