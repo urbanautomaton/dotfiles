@@ -150,7 +150,10 @@ fi
 
 # Load environment hook scripts
 source_if_present ~/.env_hooker
-load_env_hooks ~/.env_hooks
+
+source_if_present ~/.env_hooks/ruby
+source_if_present ~/.env_hooks/node
+source_if_present ~/.env_hooks/golang
 
 # Start a flame war
 export EDITOR="vim"
