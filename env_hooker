@@ -1,10 +1,12 @@
 # shellcheck shell=bash
 # vi: set ft=sh:
 
-ENV_HOOKER_HOOKS=()
-
 function __env_hooker_command_exists() {
-  type -t "${1}" >/dev/null
+  if [[ -n "${ZSH_VERSION}" ]]; then
+    whence -f "${1}" >/dev/null
+  elif [[ -n "${BASH_VERSION}" ]]; then
+    type -t "${1}" >/dev/null
+  fi
 }
 
 function __env_hooker_usage() {
@@ -70,6 +72,14 @@ function __env_hooker_run_env_hooks {
 
   for hook in "${ENV_HOOKER_HOOKS[@]}"; do
     eval "__env_hooker_run_env_hook ${hook}"
+  done
+}
+
+function show_env_hooks() {
+  local hook
+
+  for hook in "${ENV_HOOKER_HOOKS[@]}"; do
+    echo "${hook}"
   done
 }
 
