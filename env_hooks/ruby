@@ -9,24 +9,24 @@ function chruby_default() {
   fi
 }
 
+function use_gemset() {
+  local -r current_dir=$1
+
+  local gem_dir=${current_dir//\//\%}
+  gem_dir=${gem_dir// /_}
+  gem_dir="${HOME}/.gem/gemsets/${gem_dir}"
+  RUBY_AUTO_GEMSET="${gem_dir}"
+  gem_home "${RUBY_AUTO_GEMSET}"
+}
+
 function enter_ruby_version {
   local -r current_dir=$1
   local version
-  local gem_dir
+  read -r version <"${current_dir}/.ruby-version"
 
-  [[ -n "${RUBY_AUTO_VERSION}" ]] && return
-
-  if { read -r version <"${current_dir}/.ruby-version"; } 2>/dev/null; then
+  if [[ -n "${version}" ]]; then
     chruby "${version}"
-    RUBY_AUTO_VERSION="${version}"
-
-    if [[ -f "${current_dir}/.gemset" ]]; then
-      gem_dir=${current_dir//\//\%}
-      gem_dir=${gem_dir// /_}
-      gem_dir="${HOME}/.gem/gemsets/${gem_dir}"
-      RUBY_GEMSET="${gem_dir}"
-      gem_home "${RUBY_GEMSET}"
-    fi
+    use_gemset "${current_dir}"
 
     RUBY_AUTO_BINSTUBS="${current_dir}/bin:${current_dir}/.bin"
     prepend_path "${RUBY_AUTO_BINSTUBS}"
@@ -34,20 +34,12 @@ function enter_ruby_version {
 }
 
 function exit_ruby_version {
-  if [[ -n "${RUBY_AUTO_BINSTUBS}" ]]; then
-    remove_from_path "$RUBY_AUTO_BINSTUBS"
-    unset RUBY_AUTO_BINSTUBS
-  fi
+  [[ -n "${RUBY_AUTO_BINSTUBS}" ]] && remove_from_path "$RUBY_AUTO_BINSTUBS"
+  [[ -n "${RUBY_AUTO_GEMSET}" ]] && gem_home -
+  chruby_default
 
-  if [[ -n "${RUBY_GEMSET}" ]]; then
-    gem_home -
-    unset RUBY_GEMSET
-  fi
-
-  if [[ -n "${RUBY_AUTO_VERSION}" ]]; then
-    chruby_default
-    unset RUBY_AUTO_VERSION
-  fi
+  unset RUBY_AUTO_BINSTUBS
+  unset RUBY_AUTO_GEMSET
 }
 
 if command_exists "chruby" && command_exists "gem_home"; then

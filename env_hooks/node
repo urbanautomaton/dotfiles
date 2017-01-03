@@ -9,10 +9,8 @@ function enter_node_project {
 }
 
 function exit_node_project {
-  if [[ -n "${NODE_PATH_AUTO}" ]]; then
-    remove_from_path "${NODE_PATH_AUTO}"
-    unset NODE_PATH_AUTO
-  fi
+  [[ -n "${NODE_PATH_AUTO}" ]] && remove_from_path "${NODE_PATH_AUTO}"
+  unset NODE_PATH_AUTO
 }
 
 register_env_hook .nodeproject node_project
