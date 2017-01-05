@@ -56,8 +56,7 @@ function append_prompt_command() {
 }
 
 function remove_from_path() {
-  local remove="$1"
-  readonly remove
+  local -r remove="$1"
   local work=:$PATH:
   work=${work/:$remove:/:}
   work=${work#:}
@@ -125,7 +124,7 @@ source_if_present /usr/local/share/chruby/chruby.sh
 source_if_present /usr/local/share/gem_home/gem_home.sh
 
 if type -t chruby >/dev/null; then
-  export CHRUBY_DEFAULT=2.3
+  export CHRUBY_DEFAULT=2.4
   readonly CHRUBY_DEFAULT
   chruby $CHRUBY_DEFAULT
 fi
