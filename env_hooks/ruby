@@ -10,36 +10,33 @@ function chruby_default() {
 }
 
 function use_gemset() {
-  local -r current_dir=$1
+  local -r project_dir=$1
 
-  local gem_dir=${current_dir//\//\%}
+  local gem_dir=${project_dir//\//\%}
   gem_dir=${gem_dir// /_}
   gem_dir="${HOME}/.gem/gemsets/${gem_dir}"
-  RUBY_AUTO_GEMSET="${gem_dir}"
-  gem_home "${RUBY_AUTO_GEMSET}"
+  binstubs_dir="${gem_dir}/.bundle/bin"
+
+  gem_home "${gem_dir}"
+  prepend_path "${binstubs_dir}"
+  export BUNDLE_BIN="${binstubs_dir}"
 }
 
 function enter_ruby_version {
-  local -r current_dir=$1
+  local -r project_dir=$1
   local version
-  read -r version <"${current_dir}/.ruby-version"
+  read -r version <"${project_dir}/.ruby-version"
 
-  if [[ -n "${version}" ]]; then
-    chruby "${version}"
-    use_gemset "${current_dir}"
-
-    RUBY_AUTO_BINSTUBS="${current_dir}/bin:${current_dir}/.bin"
-    prepend_path "${RUBY_AUTO_BINSTUBS}"
-  fi
+  [[ -n "${version}" ]] && chruby "${version}"
+  use_gemset "${project_dir}"
 }
 
 function exit_ruby_version {
-  [[ -n "${RUBY_AUTO_BINSTUBS}" ]] && remove_from_path "$RUBY_AUTO_BINSTUBS"
-  [[ -n "${RUBY_AUTO_GEMSET}" ]] && gem_home -
+  [[ -n "${BUNDLE_BIN}" ]] && remove_from_path "${BUNDLE_BIN}"
+  gem_home -
   chruby_default
 
-  unset RUBY_AUTO_BINSTUBS
-  unset RUBY_AUTO_GEMSET
+  unset BUNDLE_BIN
 }
 
 if command_exists "chruby" && command_exists "gem_home"; then
