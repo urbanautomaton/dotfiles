@@ -2,10 +2,10 @@
 # vi: set ft=sh:
 
 function enter_goworkspace {
-  local -r current_dir=$1
+  local -r project_dir=$1
 
   ORIGINAL_GOPATH=${GOPATH}
-  export GOPATH=${current_dir}
+  export GOPATH=${project_dir}
   append_path "${GOPATH}/bin"
 }
 
