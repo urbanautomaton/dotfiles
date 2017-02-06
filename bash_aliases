@@ -31,6 +31,8 @@ alias blog='workspace -n ua ~/dev/sites/urbanautomaton.com'
 alias fl='workspace -d mysql ~/dev/futurelearn/futurelearn'
 alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
+alias codeship="hub ci-status -v | cut -f2 -d' '  | xargs open -a /Applications/Google\ Chrome.app"
+
 alias vi='vim'
 
 # enable color support of ls and also add handy aliases
