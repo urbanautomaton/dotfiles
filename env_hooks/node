@@ -4,6 +4,8 @@
 function enter_node_project {
   local -r project_dir=$1
 
+  command_exists nvm || nvminit
+
   NODE_PATH_AUTO="${project_dir}/node_modules/.bin"
   prepend_path "${NODE_PATH_AUTO}"
 }
