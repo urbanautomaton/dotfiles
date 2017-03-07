@@ -1,3 +1,7 @@
 _git_pair () {
   __gitcomp_nl "$(git config --get-all git-pair.authors | sed 's/\([^ ]*\).*/\1/')"
 }
+
+_git_db () {
+  __gitcomp_nl "$(__git_heads)"
+}
