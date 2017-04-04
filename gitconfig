@@ -38,7 +38,7 @@
   tool       = fugitive
 
 [mergetool "fugitive"]
-	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
+  cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 
 [status]
   showuntrackedfiles = all
