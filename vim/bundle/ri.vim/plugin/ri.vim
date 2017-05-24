@@ -268,8 +268,8 @@ func! s:syntaxLoad()
   highlight link h1         Identifier
   highlight link h2         Identifier
   highlight link h3         Constant
-  set conceallevel=3
-  set cocu=n
+  setlocal conceallevel=3
+  setlocal cocu=n
 endfunc
 
 function! ri#LookupNameUnderCursor()
