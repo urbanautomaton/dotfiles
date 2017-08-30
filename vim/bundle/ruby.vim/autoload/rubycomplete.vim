@@ -196,7 +196,7 @@ function! rubycomplete#Complete(findstart, base)
             if c =~ '\w'
                 continue
             elseif ! c =~ '\.'
-                idx = -1
+                let idx = -1
                 break
             else
                 break
@@ -587,11 +587,13 @@ class VimRubyCompletion
 # {{{ main completion code
   def self.preload_rails
     a = VimRubyCompletion.new
-    require 'Thread'
-    Thread.new(a) do |b|
-      begin
-      b.load_rails
-      rescue
+    if VIM::evaluate("has('nvim')") == 0
+      require 'thread'
+      Thread.new(a) do |b|
+        begin
+        b.load_rails
+        rescue
+        end
       end
     end
     a.load_rails

@@ -20,7 +20,7 @@ CompilerSet makeprg=rspec
 
 CompilerSet errorformat=
     \%f:%l:\ %tarning:\ %m,
-    \%E%.%#:in\ `load':\ %m\ --\ %f%.%#,
+    \%E%.%#:in\ `load':\ %f:%l:%m,
     \%E%f:%l:in\ `%*[^']':\ %m,
     \%-Z\ \ \ \ \ %\\+\#\ %f:%l:%.%#,
     \%E\ \ %\\d%\\+)%.%#,
