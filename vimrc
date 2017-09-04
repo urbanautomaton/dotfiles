@@ -316,6 +316,12 @@ augroup fugitivebufferhandling
     \ endif
 augroup END
 
+augroup tsvfiles
+  autocmd!
+  autocmd BufRead,BufNewFile *.tsv set filetype=tsv noexpandtab tabstop=8 softtabstop=0 tw=0
+  autocmd BufRead,BufNewFile *.tsv iunmap <tab>
+augroup END
+
 " git grep for the current selection
 nnoremap <leader>gg :Ggrep <cword><CR><CR>:copen<CR><CR>
 vnoremap <leader>gg y:Ggrep <c-r>"<CR><CR>:copen<CR><CR>
