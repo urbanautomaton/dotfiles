@@ -91,9 +91,6 @@
   autostash = true
   autosquash = true
 
-[include]
-  path = ~/.gitconfig_local
-
 # Verify binary blobs, see
 # https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
 [transfer]
@@ -102,3 +99,9 @@
   fsckObjects = true
 [receive]
   fsckObjects = true
+
+[include]
+  path = ~/.gitconfig_local
+
+[grep]
+  extendedRegexp = true
