@@ -16,7 +16,7 @@
   ctags = ! .git/hooks/ctags
   lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
   lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
-  hop   = "!f() { SKIP_HOOKUP=1 git checkout $1; }; f"
+  hop   = ! SKIP_HOOKUP=1 git checkout
 
   recent-branch = ! git branch --sort='authordate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset) %(authordate)' | grep -v master
 
