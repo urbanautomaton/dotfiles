@@ -5,3 +5,4 @@ vim/backups/
 vim/swap
 vim/undo
 vim/view
+/vim/plugged

@@ -1,6 +1,36 @@
 set nocompatible
 
-let g:pathogen_disabled = []
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-abolish'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'nelstrom/vim-markdown-folding'
+Plug 'tmhedberg/matchit'
+Plug 'powerline/powerline'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'danchoi/ri.vim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+call plug#end()
+
 let g:slime_target = "tmux"
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_eruby_checkers = []
@@ -11,10 +41,8 @@ let g:syntastic_sh_shellcheck_args = "-x"
 let g:markdown_fold_style = 'nested'
 let g:is_bash	= 1
 
-set rtp+=~/.vim/bundle/powerline.vim/powerline/bindings/vim
+set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 
-call pathogen#infect()
-call pathogen#helptags()
 if has('autocmd')
   filetype plugin indent on
 endif
@@ -144,9 +172,6 @@ nnoremap <C-k> :tabnext<CR>
 nnoremap <C-j> :tabprev<CR>
 " JOOOOOOOOOOBBBBBBBSSSSS!!!!!
 imap § #
-" Comment/uncomment blocks
-map \c :s/^/#/<CR>
-map \u :s/^#//<CR>
 " Save with sudo:
 cmap w!! %!sudo tee > /dev/null %
 " Tab-complete without c-p/c-n
