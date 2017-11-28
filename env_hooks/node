@@ -3,8 +3,12 @@
 
 function enter_node_project {
   local -r project_dir=$1
+  local version
+  read -r version <"${project_dir}/.node-version"
 
   command_exists nvm || nvminit
+
+  [[ -n "${version}" ]] && nvm use "${version}"
 
   NODE_PATH_AUTO="${project_dir}/node_modules/.bin"
   prepend_path "${NODE_PATH_AUTO}"
@@ -15,4 +19,4 @@ function exit_node_project {
   unset NODE_PATH_AUTO
 }
 
-register_env_hook .nodeproject node_project
+register_env_hook .node-version node_project
