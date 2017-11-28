@@ -322,6 +322,11 @@ augroup tsvfiles
   autocmd BufRead,BufNewFile *.tsv iunmap <tab>
 augroup END
 
+augroup jsxfiles
+  autocmd!
+  autocmd BufRead,BufNewFile *.jsx let b:syntastic_checkers=[]
+augroup END
+
 " git grep for the current selection
 nnoremap <leader>gg :Ggrep <cword><CR><CR>:copen<CR><CR>
 vnoremap <leader>gg y:Ggrep <c-r>"<CR><CR>:copen<CR><CR>
