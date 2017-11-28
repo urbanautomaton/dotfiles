@@ -16,6 +16,7 @@
   ctags = ! .git/hooks/ctags
   lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
   lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
+  hop   = "!f() { SKIP_HOOKUP=1 git checkout $1; }; f"
 
   stale-branch = "!f() { git branch --sort='authordate' | grep -v master | xargs -n 1 -I {} git show -s --format='{} %ad' {}; }; f"
 

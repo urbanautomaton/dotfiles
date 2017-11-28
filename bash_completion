@@ -5,3 +5,7 @@ _git_pair () {
 _git_db () {
   __gitcomp_nl "$(__git_heads)"
 }
+
+_git_hop () {
+  _git_checkout
+}
