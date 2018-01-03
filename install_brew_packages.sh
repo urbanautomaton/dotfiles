@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 packages=(
   ack
   automake
@@ -12,7 +14,6 @@ packages=(
   coreutils
   ctags
   dos2unix
-  elasticsearch51
   emacs
   ffmpeg
   geoip
@@ -22,7 +23,6 @@ packages=(
   gsl
   htop
   hub
-  imagemagick
   jq
   leiningen
   libev
@@ -40,13 +40,11 @@ packages=(
   ruby-install
   shellcheck
   sloccount
-  solr
   swi-prolog
   tcpflow
   tmux
   tree
   unzip
-  vim
   watch
   wget
   yarn
@@ -54,4 +52,26 @@ packages=(
 
 for p in "${packages[@]}"; do
   brew install "$p"
+done
+
+brew install imagemagick --with-little-cms2
+brew install vim --with-python3
+
+cask_packages=(
+  1password
+  alfred
+  evernote
+  flux
+  google-chrome
+  iterm2
+  shiftit
+  slack
+  spotify
+  vlc
+)
+
+brew tap caskroom/cask
+
+for p in "${cask_packages[@]}"; do
+  brew cask install "$p"
 done
