@@ -25,6 +25,7 @@ if [[ $(uname) == "Darwin" ]]; then
   function nvminit() {
     export NVM_DIR="/Users/simon/.nvm"
     source_if_present "$NVM_DIR/nvm.sh"
+    source_if_present "$NVM_DIR/bash_completion"
   }
 
   export JRUBY_OPTS="-J-Xmx4g"
