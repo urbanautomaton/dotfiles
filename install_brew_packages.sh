@@ -33,6 +33,7 @@ packages=(
   phantomjs
   pkg-config
   plantuml
+  postgres
   pv
   reattach-to-user-namespace
   redis
@@ -56,10 +57,12 @@ done
 
 brew install imagemagick --with-little-cms2
 brew install vim --with-python3
+brew install --HEAD https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
 
 cask_packages=(
   1password
   alfred
+  chefdk
   evernote
   flux
   google-chrome
