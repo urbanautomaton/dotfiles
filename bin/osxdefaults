@@ -7,17 +7,12 @@ sudo -v
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 defaults write com.apple.menuextra.battery ShowTime -string "NO"
 
-# Disable rubber-band scrolling at the limits
-defaults write -g NSScrollViewRubberbanding -int 0
-
-# Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-
 # Disable opening and closing window animations
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -83,3 +78,6 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Don’t show Dashboard as a Space        
 defaults write com.apple.dock "dashboard-in-overlay" -bool true
+
+# Longer delay for dock
+defaults write com.apple.Dock autohide-delay -float 5
