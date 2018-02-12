@@ -23,13 +23,17 @@ Plug 'danchoi/ri.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
-Plug 'vim-syntastic/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'altercation/vim-colors-solarized'
+Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 call plug#end()
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
 let g:slime_target = "tmux"
 let g:syntastic_tex_checkers = ['lacheck']
