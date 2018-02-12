@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+branch=${1};
+
+[[ -n "${branch}" ]] || exit 1
+
+git branch -D "${branch}"
+
+if git branch -r | grep -q "${branch}"; then
+  git push origin --delete "${branch}"
+fi

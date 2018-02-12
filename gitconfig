@@ -22,7 +22,7 @@
 
   reup = ! git-reup
 
-  db = "!f() { local branch=$1; [[ -n \"$branch\" ]] || exit 1; git branch -D \"$branch\" && git branch -r | grep -q \"$branch\" && git push origin --delete \"$branch\"; }; f"
+  db = ! git-db
 
   whom = commit --amend --reset-author --no-edit
 
