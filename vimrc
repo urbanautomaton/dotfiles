@@ -31,6 +31,7 @@ Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 call plug#end()
 
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
