@@ -28,7 +28,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
-Plug 'kien/rainbow_parentheses'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 call plug#end()
@@ -291,50 +291,6 @@ augroup END
 autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it its specify shared_context shared_examples shared_examples_for shared_context include_examples include_context it_should_behave_like it_behaves_like before after around subject scenario feature background given described_class violated pending expect expect_any_instance_of allow allow_any_instance_of double instance_double mock xit fit
 highlight def link rubyRspec Function
 
-" I'm not 100% sure why this needs doing tbh.
-augroup shellsetup
-  autocmd!
-  autocmd Filetype sh setlocal formatoptions-=t formatoptions+=croql
-augroup END
-
-augroup rubysettings
-  autocmd!
-  autocmd FileType ruby map <buffer> <leader>rr :!rubocop %<CR>
-augroup END
-
-augroup typescriptsetup
-  autocmd!
-  let g:typescript_compiler_options = '--noEmit --module "commonjs"'
-  autocmd Filetype typescript setlocal noexpandtab
-  autocmd FileType typescript call FourTab()
-augroup END
-
-func! FourTab()
-  setlocal tabstop=4 shiftwidth=4
-endfunc
-
-augroup phptabsettings
-  autocmd!
-  autocmd FileType php call FourTab()
-augroup END
-
-augroup gotabsettings
-  autocmd!
-  autocmd Filetype go setlocal noexpandtab
-  autocmd FileType go call FourTab()
-augroup END
-
-" Clojure
-augroup clojuresettings
-  autocmd!
-  autocmd BufNewFile,BufRead *.clj RainbowParenthesesToggle
-  autocmd BufNewFile,BufRead *.cljs RainbowParenthesesToggle
-augroup END
-" Connect to a phantomjs-backed clojurescript repl
-command! Piggie :Piggieback (cemerick.austin/exec-env)
-" Connect to a chrome-backed clojurescript browser repl
-command! Biggie :Piggieback (cemerick.austin/exec-env :exec-cmds ["open" "-ga" "/Applications/Google Chrome.app"])
-
 " Fugitive stuff
 " Clean up fugitive buffers after they're closed
 augroup fugitivebufferhandling
@@ -352,11 +308,6 @@ augroup tsvfiles
   autocmd!
   autocmd BufRead,BufNewFile *.tsv set filetype=tsv noexpandtab tabstop=8 softtabstop=0 tw=0
   autocmd BufRead,BufNewFile *.tsv iunmap <tab>
-augroup END
-
-augroup jsxfiles
-  autocmd!
-  autocmd BufRead,BufNewFile *.jsx let b:syntastic_checkers=[]
 augroup END
 
 " git grep for the current selection
