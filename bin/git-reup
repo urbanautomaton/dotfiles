@@ -2,20 +2,11 @@
 
 set -euo pipefail
 
-master_up_to_date() {
-  git fetch origin
-  git merge-base --is-ancestor origin/master master
-}
-
 function command_exists() {
   type -t "$1" >/dev/null
 }
 
-if ! master_up_to_date; then
-  SKIP_HOOKUP=1 git checkout master
-  git rebase origin/master
-  SKIP_HOOKUP=1 git checkout -
-fi
+git fetch origin master:master
 
 if ! git merge-base --is-ancestor master HEAD; then
   previous=$(git rev-parse HEAD)
