@@ -29,6 +29,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
 Plug 'kien/rainbow_parentheses'
+Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 call plug#end()
 
