@@ -40,6 +40,7 @@ packages=(
   ripgrep
   ruby-install
   shellcheck
+  shunit2
   sloccount
   swi-prolog
   tcpflow
