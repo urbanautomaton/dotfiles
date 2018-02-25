@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+gems=(
+  benchmark-ips
+  gem-ctags
+  hookup
+)
+
+for gem in "${gems[@]}"; do
+  gem install $gem
+done
