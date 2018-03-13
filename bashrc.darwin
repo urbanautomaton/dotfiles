@@ -19,6 +19,7 @@ if [[ $(uname) == "Darwin" ]]; then
   append_path_if_present /usr/local/terraform/bin
   append_path_if_present /usr/local/go/bin
   append_path_if_present /Applications/Postgres.app/Contents/Versions/latest/bin
+  append_path_if_present /Applications/factor
 
   ulimit -S -n 2048
 
