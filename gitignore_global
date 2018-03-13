@@ -19,3 +19,4 @@
 /tags
 .bundle
 .node-version
+.projections.json
