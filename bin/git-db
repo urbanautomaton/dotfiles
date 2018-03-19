@@ -6,8 +6,8 @@ branch=${1};
 
 [[ -n "${branch}" ]] || exit 1
 
-git branch -D "${branch}"
-
-if git branch -r | grep -q "${branch}"; then
+if git config "branch.${branch}.remote" >/dev/null; then
   git push origin --delete "${branch}"
 fi
+
+git branch -D "${branch}"
