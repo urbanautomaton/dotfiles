@@ -38,15 +38,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 
-let g:slime_target = "tmux"
-let g:syntastic_tex_checkers = ['lacheck']
-let g:syntastic_eruby_checkers = []
-let g:syntastic_html_checkers = []
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_ruby_mri_args = '-wc'
-let g:syntastic_sh_shellcheck_args = "-x"
 let g:markdown_fold_style = 'nested'
-let g:is_bash	= 1
+let g:is_bash = 1
 
 set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 
