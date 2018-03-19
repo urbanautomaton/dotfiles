@@ -68,6 +68,7 @@ cask_packages=(
   flux
   google-chrome
   iterm2
+  java
   shiftit
   slack
   spotify
