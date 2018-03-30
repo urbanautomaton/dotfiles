@@ -19,6 +19,7 @@ packages=(
   geoip
   gist
   git
+  graphviz
   grep
   gsl
   htop
