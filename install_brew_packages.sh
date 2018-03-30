@@ -72,6 +72,7 @@ cask_packages=(
   shiftit
   slack
   spotify
+  vagrant
   vlc
 )
 
