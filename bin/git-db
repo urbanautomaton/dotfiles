@@ -7,7 +7,9 @@ branch=${1};
 [[ -n "${branch}" ]] || exit 1
 
 if git config "branch.${branch}.remote" >/dev/null; then
-  git push origin --delete "${branch}"
+  merge=$(git config "branch.${branch}.merge")
+  remote_branch=${merge##*/}
+  git push origin --delete "${remote_branch}"
 fi
 
 git branch -D "${branch}"
