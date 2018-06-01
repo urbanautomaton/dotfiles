@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
-branch=${1};
+branch=${1:-""};
 
-[[ -n "${branch}" ]] || exit 1
+if [[ -z "${branch}" ]]; then
+  echo "Error: branch name not given" >&2 && exit 1
+fi
 
 if git config "branch.${branch}.remote" >/dev/null; then
   merge=$(git config "branch.${branch}.merge")
