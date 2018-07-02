@@ -31,6 +31,7 @@ Plug 'w0rp/ale'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'aklt/plantuml-syntax'
 call plug#end()
 
 let g:ale_lint_on_text_changed = 'never'
@@ -276,6 +277,7 @@ augroup dispatchsetup
   autocmd BufNewFile,BufRead *_spec.rb let b:dispatch = 'DISPATCH=true rspec %'
   autocmd BufNewFile,BufRead *_test.rb let b:dispatch = 'testrb %'
   autocmd FileType cucumber let b:dispatch = 'cucumber %'
+  autocmd FileType plantuml let b:dispatch = 'plantuml -tsvg %'
   autocmd BufNewFile,BufRead *_spec.js let b:dispatch = 'jasmine-node %'
 augroup END
 
