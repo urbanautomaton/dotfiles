@@ -143,10 +143,10 @@ endif
 
 " Word processor mode
 func! WordProcessorMode()
-  map j gj
-  map k gk
-  map $ g$
-  map ^ g^
+  map <buffer> j gj
+  map <buffer> k gk
+  map <buffer> $ g$
+  map <buffer> ^ g^
   setlocal formatoptions+=n
   setlocal textwidth=72
   setlocal complete+=s
