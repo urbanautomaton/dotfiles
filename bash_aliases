@@ -32,7 +32,7 @@ alias fl='workspace -d mysql ~/dev/futurelearn/futurelearn'
 alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
 alias codeship="hub ci-status -v | grep codeship | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
-alias drone="hub ci-status -v | grep drone.futurelearn.com | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
+alias ci="hub ci-status -v | grep drone.futurelearn.com | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
 
 alias vi='vim'
 
