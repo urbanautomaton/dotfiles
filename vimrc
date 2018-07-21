@@ -32,6 +32,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'aklt/plantuml-syntax'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 let g:ale_lint_on_text_changed = 'never'

@@ -156,3 +156,5 @@ source_if_present ~/.env_hooks/golang
 
 # Start a flame war
 export EDITOR="vim"
+
+prepend_path_if_present "${HOME}/.cargo/bin"
