@@ -95,6 +95,7 @@ append_path_if_present /usr/local/sbin
 ######################
 
 # set a fancy prompt
+PROMPT_DIRTRIM=2
 if [[ "$TERM" =~ color ]]; then
   PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1) \$ '
 else
