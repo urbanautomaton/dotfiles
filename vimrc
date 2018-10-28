@@ -39,6 +39,7 @@ call plug#end()
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'tex': ['lacheck'],
 \}
 
 let g:markdown_fold_style = 'nested'
