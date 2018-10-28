@@ -18,7 +18,7 @@
   lmw   = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -w -L :$method:$file; }; f"
   hop   = ! SKIP_HOOKUP=1 git checkout
 
-  recent-branch = ! git branch --sort='authordate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset) %(authordate)' | grep -v master
+  recent-branch = branch --sort='authordate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset) %(authordate)'
 
   reup = ! git-reup
 
