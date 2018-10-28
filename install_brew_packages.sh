@@ -16,6 +16,7 @@ packages=(
   dos2unix
   emacs
   ffmpeg
+  fswatch
   geoip
   gist
   git
@@ -70,6 +71,7 @@ cask_packages=(
   google-chrome
   iterm2
   java
+  mactex
   shiftit
   slack
   spotify
