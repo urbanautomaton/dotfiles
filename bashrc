@@ -69,7 +69,7 @@ function remove_from_path() {
 ###########
 
 # Ignore duplicate commands, space-prefixed, and misc boring cmds.
-export HISTIGNORE="&:[ ]*:exit:gs:gl"
+export HISTIGNORE="&:[ ]*:exit:gs:gl:ll"
 # Massive main .bash_history...
 export HISTFILESIZE=10000
 # Larger session histories...
