@@ -33,6 +33,8 @@ alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
 alias ci="hub ci-status -v | grep drone.futurelearn.com | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
 
+alias ffs='bundle && yarn install && rake db:migrate'
+
 alias vi='vim'
 
 # enable color support of ls and also add handy aliases
