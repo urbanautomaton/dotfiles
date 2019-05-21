@@ -36,6 +36,7 @@ packages=(
   pkg-config
   plantuml
   postgres
+  pre-commit
   pv
   reattach-to-user-namespace
   redis
