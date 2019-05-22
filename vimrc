@@ -122,7 +122,7 @@ endif
 set viminfo^=!
 
 if exists("&colorcolumn")
-  set colorcolumn=80
+  set colorcolumn=-0
 endif
 if exists('*fugitive#statusline')
   set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %cC\ (%p%%)]\ %{fugitive#statusline()}
