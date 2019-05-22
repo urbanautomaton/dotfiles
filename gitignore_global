@@ -20,3 +20,4 @@
 .bundle
 .node-version
 .projections.json
+/.idea
