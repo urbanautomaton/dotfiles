@@ -4,9 +4,10 @@ set -euo pipefail
 
 gems=(
   benchmark-ips
-  bundler
+  bundler:1.17.3
   gem-ctags
   hookup
+  mynewsdesk-git-pair
 )
 
 for gem in "${gems[@]}"; do
