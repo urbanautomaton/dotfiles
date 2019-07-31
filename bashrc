@@ -125,7 +125,7 @@ source_if_present /usr/local/share/chruby/chruby.sh
 source_if_present /usr/local/share/gem_home/gem_home.sh
 
 if type -t chruby >/dev/null; then
-  export CHRUBY_DEFAULT=2.5
+  export CHRUBY_DEFAULT=2.6
   chruby $CHRUBY_DEFAULT
 fi
 
