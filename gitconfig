@@ -88,7 +88,7 @@
   default = simple
 
 [pull]
-  rebase = preserve
+  rebase = merges
 
 [rebase]
   autostash = true
