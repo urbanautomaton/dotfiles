@@ -31,7 +31,7 @@ alias blog='workspace -n ua ~/dev/sites/urbanautomaton.com'
 alias fl='workspace -d mysql ~/dev/futurelearn/futurelearn'
 alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
-alias ci="hub ci-status -v | grep drone.futurelearn.dev | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
+alias ci="hub ci-status -v | grep jenkins.futurelearn.dev | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"
 
 alias ffs='bundle && yarn install && rake db:migrate'
 
