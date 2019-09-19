@@ -21,3 +21,5 @@
 .node-version
 .projections.json
 /.idea
+/.vscode
+.nvmrc
