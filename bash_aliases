@@ -35,6 +35,8 @@ alias ci="hub ci-status -v | grep jenkins.futurelearn.dev | cut -f3 | xargs open
 
 alias ffs='bundle && yarn install && rake db:migrate'
 
+alias jest_debug='node --inspect-brk node_modules/.bin/jest --runInBand'
+
 alias vi='vim'
 
 # enable color support of ls and also add handy aliases
