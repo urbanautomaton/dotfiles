@@ -22,7 +22,7 @@
 
   reup = ! git-reup
 
-  redate = rebase -i origin/master -x "git commit --amend --no-edit --date=now; sleep 1"
+  redate = ! git-redate
 
   db = ! git-db
 

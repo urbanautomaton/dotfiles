@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git rebase \
+  -i origin/master \
+  -x "git commit --amend --no-edit --date=now; sleep 1"
