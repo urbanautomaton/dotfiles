@@ -22,6 +22,8 @@
 
   reup = ! git-reup
 
+  redate = rebase -i origin/master -x "git commit --amend --no-edit --date=now; sleep 1"
+
   db = ! git-db
 
   whom = commit --amend --reset-author --no-edit
