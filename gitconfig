@@ -12,6 +12,7 @@
   dw    = diff --word-diff
   st    = status -sb
   l     = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --decorate-refs-exclude=refs/tags/deploy-*
+  lb    = log --reverse --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --decorate-refs-exclude=refs/tags/deploy-* master..HEAD
   sed   = ! git ls-files -z | xargs -0 sed -i -e
   ctags = ! .git/hooks/ctags
   lm    = "!f() { local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file; }; f"
