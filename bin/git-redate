@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+base=${1:-'origin/master'}
+
 git rebase \
-  -i origin/master \
+  -i "${base}" \
   -x "git commit --amend --no-edit --date=now; sleep 1"
