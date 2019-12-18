@@ -6,4 +6,4 @@ base=${1:-'origin/master'}
 
 git rebase \
   -i "${base}" \
-  -x "git commit --amend --no-edit --date=now; sleep 1"
+  -x "git commit --amend --no-edit; sleep 1"
