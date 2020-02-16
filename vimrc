@@ -35,6 +35,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fireplace'
 Plug 'hashivim/vim-terraform'
+Plug 'jxnblk/vim-mdx-js'
 call plug#end()
 
 let g:ale_lint_on_text_changed = 'never'
