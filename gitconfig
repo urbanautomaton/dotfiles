@@ -44,6 +44,7 @@
 [merge]
   keepBackup = false
   tool       = fugitive
+  conflictstyle = diff3
 
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
