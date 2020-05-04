@@ -30,4 +30,6 @@ if [[ $(uname) == "Darwin" ]]; then
   }
 
   export JRUBY_OPTS="-J-Xmx4g"
+
+  export BASH_SILENCE_DEPRECATION_WARNING=1
 fi
