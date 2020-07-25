@@ -30,6 +30,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'aklt/plantuml-syntax'
 Plug 'rust-lang/rust.vim'
@@ -46,6 +47,8 @@ let g:ale_linters = {
       \ }
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'javascript': ['prettier'],
+      \ 'javascript.jsx': ['prettier'],
       \ 'rust': ['rustfmt'],
       \ 'terraform': ['terraform'],
       \ }
