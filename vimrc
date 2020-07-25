@@ -214,6 +214,7 @@ imap <F4> <ESC>:TagbarToggle<CR>
 nnoremap <F5> :set invpaste paste?<Enter>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
+set tags^=./.git/tags;
 
 " unimpaired.vim style nav for preview-window tags
 nnoremap ]g :ptnext<CR>
