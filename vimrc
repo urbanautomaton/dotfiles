@@ -48,12 +48,12 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['prettier'],
-      \ 'javascript.jsx': ['prettier'],
+      \ 'javascript.*': ['prettier'],
+      \ 'css': ['prettier'],
       \ 'rust': ['rustfmt'],
       \ 'terraform': ['terraform'],
       \ }
 let g:ale_rust_cargo_use_clippy = 1
-let g:ale_fix_on_save = 1
 
 let g:markdown_fold_style = 'nested'
 let g:is_bash = 1
