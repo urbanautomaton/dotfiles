@@ -35,6 +35,7 @@ readonly DOTFILES="
   ackrc
   tmux.conf
   tmux-osx.conf
+  terraformrc
 "
 
 for dir in $DOTDIRECTORIES; do
