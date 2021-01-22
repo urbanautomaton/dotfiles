@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git fetch -p -q
+
+gone_branches=$(
+git for-each-ref \
+  --format '%(refname) %(upstream:track)' \
+  refs/heads \
+  | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'
+)
+
+if [[ -z "${gone_branches}" ]]; then
+  echo "No branches with gone remotes found"
+  exit
+fi
+
+echo "The following branches' remotes are gone: "
+echo
+
+for branch in ${gone_branches}; do
+  echo "${branch}"
+done
+echo
+
+read -p "Delete these branches [y/N]? : " -n 1 -r response
+echo
+
+if [[ ! ${response} =~ ^[Yy]$ ]]; then
+  echo "Exiting"
+  exit 1
+fi
+
+for branch in ${gone_branches}; do
+  git branch -D "${branch}"
+done

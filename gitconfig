@@ -4,6 +4,9 @@
   name  = Simon Coffey
   email = simon@urbanautomaton.com
 
+[advice]
+  detachedHead = false
+
 [alias]
   f     = "!f() { local ref=${1:-HEAD}; git commit --fixup=$ref; }; f"
   s     = "!f() { local ref=${1:-HEAD}; git commit --squash=$ref; }; f"
@@ -28,6 +31,8 @@
   redate = ! git-redate
 
   db = ! git-db
+
+  gone = ! git-gone
 
   whom = commit --amend --reset-author --no-edit
 
