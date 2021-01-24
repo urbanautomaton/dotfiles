@@ -17,6 +17,7 @@ packages=(
   emacs
   ffmpeg
   fswatch
+  fzf
   geoip
   gist
   git
