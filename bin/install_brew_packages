@@ -9,6 +9,7 @@ packages=(
   bash-completion
   bdw-gc
   bison
+  bluesnooze
   boost
   chruby
   coreutils
