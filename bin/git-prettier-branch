@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+base=${1:-'master'}
+
+git rebase "${base}" \
+  --quiet \
+  --ignore-whitespace \
+  --exec 'git-prettier'

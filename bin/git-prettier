@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+changed=(
+  $(git show --name-only --pretty="" HEAD | (grep -E "\.(js|jsx|ts|tsx|css|scss|mdx|json|html)$" || true))
+)
+
+if [[ "${#changed[@]}" -gt 0 ]]; then
+  prettier --check --write "${changed[@]}"
+
+  if ! git diff-index --quiet HEAD --; then
+    git add -u
+    git commit --amend --no-edit --no-verify
+  fi
+else
+  echo 'No relevant changes found'
+fi

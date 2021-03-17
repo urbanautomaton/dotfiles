@@ -34,6 +34,9 @@
 
   gone = ! git-gone
 
+  prettier = ! git-prettier
+  prettier-branch = ! git-prettier-branch
+
   whom = commit --amend --reset-author --no-edit
 
   message = show --quiet --format=%B
