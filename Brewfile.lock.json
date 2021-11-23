@@ -1937,6 +1937,16 @@
             "require_sha": true
           }
         }
+      },
+      "whatsapp": {
+        "version": "2.2144.11",
+        "options": {
+          "full_name": "whatsapp",
+          "args": {
+            "appdir": "~/Applications",
+            "require_sha": true
+          }
+        }
       }
     }
   },
