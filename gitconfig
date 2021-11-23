@@ -41,6 +41,8 @@
 
   message = show --quiet --format=%B
 
+  wip = commit -m wip --no-verify
+
   unchanged        = update-index --assume-unchanged
   nounchanged      = update-index --no-assume-unchanged
   marked-unchanged = !git ls-files -v | grep "^[[:lower:]]" | cut -f2 -d' '
