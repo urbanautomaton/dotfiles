@@ -30,7 +30,7 @@ function __env_hooker_mark_entered() {
   local -r entered_dir=$2
   local -r marker=ENV_HOOKER_ENTERED_${hook_root}
 
-  eval "${marker}=${entered_dir}"
+  eval "export ${marker}=${entered_dir}"
 }
 
 function __env_hooker_mark_exited() {
