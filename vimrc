@@ -54,6 +54,7 @@ let g:ale_fixers = {
       \ 'terraform': ['terraform'],
       \ 'typescript': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
+      \ 'typescriptreact': ['prettier'],
       \ }
 let g:ale_rust_cargo_use_clippy = 1
 
