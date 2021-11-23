@@ -9,7 +9,6 @@ packages=(
   bash-completion
   bdw-gc
   bison
-  bluesnooze
   boost
   chruby
   coreutils
@@ -27,14 +26,15 @@ packages=(
   gsl
   htop
   hub
+  imagemagick
   jq
   leiningen
   libev
   little-cms
   llvm
   netcat
+  openjdk
   parallel
-  phantomjs
   pkg-config
   plantuml
   postgres
@@ -52,6 +52,7 @@ packages=(
   tmux
   tree
   unzip
+  vim
   watch
   wget
   yarn
@@ -61,29 +62,23 @@ for p in "${packages[@]}"; do
   brew install "$p"
 done
 
-brew install imagemagick --with-little-cms2
-brew install vim --with-python3
-brew install --HEAD https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
+wget https://raw.github.com/postmodern/gem_home/master/homebrew/gem_home.rb
+brew install --HEAD -s gem_home.rb
 
 cask_packages=(
-  1password
   alfred
-  chefdk
+  bluesnooze
   evernote
   flux
-  google-chrome
   iterm2
-  java
   mactex
   shiftit
-  slack
   spotify
-  vagrant
   vlc
 )
 
-brew tap caskroom/cask
+brew tap homebrew/cask
 
 for p in "${cask_packages[@]}"; do
-  brew cask install "$p"
+  brew install --cask "$p"
 done
