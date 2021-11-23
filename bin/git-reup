@@ -6,12 +6,16 @@ function command_exists() {
   type -t "$1" >/dev/null
 }
 
-git fetch origin master:master
+default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
-if ! git merge-base --is-ancestor master HEAD; then
+base=${1:-${default_branch}}
+
+git fetch origin "${base}":"${base}"
+
+if ! git merge-base --is-ancestor "${base}" HEAD; then
   previous=$(git rev-parse HEAD)
 
-  git rebase master
+  git rebase "${base}"
 
   command_exists hookup && hookup post-checkout "${previous}" HEAD 1
 fi

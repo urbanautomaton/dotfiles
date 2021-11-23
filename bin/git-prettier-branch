@@ -2,7 +2,9 @@
 
 set -euo pipefail
 
-base=${1:-'master'}
+default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+base=${1:-${default_branch}}
 
 git rebase "${base}" \
   --quiet \
