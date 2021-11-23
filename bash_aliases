@@ -47,3 +47,5 @@ if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
+
+alias jest_debug='node --inspect-brk node_modules/.bin/jest --runInBand'
