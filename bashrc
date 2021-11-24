@@ -20,7 +20,7 @@ function source_if_present() {
   # the point of this function, so. What're you gonna do eh?
   #
   # shellcheck disable=SC1090
-  [[ -f "$1" ]] && source "$1"
+  [[ -s "$1" ]] && source "$1"
 }
 
 function path_contains() {
@@ -117,17 +117,9 @@ fi
 # Visible cucumber step locations
 export CUCUMBER_COLORS=comment=cyan
 
-#######################
-# Ruby env management #
-#######################
-
-source_if_present /usr/local/share/chruby/chruby.sh
-source_if_present /usr/local/share/gem_home/gem_home.sh
-
-if type -t chruby >/dev/null; then
-  export CHRUBY_DEFAULT=2.6
-  chruby $CHRUBY_DEFAULT
-fi
+export NVM_DIR="${HOME}/.nvm"
+source_if_present "${NVM_DIR}/nvm.sh"
+source_if_present "${NVM_DIR}/bash_completion"
 
 ################
 # And the rest #
@@ -139,11 +131,6 @@ source_if_present ~/.bashrc.local
 
 # Enable programmable bash command-line completion (Debian derivs)
 source_if_present /etc/bash_completion
-
-# Enable bash completion in homebrew setups
-if command_exists brew; then
-  source_if_present /usr/local/etc/bash_completion
-fi
 
 # Load custom completions
 source_if_present ~/.bash_completion

@@ -4,10 +4,29 @@ if [[ $(uname) == "Darwin" ]]; then
     export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
   fi
 
-  function edit()
-  {
-    /Applications/TextEdit.app/Contents/MacOS/TextEdit "$@" 2>/dev/null
-  }
+  if [[ -d "/opt/homebrew" ]]; then
+    export HOMEBREW_PREFIX="/opt/homebrew";
+  elif [[ -x "/usr/local/bin/brew" ]]; then
+    export HOMEBREW_PREFIX="/usr/local";
+  fi
+
+  if [[ -n "${HOMEBREW_PREFIX}" ]]; then
+    export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
+    export HOMEBREW_REPOSITORY=${HOMEBREW_PREFIX};
+    export HOMEBREW_SHELLENV_PREFIX=${HOMEBREW_PREFIX};
+    export PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+    export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+  fi
+
+  source_if_present "${HOMEBREW_PREFIX}/etc/bash_completion"
+  source_if_present "${HOMEBREW_PREFIX}/share/chruby/chruby.sh"
+  source_if_present "${HOMEBREW_PREFIX}/share/gem_home/gem_home.sh"
+
+  if type -t chruby >/dev/null; then
+    export CHRUBY_DEFAULT=2.7
+    chruby $CHRUBY_DEFAULT
+  fi
 
   append_path_if_present /usr/local/mysql/bin
   append_path_if_present /usr/local/packer
@@ -22,12 +41,6 @@ if [[ $(uname) == "Darwin" ]]; then
   append_path_if_present /Applications/factor
 
   ulimit -S -n 2048
-
-  function nvminit() {
-    export NVM_DIR="/Users/simon/.nvm"
-    source_if_present "$NVM_DIR/nvm.sh"
-    source_if_present "$NVM_DIR/bash_completion"
-  }
 
   export JRUBY_OPTS="-J-Xmx4g"
 
