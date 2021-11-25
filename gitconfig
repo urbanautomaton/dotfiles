@@ -24,7 +24,7 @@
 
   files-changed = diff-tree --no-commit-id --name-only -r
 
-  recent-branch = branch --sort='authordate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset) %(authordate)'
+  recent-branch = branch --sort='committerdate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset)%(upstream:trackshort) %(committerdate)'
 
   reup = ! git-reup
 
