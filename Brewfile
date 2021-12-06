@@ -51,8 +51,9 @@ brew "watch"
 brew "wget"
 brew "yarn"
 
-cask_args appdir: "~/Applications", require_sha: true
+cask_args appdir: "/Applications"
 
+cask "1password"
 cask "alfred"
 cask "bluesnooze"
 cask "evernote"
