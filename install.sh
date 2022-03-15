@@ -1,8 +1,8 @@
-#! /bin/sh
+#! /bin/bash
 
 set -euo pipefail
 
-case `uname` in
+case $(uname) in
   'Darwin')
     dircmd='ln -sfh'
     ;;
@@ -40,17 +40,17 @@ readonly DOTFILES="
 
 for dir in $DOTDIRECTORIES; do
   if [[ -n "$dir" ]]; then
-    $dircmd ~/dotfiles/$dir ~/.$dir
+    $dircmd "${HOME}/dotfiles/${dir}" "${HOME}/.${dir}"
   fi
 done
 
 for file in $DOTFILES; do
   if [[ -n "$file" ]]; then
-    ln -sf ~/dotfiles/$file ~/.$file
+    ln -sf "${HOME}/dotfiles/${file}" "${HOME}/.${file}"
   fi
 done
 
 mkdir -p ~/bin
-for script in $(ls ~/dotfiles/bin); do
-  ln -sf ~/dotfiles/bin/$script ~/bin/$script
+for script in ~/dotfiles/bin/*; do
+  ln -sf "${HOME}/dotfiles/bin/${script}" "${HOME}/bin/${script}"
 done
