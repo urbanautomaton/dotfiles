@@ -42,14 +42,18 @@ call plug#end()
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
+      \ 'json': [],
       \ 'javascript': ['eslint'],
       \ 'tex': ['lacheck'],
       \ }
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'html': ['prettier'],
       \ 'javascript': ['prettier'],
       \ 'javascript.*': ['prettier'],
+      \ 'json': ['prettier'],
       \ 'css': ['prettier'],
+      \ 'scss': ['prettier'],
       \ 'rust': ['rustfmt'],
       \ 'terraform': ['terraform'],
       \ 'typescript': ['prettier'],
