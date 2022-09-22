@@ -1,0 +1,17 @@
+{
+  "workbench.colorTheme": "Solarized Dark",
+  "editor.fontSize": 18,
+  "editor.fontFamily": "Monaco, Menlo, 'Courier New', monospace",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.enableDebugLogs": true,
+  "terminal.integrated.drawBoldTextInBrightColors": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 2
+}
