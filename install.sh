@@ -51,6 +51,7 @@ for file in $DOTFILES; do
 done
 
 mkdir -p ~/bin
-for script in ~/dotfiles/bin/*; do
-  ln -sf "${HOME}/dotfiles/bin/${script}" "${HOME}/bin/${script}"
+for script_file in ~/dotfiles/bin/*; do
+  script_name=$(basename "${script_file}")
+  ln -sf "${script_file}" "${HOME}/bin/${script_name}"
 done
