@@ -7,9 +7,7 @@ tap "homebrew/services"
 
 cask_args appdir: "~/Applications", require_sha: true
 
-brew "elasticsearch@6", restart_service: true
 brew "geoip"
-brew "mysql@5.7", restart_service: true, link: true, conflicts_with: ["mysql"]
-brew "redis", restart_service: true
+brew "mysql-client", link: true, conflicts_with: ["mysql"]
 
 cask "tuple"
