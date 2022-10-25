@@ -28,7 +28,7 @@ alias gd='git diff'
 
 alias ws='workspace'
 alias blog='workspace -n ua ~/dev/sites/urbanautomaton.com'
-alias fl='workspace -d mysql ~/dev/futurelearn/futurelearn'
+alias fl='workspace -d "mysql -u root -D futurelearn_development --host 127.0.0.1" ~/dev/futurelearn/futurelearn'
 alias fix_terminal='stty echo icanon icrnl dsusp ^Y lnext ^V'
 
 alias ci="hub ci-status -v \`git rev-parse --abbrev-ref HEAD\` | grep jenkins.futurelearn.dev | cut -f3 | xargs open -a /Applications/Google\ Chrome.app"

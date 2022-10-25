@@ -11,37 +11,16 @@ usage () {
   echo "usage: $0 [options] [dir]"
   echo ""
   echo "OPTIONS"
-  echo "-d (mysql|pg)   RDBMS; loads console to dev DB"
-  echo "-h              display this help"
-  echo "-n NAME         session name (defaults to directory basename)"
-}
-
-function load_dev_database()
-{
-  local rdbms=$1
-  local project=$2
-  local database="${project}_development"
-
-  case "$rdbms" in
-    pg)
-      echo "psql -d $database"
-      ;;
-    mysql)
-      echo "mysql -u root -D $database"
-      ;;
-    *)
-      usage
-      exit 1
-  esac
+  echo "-d [database_command]   optionally loads window with DB connection"
+  echo "-h                      display this help"
+  echo "-n NAME                 session name (defaults to directory basename)"
 }
 
 function create_session()
 {
   local directory=$1
   local session_name=$2
-  local rdbms=${3:-''}
-  local project
-  project=$(basename "${directory}")
+  local db_command=${3:-''}
 
   cd "${directory}"
 
@@ -51,9 +30,9 @@ function create_session()
   tmux send-keys -t "${session_name}:1" 'vim' C-m
   tmux new-window -t "${session_name}:2" -n 'bash'
   tmux new-window -t "${session_name}:3" -n 'bash'
-  if [ -n "$rdbms" ]; then
+  if [ -n "$db_command" ]; then
     tmux new-window -t "${session_name}:4" -n 'db'
-    tmux send-keys -t "${session_name}:4" "$(load_dev_database "${rdbms}" "${project}")" C-m
+    tmux send-keys -t "${session_name}:4" "${db_command}" C-m
   fi
 
   tmux select-window -t "${session_name}":1
@@ -65,13 +44,13 @@ function create_session()
 
 # The actual script, then:
 
-rdbms=''
+db_command=''
 session_name=''
 
 while getopts ":hd:n:" opt; do
   case $opt in
     d)
-      rdbms=$OPTARG
+      db_command=$OPTARG
       ;;
     h)
       usage
@@ -113,4 +92,4 @@ if [[ ! -n "$session_name" ]]; then
   last_dir=$(basename "${directory}")
   session_name=${last_dir//\./_}
 fi
-create_session "${directory}" "${session_name}" "${rdbms}"
+create_session "${directory}" "${session_name}" "${db_command}"
