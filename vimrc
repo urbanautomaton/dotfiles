@@ -103,6 +103,7 @@ set hlsearch
 set synmaxcol=256
 set formatoptions+=j " remove comment leader when joining comment lines
 set textwidth=78     " because we're not savages
+set nojoinspaces     " Don't use two spaces when joining lines ending in '.', '?' or '!'
 
 set regexpengine=1   " Use old regexp engine because ruby syntax is slooooow
                      " with the new one
