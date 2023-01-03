@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 if [[ $(uname) == "Darwin" ]]; then
-  if [[ ! "$DYLD_LIBRARY_PATH" =~ /usr/local/mysql/lib ]]; then
-    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
-  fi
-
   if [[ -d "/opt/homebrew" ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew";
   elif [[ -x "/usr/local/bin/brew" ]]; then
     export HOMEBREW_PREFIX="/usr/local";
   fi
 
+  # This is the output of `brew shellenv` which they otherwise recommend you
+  # eval as part of your bashrc. I've inlined it for faster terminal startup.
   if [[ -n "${HOMEBREW_PREFIX}" ]]; then
     export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
     export HOMEBREW_REPOSITORY=${HOMEBREW_PREFIX};
@@ -27,18 +25,6 @@ if [[ $(uname) == "Darwin" ]]; then
     export CHRUBY_DEFAULT=2.7
     chruby $CHRUBY_DEFAULT
   fi
-
-  append_path_if_present /usr/local/mysql/bin
-  append_path_if_present /usr/local/packer
-  append_path_if_present /opt/pear/bin
-  append_path_if_present /usr/texbin
-  append_path_if_present /usr/local/heroku/bin
-  append_path_if_present /usr/local/terraform/bin
-  append_path_if_present /Applications/SWI-Prolog.app/Contents/MacOS
-  append_path_if_present /usr/local/terraform/bin
-  append_path_if_present /usr/local/go/bin
-  append_path_if_present /Applications/Postgres.app/Contents/Versions/latest/bin
-  append_path_if_present /Applications/factor
 
   ulimit -S -n 2048
 
