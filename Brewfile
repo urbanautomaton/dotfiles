@@ -16,6 +16,7 @@ brew "ffmpeg"
 brew "fswatch"
 brew "fzf"
 brew "brew_formulae/gem_home.rb", args: ["HEAD", "build-from-source"]
+brew "gh"
 brew "gist"
 brew "git"
 brew "graphviz"
