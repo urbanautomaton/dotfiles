@@ -15,6 +15,7 @@ readonly DOTDIRECTORIES="
   vim
   git_template
   env_hooks
+  bashrc.d
 "
 
 readonly DOTFILES="
