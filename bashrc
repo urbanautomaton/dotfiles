@@ -18,25 +18,6 @@ if [[ -d ~/.bashrc.d ]]; then
   done
 fi
 
-###########
-# HISTORY #
-###########
-
-# Ignore duplicate commands, space-prefixed, and misc boring cmds.
-export HISTIGNORE="&:[ ]*:exit:gs:gl:ll"
-# Massive main .bash_history...
-export HISTFILESIZE=10000
-# Larger session histories...
-export HISTSIZE=1000
-# Nice timestamps...
-HISTTIMEFORMAT='%F %T '
-# Save multi-line commands as one command...
-shopt -s cmdhist
-# Save commands as they're issued...
-append_prompt_command 'history -a'
-# And don't overwrite .bash_history on exit
-shopt -s histappend
-
 #########################
 # Custom PATH locations #
 #########################
