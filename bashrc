@@ -41,7 +41,6 @@ source_if_present "${NVM_DIR}/bash_completion"
 # And the rest #
 ################
 
-source_if_present ~/.bash_aliases
 source_if_present ~/.bashrc.darwin
 source_if_present ~/.bashrc.local
 

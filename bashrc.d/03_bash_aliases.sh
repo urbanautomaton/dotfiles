@@ -1,7 +1,3 @@
-#!/usr/bin/bash
-
-# vim:filetype=sh
-
 alias rl='source ~/.bashrc'
 alias pg='ps aux | egrep -i'
 
