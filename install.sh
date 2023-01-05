@@ -15,12 +15,10 @@ readonly DOTDIRECTORIES="
   vim
   git_template
   env_hooks
-  bashrc.d
 "
 
 readonly DOTFILES="
   bashrc
-  bashrc.darwin
   bash_aliases
   bash_completion
   env_hooker
@@ -49,6 +47,12 @@ for file in $DOTFILES; do
   if [[ -n "$file" ]]; then
     ln -sf "${HOME}/dotfiles/${file}" "${HOME}/.${file}"
   fi
+done
+
+mkdir -p ~/.bashrc.d
+for script_file in ~/dotfiles/bashrc.d/*; do
+  script_name=$(basename "${script_file}")
+  ln -sf "${script_file}" "${HOME}/.bashrc.d/${script_name}"
 done
 
 mkdir -p ~/bin
