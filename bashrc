@@ -49,9 +49,12 @@ source_if_present /etc/bash_completion
 # Load environment hook scripts
 source_if_present ~/.env_hooker
 
-source_if_present ~/.env_hooks/ruby
-source_if_present ~/.env_hooks/node
-source_if_present ~/.env_hooks/golang
+if [[ -d ~/.env_hooks ]]; then
+  for file in ~/.env_hooks/*; do
+    # shellcheck disable=SC1090
+    source "$file"
+  done
+fi
 
 # Start a flame war
 export EDITOR="vim"
