@@ -46,9 +46,6 @@ source_if_present ~/.bashrc.local
 # Enable programmable bash command-line completion (Debian derivs)
 source_if_present /etc/bash_completion
 
-# Load custom completions
-source_if_present ~/.bash_completion
-
 # Load environment hook scripts
 source_if_present ~/.env_hooker
 
