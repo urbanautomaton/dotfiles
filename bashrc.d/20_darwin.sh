@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 if [[ $(uname) == "Darwin" ]]; then
   if [[ -d "/opt/homebrew" ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew";
