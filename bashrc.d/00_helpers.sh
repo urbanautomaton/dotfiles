@@ -46,3 +46,16 @@ function remove_from_path() {
   work=${work%:}
   export PATH=$work
 }
+
+function check_args() {
+  local args=("$@")
+  local arg
+  local arg_num
+
+  echo "\$0: \"${0}\""
+  for i in "${!args[@]}"; do
+    arg=${args[$i]}
+    ((arg_num=i+1))
+    echo "\$${arg_num}: \"${arg}\""
+  done
+}
