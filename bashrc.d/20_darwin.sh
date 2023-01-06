@@ -27,7 +27,5 @@ if [[ $(uname) == "Darwin" ]]; then
 
   ulimit -S -n 2048
 
-  export JRUBY_OPTS="-J-Xmx4g"
-
   export BASH_SILENCE_DEPRECATION_WARNING=1
 fi
