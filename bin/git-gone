@@ -20,7 +20,7 @@ echo "The following branches' remotes are gone: "
 echo
 
 for branch in ${gone_branches}; do
-  echo "${branch}"
+  echo "  * ${branch}"
 done
 echo
 
