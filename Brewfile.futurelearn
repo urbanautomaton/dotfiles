@@ -4,10 +4,12 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "heroku/brew"
 
 cask_args appdir: "~/Applications", require_sha: true
 
 brew "geoip"
+brew "heroku"
 brew "mysql-client", link: true, conflicts_with: ["mysql"]
 
 cask "tuple"
