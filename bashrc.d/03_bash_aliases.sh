@@ -45,3 +45,7 @@ if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
 fi
 
 alias jest_debug='node --inspect-brk node_modules/.bin/jest --runInBand'
+
+jqp() {
+  echo '' | fzf --preview "jq {q} < ${1}"
+}

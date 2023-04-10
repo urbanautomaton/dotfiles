@@ -26,6 +26,8 @@
 
   recent-branch = branch --sort='committerdate' --format='  %(color:bold yellow)%(refname:lstrip=2)%(color:reset)%(upstream:trackshort) %(committerdate)'
 
+  br = ! git branch --sort='-committerdate' | fzf | xargs git checkout
+
   reup = ! git-reup
 
   redate = ! git-redate
