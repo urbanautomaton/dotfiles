@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
-default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+base=${1:-""}
 
-base=${1:-${default_branch}}
+if [[ -z "${base}" ]]; then
+  base=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+fi
 
 git rebase "${base}" \
   -x 'git commit --amend --no-edit --date="$(date -R)"; sleep 1'
