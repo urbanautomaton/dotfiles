@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+base=${1:-""}
+
+if [[ -z "${base}" ]]; then
+  base=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+fi
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+git rebase "${base}" -x "git push -f origin HEAD:${branch}; sleep 1"

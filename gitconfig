@@ -28,6 +28,8 @@
 
   br = ! git branch --sort='-committerdate' | fzf | xargs git checkout
 
+  push-each = ! git-push-each
+
   reup = ! git-reup
 
   redate = ! git-redate
