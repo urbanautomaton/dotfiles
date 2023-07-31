@@ -14,5 +14,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "window.zoomLevel": 1,
-  "terminal.integrated.fontSize": 14
+  "terminal.integrated.fontSize": 14,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
