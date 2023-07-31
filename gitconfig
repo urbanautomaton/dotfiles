@@ -45,7 +45,7 @@
 
   message = show --quiet --format=%B
 
-  wip = commit -m wip --no-verify
+  wip = "!f() { local message=\"WIP: ${1}\"; git commit --no-verify -m \"${message/%: /}\"; }; f"
 
   unchanged        = update-index --assume-unchanged
   nounchanged      = update-index --no-assume-unchanged
