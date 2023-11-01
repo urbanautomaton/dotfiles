@@ -1,4 +1,6 @@
 if [[ $(uname) == "Darwin" ]]; then
+  ssh-add --apple-use-keychain
+
   if [[ -d "/opt/homebrew" ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew";
   elif [[ -x "/usr/local/bin/brew" ]]; then
