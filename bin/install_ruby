@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+RUBY_VERSION=$1
+
+if [[ "${RUBY_VERSION}" =~ ^[3-9].[1-9]*$ ]]; then
+  OPENSSL_VERSION="openssl@3"
+else
+  OPENSSL_VERSION="openssl@1.1"
+fi
+
+OPENSSL_PATH=$(brew --prefix "${OPENSSL_VERSION}")
+
+PKG_CONFIG_PATH="${OPENSSL_PATH}/lib/pkgconfig" \
+  ruby-install ruby "${RUBY_VERSION}" -- \
+  --with-openssl-dir="${OPENSSL_PATH}"
