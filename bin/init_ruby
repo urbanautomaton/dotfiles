@@ -1,15 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
+
+gem update --system
+
+gem install bundler
 
 gems=(
   benchmark-ips
   gem-ctags
   hookup
-  mynewsdesk-git-pair
   foreman
 )
 
 for gem in "${gems[@]}"; do
-  gem install $gem
+  gem install "${gem}"
 done
