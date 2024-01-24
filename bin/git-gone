@@ -20,7 +20,12 @@ echo "The following branches' remotes are gone: "
 echo
 
 for branch in ${gone_branches}; do
-  echo "  * ${branch}"
+  if git merge-base --is-ancestor "${branch}" HEAD; then
+    message="(✅ merged)"
+  else
+    message="(❌ unmerged)"
+  fi
+  echo "  * ${branch} ${message}"
 done
 echo
 
