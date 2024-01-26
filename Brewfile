@@ -1,14 +1,13 @@
 # vim: set ft=ruby:
 
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "homebrew/services"
 
 brew "automake"
 brew "awscli"
 brew "bash"
 brew "bash-completion"
+brew "brew_formulae/gem_home.rb", args: ["HEAD", "build-from-source"]
 brew "chruby"
 brew "coreutils"
 brew "ctags"
@@ -16,7 +15,6 @@ brew "dos2unix"
 brew "ffmpeg"
 brew "fswatch"
 brew "fzf"
-brew "brew_formulae/gem_home.rb", args: ["HEAD", "build-from-source"]
 brew "gh"
 brew "gist"
 brew "git"
@@ -26,6 +24,7 @@ brew "htop"
 brew "hub"
 brew "imagemagick"
 brew "jq"
+brew "jsonlint"
 brew "leiningen"
 brew "llvm"
 brew "netcat"
