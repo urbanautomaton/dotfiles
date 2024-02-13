@@ -41,6 +41,7 @@ Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
       \ 'json': ['jsonlint'],
@@ -56,7 +57,7 @@ let g:ale_fixers = {
       \ 'css': ['prettier'],
       \ 'scss': ['prettier'],
       \ 'rust': ['rustfmt'],
-      \ 'terraform': ['terraform'],
+      \ 'terraform': ['remove_trailing_lines', 'terraform'],
       \ 'typescript': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'typescriptreact': ['prettier'],
