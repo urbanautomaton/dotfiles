@@ -6,3 +6,5 @@ vim/swap
 vim/undo
 vim/view
 /vim/plugged
+Brewfile.nevaya
+Brewfile*.lock.json
