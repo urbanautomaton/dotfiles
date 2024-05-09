@@ -18,23 +18,23 @@ readonly DOTDIRECTORIES="
 "
 
 readonly DOTFILES="
-  bashrc
+  ackrc
   bash_aliases
   bash_completion
+  bashrc
   env_hooker
-  inputrc
-  vimrc
-  irbrc
   gemrc
-  pryrc
+  gitattributes
   gitconfig
   gitignore_global
-  gitattributes
   gvimrc
-  ackrc
-  tmux.conf
-  tmux-osx.conf
+  inputrc
+  irbrc
+  pryrc
   terraformrc
+  tmux-osx.conf
+  tmux.conf
+  vimrc
 "
 
 for dir in $DOTDIRECTORIES; do
