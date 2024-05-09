@@ -30,6 +30,7 @@ readonly DOTFILES="
   gvimrc
   inputrc
   irbrc
+  npmrc
   pryrc
   terraformrc
   tmux-osx.conf
