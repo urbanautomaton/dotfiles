@@ -59,4 +59,8 @@ fi
 # Start a flame war
 export EDITOR="vim"
 
+if [[ -f "${HOME}/.gemrc.local" ]]; then
+  export GEMRC="${HOME}/.gemrc.local"
+fi
+
 prepend_path_if_present "${HOME}/.cargo/bin"
