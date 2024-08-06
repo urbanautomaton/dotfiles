@@ -11,11 +11,6 @@
 .nodeproject
 *.pyc
 .bin
-# Allow me to create personal config that's not supported by .rspec, e.g.
-# custom backtrace filtering for use with dispatch.vim
-/spec/support/scoffey
-# Ditto but with rails initializers
-/config/initializers/scoffey
 /tags
 .bundle
 .node-version
