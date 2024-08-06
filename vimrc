@@ -336,3 +336,8 @@ augroup END
 " git grep for the current selection
 nnoremap <leader>gg :Ggrep <cword><CR><CR>:copen<CR><CR>
 vnoremap <leader>gg y:Ggrep <c-r>"<CR><CR>:copen<CR><CR>
+
+let vimrc_local=$HOME."/.vimrc.local"
+if filereadable(vimrc_local)
+  exec "source " . vimrc_local
+endif
