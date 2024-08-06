@@ -61,7 +61,7 @@
 [merge]
   keepBackup = false
   tool       = fugitive
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
@@ -71,6 +71,8 @@
 
 [diff]
   compactionHeuristic = true
+  algorithm = histogram
+  colorMoved = default
 
 [color]
   diff        = auto
