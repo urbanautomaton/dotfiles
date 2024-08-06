@@ -18,3 +18,5 @@
 /.idea
 /.vscode
 .nvmrc
+/.mysql-data/
+.byebug_history
