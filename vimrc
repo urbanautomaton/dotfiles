@@ -43,6 +43,7 @@ call plug#end()
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_virtualtext_cursor = 0
 let g:ale_fix_on_save = 1
+let g:ale_javascript_eslint_options = '--report-unused-disable-directives'
 let g:ale_linters = {
       \ 'json': ['jsonlint'],
       \ 'javascript': ['eslint'],
