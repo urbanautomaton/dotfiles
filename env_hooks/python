@@ -1,0 +1,27 @@
+# shellcheck shell=bash
+# vi: set ft=sh:
+
+function enter_python_project {
+  local -r project_dir=$1
+  local env_name
+  read -r env_name <"${project_dir}/.venv"
+
+  if [[ -n "${env_name}" ]]; then
+    local new_env="${HOME}/.venv/${env_name}"
+
+    if [[ "${VIRTUAL_ENV}" != "${new_env}" ]]; then
+      if [[ -d "${new_env}" ]]; then
+        # shellcheck disable=SC1090,SC1091
+        source "${new_env}/bin/activate"
+      else
+        echo "Virtualenv ${new_env} not found"
+      fi
+    fi
+  fi
+}
+
+function exit_python_project {
+  true
+}
+
+register_env_hook .venv python_project
