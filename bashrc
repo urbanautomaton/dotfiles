@@ -59,6 +59,9 @@ fi
 # Start a flame war
 export EDITOR="vim"
 
+# FU Spring
+export DISABLE_SPRING=true
+
 if [[ -f "${HOME}/.gemrc.local" ]]; then
   export GEMRC="${HOME}/.gemrc.local"
 fi
