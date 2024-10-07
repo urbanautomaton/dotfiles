@@ -51,13 +51,13 @@ let g:ale_linters = {
       \ }
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'css': ['prettier'],
       \ 'html': ['prettier'],
       \ 'javascript': ['prettier'],
       \ 'javascript.*': ['prettier'],
       \ 'json': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'scss': ['prettier'],
       \ 'rust': ['rustfmt'],
+      \ 'scss': ['prettier'],
       \ 'terraform': ['remove_trailing_lines', 'terraform'],
       \ 'typescript': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
