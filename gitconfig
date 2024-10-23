@@ -116,6 +116,8 @@
 [rebase]
   autostash = true
   autosquash = true
+  updateRefs = true
+  backend = merge
 
 # Verify binary blobs, see
 # https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
