@@ -1,13 +1,15 @@
 # vim: set ft=ruby:
 
+tap "arl/arl"
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "urbanautomaton/formulae"
 
 brew "automake"
 brew "awscli"
 brew "bash"
 brew "bash-completion"
-brew "brew_formulae/gem_home.rb", args: ["HEAD", "build-from-source"]
+brew "gem_home", args: ["HEAD", "build-from-source"]
 brew "chruby"
 brew "coreutils"
 brew "ctags"
@@ -18,6 +20,7 @@ brew "fzf"
 brew "gh"
 brew "gist"
 brew "git"
+brew "gitmux"
 brew "graphviz"
 brew "grep"
 brew "htop"
