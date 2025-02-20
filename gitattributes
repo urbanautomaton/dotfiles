@@ -1,1 +1,2 @@
 *.rb diff=ruby
+*.py diff=python
