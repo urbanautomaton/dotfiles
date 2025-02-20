@@ -56,6 +56,7 @@ let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'javascript.*': ['prettier'],
       \ 'json': ['prettier'],
+      \ 'python': ['autopep8'],
       \ 'rust': ['rustfmt'],
       \ 'scss': ['prettier'],
       \ 'terraform': ['remove_trailing_lines', 'terraform'],
