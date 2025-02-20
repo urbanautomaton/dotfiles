@@ -55,7 +55,8 @@ brew "yarn"
 
 cask_args appdir: "/Applications", require_sha: true
 
-cask "1password" unless ENV['JAMF']
+cask "1password-cli"
+cask "1password"
 cask "alfred"
 cask "bluesnooze"
 cask "evernote"
