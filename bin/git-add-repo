@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-set -x
-
 repo="$1"
 dir="$(echo "$2" | sed 's/\/$//')"
 branch="${3:-master}"
