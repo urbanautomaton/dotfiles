@@ -38,6 +38,8 @@
 
   gone = ! git-gone
 
+  add-repo = ! git-add-repo
+
   prettier = ! git-prettier
   prettier-branch = ! git-prettier-branch
 
