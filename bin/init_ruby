@@ -2,7 +2,11 @@
 
 set -euo pipefail
 
-gem update --system
+if [[ "${RUBY_VERSION}" =~ ^2 ]]; then
+  gem update --system=3.4.22
+else
+  gem update --system
+fi
 
 gem install bundler
 
