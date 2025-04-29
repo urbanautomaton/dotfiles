@@ -111,6 +111,8 @@ set nojoinspaces     " Don't use two spaces when joining lines ending in '.', '?
 
 set regexpengine=1   " Use old regexp engine because ruby syntax is slooooow
                      " with the new one
+set clipboard=unnamed,unnamedplus " Integrate system clipboard with vim
+                                  " unnamed buffers for easy c'n'p
 
 set incsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
