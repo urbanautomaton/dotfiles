@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+region=$(aws configure get region)
+account=$(aws sts get-caller-identity --query 'Account' --output text)
+repository="https://${account}.dkr.ecr.${region}.amazonaws.com"
+
+echo "Logging in to ${repository}"
+aws ecr get-login-password | docker login -u AWS --password-stdin "${repository}"
