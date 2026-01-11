@@ -21,7 +21,7 @@ if [[ $(uname) == "Darwin" ]]; then
   source_if_present "${HOMEBREW_PREFIX}/share/gem_home/gem_home.sh"
 
   if type -t chruby >/dev/null; then
-    export CHRUBY_DEFAULT=2.7
+    export CHRUBY_DEFAULT=4.0
     chruby $CHRUBY_DEFAULT
   fi
 
