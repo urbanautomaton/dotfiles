@@ -1,9 +1,7 @@
 # vim: set ft=ruby:
 
 tap "arl/arl"
-tap "homebrew/bundle"
-tap "homebrew/services"
-tap "urbanautomaton/formulae"
+tap "urbanautomaton/homebrew-formulae"
 
 brew "automake"
 brew "awscli"
@@ -59,8 +57,6 @@ cask "1password-cli"
 cask "1password"
 cask "alfred"
 cask "bluesnooze"
-cask "evernote"
-cask "flux"
 cask "iterm2"
 cask "ngrok"
 cask "rectangle"
