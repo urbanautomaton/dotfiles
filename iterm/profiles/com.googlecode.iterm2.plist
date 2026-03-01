@@ -46,6 +46,8 @@
 	<false/>
 	<key>CommandSelection</key>
 	<true/>
+	<key>CompactMinimalTabBarHeight</key>
+	<real>28</real>
 	<key>Control</key>
 	<integer>1</integer>
 	<key>CopyLastNewline</key>
@@ -475,6 +477,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>DarkModeInactiveTabDarkness</key>
+	<real>0.5</real>
 	<key>Default Bookmark Guid</key>
 	<string>5940E612-8BD0-4CAA-AF84-E6F8E0F4F0F1</string>
 	<key>DimBackgroundWindows</key>
@@ -611,6 +615,8 @@
 	<integer>2</integer>
 	<key>MaxVertically</key>
 	<false/>
+	<key>MinimalTextLegibilityAdjustment</key>
+	<real>1</real>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
 	<true/>
 	<key>New Bookmarks</key>
