@@ -10,7 +10,7 @@ fi
 
 if git config "branch.${branch}.remote" >/dev/null; then
   merge=$(git config "branch.${branch}.merge")
-  remote_branch=${merge##*/}
+  remote_branch=${merge##refs/heads/}
   git push origin --delete "${remote_branch}" || true
 fi
 
