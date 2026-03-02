@@ -1,6 +1,6 @@
 PROMPT_DIRTRIM=2
 if [[ "$TERM" =~ color ]]; then
-  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1) \$ '
+  PS1='\[\033[01;34m\]\w\[\033[00m\] \$ '
 else
   PS1='\u@\h:\w\$ '
 fi
@@ -14,5 +14,5 @@ if [[ "$TERM" =~ xterm*|rxvt* ]]; then
   # stop the interpolations happening at bashrc runtime.
   #
   # shellcheck disable=SC2016
-  append_prompt_command 'echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+  append_prompt_command 'echo -ne "\033]0;${PWD/$HOME/~}\007"'
 fi
