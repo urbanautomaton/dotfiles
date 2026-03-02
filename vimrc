@@ -13,6 +13,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'mattn/vim-typespec'
 Plug 'mxw/vim-jsx'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'pangloss/vim-javascript'
@@ -44,9 +45,11 @@ let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_virtualtext_cursor = 0
 let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options = '--report-unused-disable-directives'
+let g:ale_linters_ignore = ['deno']
 let g:ale_linters = {
       \ 'json': ['jsonlint'],
       \ 'javascript': ['eslint'],
+      \ 'terraform': ['terraform'],
       \ 'tex': ['lacheck'],
       \ }
 let g:ale_fixers = {
@@ -56,10 +59,11 @@ let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'javascript.*': ['prettier'],
       \ 'json': ['prettier'],
-      \ 'python': ['autopep8'],
+      \ 'python': ['black'],
       \ 'rust': ['rustfmt'],
       \ 'scss': ['prettier'],
       \ 'terraform': ['remove_trailing_lines', 'terraform'],
+      \ 'hcl': ['remove_trailing_lines', 'packer'],
       \ 'typescript': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'typescriptreact': ['prettier'],
