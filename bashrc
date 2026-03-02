@@ -29,10 +29,6 @@ append_path_if_present /usr/local/sbin
 # Terminal wrangling #
 ######################
 
-# set a fancy prompt
-# Visible cucumber step locations
-export CUCUMBER_COLORS=comment=cyan
-
 export NVM_DIR="${HOME}/.nvm"
 source_if_present "${NVM_DIR}/nvm.sh"
 source_if_present "${NVM_DIR}/bash_completion"
