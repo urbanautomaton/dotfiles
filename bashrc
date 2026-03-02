@@ -32,6 +32,8 @@ append_path_if_present /usr/local/sbin
 export NVM_DIR="${HOME}/.nvm"
 source_if_present "${NVM_DIR}/nvm.sh"
 source_if_present "${NVM_DIR}/bash_completion"
+# shellcheck disable=SC1090
+command_exists op && source <(op completion bash)
 
 ################
 # And the rest #
